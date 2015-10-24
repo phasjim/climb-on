@@ -70,3 +70,51 @@ html[xmlns] .clearfix {
 * html .clearfix {
     height: 1%;
 }
+
+
+
+
+
+
+
+
+#sun-rays {
+   	transform-origin: center center;
+
+    -webkit-animation-name: spin;
+    	-webkit-animation-duration: 20s;
+    	-webkit-animation-iteration-count: infinite;
+    	-webkit-animation-timing-function: linear;
+    -moz-animation-name: spin;
+    	-moz-animation-duration: 20s;
+    	-moz-animation-iteration-count: infinite;
+    	-moz-animation-timing-function: linear;
+    -ms-animation-name: spin;
+    	-ms-animation-duration: 20s;
+    	-ms-animation-iteration-count: infinite;
+    	-ms-animation-timing-function: linear;
+    animation-name: spin;
+    	animation-duration: 20s;
+    	animation-iteration-count: infinite;
+    	animation-timing-function: linear;
+}
+@-ms-keyframes spin {
+  0% { transform: rotate(-360deg) scale(0.95); }
+  50% { transform: rotate(-180deg) scale(1.1); }
+  100% { transform: rotate(0) scale(0.95); }
+}
+@-moz-keyframes spin {
+  0% { transform: rotate(-360deg) scale(0.95); }
+  50% { transform: rotate(-180deg) scale(1.1); }
+  100% { transform: rotate(0) scale(0.95); }
+}
+@-webkit-keyframes spin {
+  0% { transform: rotate(-360deg) scale(0.95); }
+  50% { transform: rotate(-180deg) scale(1.1); }
+  100% { transform: rotate(0) scale(0.95); }
+}
+@keyframes spin {
+  0% { transform: rotate(-360deg) scale(0.95); }
+  50% { transform: rotate(-180deg) scale(1.1); }
+  100% { transform: rotate(0) scale(0.95); }
+}
