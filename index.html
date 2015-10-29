@@ -1,33 +1,74 @@
-<!doctype html>
-<html ng-app>
-  <head>
-    <meta charset="utf-8"> 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=500" />
-    <meta name="keywords" content="Prita Hasjim" />
-    <meta name="author" content="Prita Hasjim (www.pritahasj.im)" />
-    <title>prita hasjim</title>
+<!DOCTYPE html>
+<html class="no-js" lang="en" ng-app="portfolio">
+<head>
+  <meta charset="utf-8"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=500" />
+  <meta name="keywords" content="Prita Priscilla Hasjim, portfolio" />
+  <meta name="author" content="Prita Priscilla Hasjim (www.pritahasj.im)" />
 
-    <!-- JS -->
-    <script type="text/javascript" src="./js/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="./js/angular/angular.min.js"></script>
-    <script type="text/javascript" src=".js/scrollmagic/ScrollMagic.min.js"></script>
-    <script type="text/javascript" src=".js/scrollmagic/plugins/animation.gsap.min.js"></script>
-    <script type="text/javascript" src=".js/scrollmagic/plugins/animation.velocity.min.js"></script>
-    <script type="text/javascript" src=".js/scrollmagic/plugins/debug.addIndicators.min.js"></script>
-    <script type="text/javascript" src=".js/scrollmagic/plugins/jquery.ScrollMagic.min.js"></script>
+  <!--
+              _ _                     _          _ _ _         _                _ _           
+   _ __  _ __(_) |_ __ _   _ __  _ __(_)___  ___(_) | | __ _  | |__   __ _ ___ (_|_)_ __ ___  
+  | '_ \| '__| | __/ _` | | '_ \| '__| / __|/ __| | | |/ _` | | '_ \ / _` / __|| | | '_ ` _ \ 
+  | |_) | |  | | || (_| | | |_) | |  | \__ \ (__| | | | (_| | | | | | (_| \__ \| | | | | | | |
+  | .__/|_|  |_|\__\__,_| | .__/|_|  |_|___/\___|_|_|_|\__,_| |_| |_|\__,_|___// |_|_| |_| |_|
+  |_|                     |_|                                                |__/             
 
-    <!-- CSS -->
-  </head>
+  -->
 
-  <body>
-    <div>
+  <title>Prita Priscilla Hasjim</title>
 
-      <label>Name:</label>
-      <input type="text" ng-model="yourName" placeholder="Enter a name here">
-      <hr>
-      <h1>Hello {{yourName}}!</h1>
-    </div>
+  <!-- CSS -->
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic|Josefin+Slab:400,700italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="./css/style.css" type="text/css">
 
-  </body>
+  <!-- JS -->
+  <script type="text/javascript" src="./js/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="./js/angular/angular.min.js"></script>
+  <script type="text/javascript" src="./js/temp/highlight.pack.js"></script>
+  <script type="text/javascript" src="./js/temp/modernizr.custom.min.js"></script>
+  <script type="text/javascript" src="./js/temp/examples.js"></script>
+  <script type="text/javascript" src="./js/temp/TweenMax.min.js"></script>
+  <script type="text/javascript" src="./js/scrollmagic/ScrollMagic.min.js"></script>
+  <script type="text/javascript" src="./js/scrollmagic/plugins/animation.gsap.min.js"></script>
+  <script type="text/javascript" src="./js/scrollmagic/plugins/debug.addIndicators.min.js"></script>
+  <script type="text/javascript" src="./js/snapsvg/snapsvg.min.js"></script>
+
+  <!-- DIRECTIVES -->
+  <script type="text/javascript" src="./directives/directives.js"></script>
+
+</head>
+<body style="overflow-x: hidden; margin: 0;" ng-controller="Controller">
+<!-- <body onload="window.location='#mid'"> -->
+  <div style="height: 100%;">
+    <a name="top">
+    <section class="panel panel-1" id="trigger1">
+      <div id="sun-svg-div" style="position: absolute; width: 25%; right: -7%; top: -20%;" sun-svg></div>
+    </section>
+
+    <a name="mid">
+    <section class="panel panel-2" id="trigger2">
+      <div id="mountains-svg-div" mountains-svg></div>
+      <div id="sand-svg-div" sand-svg></div>
+    </section>
+
+    <a name="bot">
+    <section class="panel panel-3" id="trigger3">
+      <div id="cacti-svg-div" cacti-svg></div>
+
+      <div id="cacti-flower-light-svg-div-1" index="1" cacti-flower-light-svg></div>
+      <div id="cacti-flower-light-svg-div-2" index="2" cacti-flower-light-svg></div>
+      <div id="cacti-flower-light-svg-div-3" index="3" cacti-flower-light-svg></div>
+
+      <div id="cacti-flower-dark-svg-div-1" index="1" cacti-flower-dark-svg></div>
+      <div id="cacti-flower-dark-svg-div-2" index="2" cacti-flower-dark-svg></div>
+      <div id="cacti-flower-dark-svg-div-3" index="3" cacti-flower-dark-svg></div>
+
+      <div id="cliff-svg-div" cliff-svg></div>
+    </section>
+  </div>
+  <div class="grain"></div>
+
+</body>
 </html>
