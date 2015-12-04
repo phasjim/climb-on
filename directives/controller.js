@@ -5,6 +5,10 @@
 		.controller("Controller", ["$scope", function($scope) {
 			var controller = new ScrollMagic.Controller();
 
+			/*====================================================================================*/
+			/*=================================== DESERT SCENE ===================================*/
+			/*====================================================================================*/
+
 			/*------------------- CLIFF -------------------*/
 			var cliffTween = new TweenMax.fromTo("#cliff-svg-div", 1,
 				{scale: 0.85, yPercent: -450, xPercent: -65},
@@ -209,7 +213,9 @@
 
 
 
-		 	/*------------------- MINI ME -------------------*/
+		 	/*====================================================================================*/
+			/*===================================== MINI ME ======================================*/
+			/*====================================================================================*/
 
 			/*------------------- MINI ME - CLIMBING -------------------*/
 			var climbingImgs = [];
@@ -249,16 +255,18 @@
 			.addTo(controller);
 
 
-			var meClimbVerTween = new TweenMax.fromTo("#mini-me-div", 1,
-				{yPercent: -40},
-				{yPercent: -65, ease: Linear.easeNone});
-			var meClimbVerScene = new ScrollMagic.Scene({
+
+			var meClimbVertTween = new TweenMax.fromTo("#mini-me-div", 1,
+				{yPercent: -40, xPercent: -10},
+				{yPercent: -80, xPercent: 1, ease: Linear.easeNone});
+
+			var meClimbVertScene = new ScrollMagic.Scene({
 				triggerElement: "#trigger1",
 				offset: 400,
 				duration: "90%"
 		    })
-		 	.setTween(meClimbVerTween)
-		 	.addIndicators({name: "me climb__________", colorStart: "magenta", colorEnd: "magenta"})
+		 	.setTween(meClimbVertTween)
+		 	.addIndicators({name: "me climb / slide down________________________________", colorStart: "pink", colorEnd: "pink"})
 		 	.addTo(controller);
 
 
@@ -295,12 +303,27 @@
 
 			var meWelcomeScene = new ScrollMagic.Scene({
 				triggerElement: "#trigger1",
-				offset: meClimbVerScene.offset() + meClimbVerScene.duration(),
+				offset: meClimbVertScene.offset() + meClimbVertScene.duration(),
 				duration: "20%"
 			})
 			.setTween(meWelcomeTween)
 			.addIndicators({name: "me welcome________________", colorStart: "navy", colorEnd: "navy"})
 			.addTo(controller);
+
+
+			// keeps mini me at the same spot vertically, and aligns with cliff
+			var meWelcomeVertTween = new TweenMax.fromTo("#mini-me-div", 1,
+				{yPercent: -80},
+				{yPercent: -100, xPercent: 2, ease: Linear.easeNone});
+
+			var meWelcomeVertScene = new ScrollMagic.Scene({
+				triggerElement: "#trigger1",
+				offset: meClimbVertScene.offset() + meClimbVertScene.duration(),
+				duration: "20%"
+		    })
+		 	.setTween(meWelcomeVertTween)
+			.addIndicators({name: "me welcome________________", colorStart: "navy", colorEnd: "navy"})
+		 	.addTo(controller);
 
 
 
@@ -341,6 +364,21 @@
 			.addTo(controller);
 
 
+			// Quick slide left when mini me is about to jump
+			var meRepelPrepSlideLeftTween = new TweenMax.fromTo("#mini-me-div", 0.2,
+				{xPercent: 2},
+				{xPercent: -2, ease: Linear.easeNone});
+
+			var meRepelPrepSlideLeftScene = new ScrollMagic.Scene({
+				triggerElement: "#trigger1",
+				offset: meWelcomeScene.offset() + meWelcomeScene.duration()
+		    })
+		 	.setTween(meRepelPrepSlideLeftTween)
+			.addIndicators({name: "me repel prep 1____________________", colorStart: "tomato", colorEnd: "tomato"})
+		 	.addTo(controller);
+
+
+
 			var repelPrepImgs2 = [];
 			var maxRepelPrep2 = 14;
 
@@ -378,100 +416,130 @@
 
 
 
-			/*------------------- MINI ME - SLIDE LEFT -------------------*/
+			var meRepelPrepVertTween = new TweenMax.fromTo("#mini-me-div", 1,
+				{yPercent: -100},
+				{yPercent: -110, ease: Linear.easeNone});
+
+			var meRepelPrepVertScene = new ScrollMagic.Scene({
+				triggerElement: "#trigger1",
+				offset: meWelcomeScene.offset() + meWelcomeScene.duration(),
+				duration: 100
+		    })
+		 	.setTween(meRepelPrepVertTween)
+			.addIndicators({name: "me repel prep VERT______________________________________", colorStart: "tomato", colorEnd: "tomato"})
+		 	.addTo(controller);
+
+
+
+			/*------------------- MINI ME - SLIDE LEFT (FOR REPEL) -------------------*/
 			var miniMeMoveLeftTween1 = new TweenMax.fromTo("#mini-me-div", 1,
-				{xPercent: -20},
-				{xPercent: 2, ease: Linear.easeNone}
+				{xPercent: -2},
+				{xPercent: 12, yPercent: -95, ease: Circ.easeOut}
 			);
+
 			var miniMeMoveLeftScene1 = new ScrollMagic.Scene({
 				triggerElement: "#trigger1",
-				duration: meWelcomeScene.offset() + meWelcomeScene.duration()
+				offset: meRepelPrepScene2.offset() + meRepelPrepScene2.duration(),
+				duration: (meWelcomeScene.duration()/2) + 10
 		    })
 		 	.setTween(miniMeMoveLeftTween1)
 		 	.addIndicators({name: "me move left container 1________________________________________", colorStart: "gray", colorEnd: "gray"})
 		 	.addTo(controller);
 
 
-		 	var miniMeMoveLeftTween2 = new TweenMax.fromTo("#mini-me-div", 0.2,
-		 		{xPercent: 2},
-		 		{xPercent: -3, ease: Linear.easeNone}
-		 	);
+
+		 	var miniMeMoveLeftTween2 = new TweenMax.fromTo("#mini-me-div", 1,
+				{xPercent: 12},
+				{xPercent: 0, yPercent: -90, ease: Circ.easeIn}
+			);
+
 			var miniMeMoveLeftScene2 = new ScrollMagic.Scene({
 				triggerElement: "#trigger1",
-				offset: meWelcomeScene.offset() + meWelcomeScene.duration()
+				offset: miniMeMoveLeftScene1.offset() + miniMeMoveLeftScene1.duration(),
+				duration: miniMeMoveLeftScene1.duration()
 		    })
 		 	.setTween(miniMeMoveLeftTween2)
 		 	.addIndicators({name: "me move left container 2________________________________________", colorStart: "gray", colorEnd: "gray"})
 		 	.addTo(controller);
 
 
-		 	var miniMeMoveLeftTween3 = new TweenMax.fromTo("#mini-me-div", 2, 
-		 		{xPercent: -3}, 
-		 		{xPercent: 10, yPercent: 90, ease: Circ.easeOut}
-		 	);
+
+		 	var miniMeMoveLeftTween3 = new TweenMax.fromTo("#mini-me-div", 1,
+				{xPercent: 0},
+				{xPercent: 14, yPercent: -85, ease: Circ.easeOut}
+			);
+
 			var miniMeMoveLeftScene3 = new ScrollMagic.Scene({
 				triggerElement: "#trigger1",
-				offset: meWelcomeScene.offset() + meWelcomeScene.duration() + 100,
-				duration: 100
+				offset: miniMeMoveLeftScene2.offset() + miniMeMoveLeftScene2.duration(),
+				duration: miniMeMoveLeftScene1.duration()
 		    })
 		 	.setTween(miniMeMoveLeftTween3)
-		 	.addIndicators({name: "me move left container 3________________________________________", colorStart: "gray", colorEnd: "gray"})
+		 	.addIndicators({name: "me move left container 3________________________________________", colorStart: "violet", colorEnd: "violet"})
 		 	.addTo(controller);
 
 
-		 	var miniMeMoveLeftTween4 = new TweenMax.fromTo("#mini-me-div", 2, 
-		 		{xPercent: 10}, 
-		 		{xPercent: -3, yPercent: 120, ease: Circ.easeIn}
-		 	);
+
+		 	var miniMeMoveLeftTween4 = new TweenMax.fromTo("#mini-me-div", 1,
+				{xPercent: 14},
+				{xPercent: 2, yPercent: -80, ease: Circ.easeIn}
+			);
+
 			var miniMeMoveLeftScene4 = new ScrollMagic.Scene({
 				triggerElement: "#trigger1",
 				offset: miniMeMoveLeftScene3.offset() + miniMeMoveLeftScene3.duration(),
-				duration: 100
+				duration: miniMeMoveLeftScene1.duration()
 		    })
 		 	.setTween(miniMeMoveLeftTween4)
-		 	.addIndicators({name: "me move left container 4________________________________________", colorStart: "gray", colorEnd: "gray"})
+		 	.addIndicators({name: "me move left container 4________________________________________", colorStart: "violet", colorEnd: "violet"})
 		 	.addTo(controller);
 
 
-		 	var miniMeMoveLeftTween5 = new TweenMax.fromTo("#mini-me-div", 2, 
-		 		{xPercent: -3}, 
-		 		{xPercent: 10, yPercent: 150, ease: Circ.easeOut}
-		 	);
+
+		 	var miniMeMoveLeftTween5 = new TweenMax.fromTo("#mini-me-div", 1,
+				{xPercent: 2},
+				{xPercent: 16, yPercent: -75, ease: Circ.easeOut}
+			);
+
 			var miniMeMoveLeftScene5 = new ScrollMagic.Scene({
 				triggerElement: "#trigger1",
 				offset: miniMeMoveLeftScene4.offset() + miniMeMoveLeftScene4.duration(),
-				duration: 100
+				duration: miniMeMoveLeftScene1.duration()
 		    })
 		 	.setTween(miniMeMoveLeftTween5)
-		 	.addIndicators({name: "me move left container 5________________________________________", colorStart: "gray", colorEnd: "gray"})
+		 	.addIndicators({name: "me move left container 5________________________________________", colorStart: "thistle", colorEnd: "thistle"})
 		 	.addTo(controller);
 
 
-		 	var miniMeMoveLeftTween6 = new TweenMax.fromTo("#mini-me-div", 2, 
-		 		{xPercent: 10}, 
-		 		{xPercent: -3, yPercent: 180, ease: Circ.easeIn}
-		 	);
+
+		 	var miniMeMoveLeftTween6 = new TweenMax.fromTo("#mini-me-div", 1,
+				{xPercent: 16},
+				{xPercent: 2, yPercent: -70, ease: Circ.easeIn}
+			);
+
 			var miniMeMoveLeftScene6 = new ScrollMagic.Scene({
 				triggerElement: "#trigger1",
 				offset: miniMeMoveLeftScene5.offset() + miniMeMoveLeftScene5.duration(),
-				duration: 100
+				duration: miniMeMoveLeftScene1.duration() - 10
 		    })
 		 	.setTween(miniMeMoveLeftTween6)
-		 	.addIndicators({name: "me move left container 6________________________________________", colorStart: "gray", colorEnd: "gray"})
+		 	.addIndicators({name: "me move left container 6________________________________________", colorStart: "thistle", colorEnd: "thistle"})
 		 	.addTo(controller);
 
 
-		 	var miniMeMoveLeftTween7 = new TweenMax.fromTo("#mini-me-div", 2, 
-		 		{xPercent: -3},
-		 		{xPercent: 7, yPercent: 225, ease: Circ.easeOut}
-		 	);
+
+		 	var miniMeMoveLeftTween7 = new TweenMax.fromTo("#mini-me-div", 1,
+				{xPercent: 2},
+				{xPercent: 12, yPercent: -65, ease: Circ.easeOut}
+			);
+
 			var miniMeMoveLeftScene7 = new ScrollMagic.Scene({
 				triggerElement: "#trigger1",
 				offset: miniMeMoveLeftScene6.offset() + miniMeMoveLeftScene6.duration(),
-				duration: 80
+				duration: (meWelcomeScene.duration()/4)
 		    })
 		 	.setTween(miniMeMoveLeftTween7)
-		 	.addIndicators({name: "me move left container 5________________________________________", colorStart: "gray", colorEnd: "gray"})
+		 	.addIndicators({name: "me move left container 7________________________________________", colorStart: "springgreen", colorEnd: "springgreen"})
 		 	.addTo(controller);
 
 
@@ -513,10 +581,14 @@
 			.addTo(controller);
 
 
-			var landingTurnTween = new TweenMax.to("#mini-me-div", 1.5, {yPercent: 208, rotation: -15, ease: Linear.easeNone});
+			var landingTurnTween = new TweenMax.fromTo("#mini-me-div", 1,
+				{xPercent: 12, yPercent: -68},
+				{xPercent: 6, yPercent: -60, rotation: -15, ease: Circ.easeOut}
+			);
+			
 			var landingTurnScene = new ScrollMagic.Scene({
 				triggerElement: "#trigger1",
-				offset: landingScene.offset() + 50
+				offset: landingScene.offset()
 		    })
 		 	.setTween(landingTurnTween)
 		 	.addIndicators({name: "me landing 2____________________", colorStart: "red", colorEnd: "red"})
@@ -561,7 +633,7 @@
 
 			var blinkScene = new ScrollMagic.Scene({
 				triggerElement: "#trigger1",
-				offset: landingScene.offset() + 70
+				offset: landingScene.offset() + 30
 			})
 			.setTween(blinkTween)
 			.addIndicators({name: "me blinking________________________________", colorStart: "teal", colorEnd: "teal"})
@@ -569,306 +641,310 @@
 
 
 
+			/*====================================================================================*/
+			/*===================================== ROPE =========================================*/
+			/*====================================================================================*/
+
 		 	/*------------------- ROPE -------------------*/
-		 	var ropeContainerTween1 = new TweenMax.fromTo("#rope-obj", 1,
-		 	{
-		 		css: {
-		 			width: "27%",
-		 			height: "2%"
-		 		}
-		 	},{
-		 		ease: Linear.easeNone,
-		 		css: {
-		 			width: "36%",
-		 			height: "5%"
-		 		}
-		 	});
-			var ropeContainerScene1 = new ScrollMagic.Scene({
-				triggerElement: "#trigger1",
-				offset: 400,
-				duration: "10%"
-		    })
-		 	.setTween(ropeContainerTween1)
-		 	.addIndicators({name: "rope 1____________________________", colorStart: "black", colorEnd: "black"})
-		 	.addTo(controller);
+		 // 	var ropeContainerTween1 = new TweenMax.fromTo("#rope-obj", 1,
+		 // 	{
+		 // 		css: {
+		 // 			width: "27%",
+		 // 			height: "2%"
+		 // 		}
+		 // 	},{
+		 // 		ease: Linear.easeNone,
+		 // 		css: {
+		 // 			width: "36%",
+		 // 			height: "5%"
+		 // 		}
+		 // 	});
+			// var ropeContainerScene1 = new ScrollMagic.Scene({
+			// 	triggerElement: "#trigger1",
+			// 	offset: 400,
+			// 	duration: "10%"
+		 //    })
+		 // 	.setTween(ropeContainerTween1)
+		 // 	.addIndicators({name: "rope 1____________________________", colorStart: "black", colorEnd: "black"})
+		 // 	.addTo(controller);
 
 
-		 	var ropeContainerTween2 = new TweenMax.fromTo("#rope-obj", 1,
-		 	{
-		 		css: {
-		 			width: "36%",
-		 			height: "5%"
-		 		}
-		 	},{
-		 		ease: Linear.easeNone,
-		 		css: {
-		 			borderRadius: "0px 110px 20px 0px",
-		 			width: "33%",
-		 			height: "40%"
-		 		}
-		 	});
-			var ropeContainerScene2 = new ScrollMagic.Scene({
-				triggerElement: "#trigger1",
-				offset: ropeContainerScene1.offset() + ropeContainerScene1.duration(),
-				duration: "30%"
-		    })
-		 	.setTween(ropeContainerTween2)
-		 	.addIndicators({name: "rope 2____________________________", colorStart: "black", colorEnd: "black"})
-		 	.addTo(controller);
+		 // 	var ropeContainerTween2 = new TweenMax.fromTo("#rope-obj", 1,
+		 // 	{
+		 // 		css: {
+		 // 			width: "36%",
+		 // 			height: "5%"
+		 // 		}
+		 // 	},{
+		 // 		ease: Linear.easeNone,
+		 // 		css: {
+		 // 			borderRadius: "0px 110px 20px 0px",
+		 // 			width: "33%",
+		 // 			height: "40%"
+		 // 		}
+		 // 	});
+			// var ropeContainerScene2 = new ScrollMagic.Scene({
+			// 	triggerElement: "#trigger1",
+			// 	offset: ropeContainerScene1.offset() + ropeContainerScene1.duration(),
+			// 	duration: "30%"
+		 //    })
+		 // 	.setTween(ropeContainerTween2)
+		 // 	.addIndicators({name: "rope 2____________________________", colorStart: "black", colorEnd: "black"})
+		 // 	.addTo(controller);
 
 
-		 	var ropeContainerTween3 = new TweenMax.fromTo("#rope-obj", 1,
-		 	{
-		 		css: {
-		 			width: "33%",
-		 			height: "40%"
-		 		}
-		 	},{
-		 		ease: Linear.easeNone,
-		 		css: {
-		 			width: "30%",
-		 			height: "50%"
-		 		}
-		 	});
-			var ropeContainerScene3 = new ScrollMagic.Scene({
-				triggerElement: "#trigger1",
-				offset: ropeContainerScene2.offset() + ropeContainerScene2.duration(),
-				duration: "10%"
-		    })
-		 	.setTween(ropeContainerTween3)
-		 	.addIndicators({name: "rope 3____________________________", colorStart: "black", colorEnd: "black"})
-		 	.addTo(controller);
+		 // 	var ropeContainerTween3 = new TweenMax.fromTo("#rope-obj", 1,
+		 // 	{
+		 // 		css: {
+		 // 			width: "33%",
+		 // 			height: "40%"
+		 // 		}
+		 // 	},{
+		 // 		ease: Linear.easeNone,
+		 // 		css: {
+		 // 			width: "30%",
+		 // 			height: "50%"
+		 // 		}
+		 // 	});
+			// var ropeContainerScene3 = new ScrollMagic.Scene({
+			// 	triggerElement: "#trigger1",
+			// 	offset: ropeContainerScene2.offset() + ropeContainerScene2.duration(),
+			// 	duration: "10%"
+		 //    })
+		 // 	.setTween(ropeContainerTween3)
+		 // 	.addIndicators({name: "rope 3____________________________", colorStart: "black", colorEnd: "black"})
+		 // 	.addTo(controller);
 
 
-		 	var ropeContainerTween4 = new TweenMax.fromTo("#rope-obj", 1,
-		 	{
-		 		css: {
-		 			width: "30%",
-		 			height: "50%"
-		 		}
-		 	},{
-		 		ease: Linear.easeNone,
-		 		css: {
-		 			width: "27%",
-		 			height: "53%"
-		 		}
-		 	});
-			var ropeContainerScene4 = new ScrollMagic.Scene({
-				triggerElement: "#trigger1",
-				offset: ropeContainerScene3.offset() + ropeContainerScene3.duration(),
-				duration: "20%"
-		    })
-		 	.setTween(ropeContainerTween4)
-		 	.addIndicators({name: "rope 4____________________________", colorStart: "black", colorEnd: "black"})
-		 	.addTo(controller);
+		 // 	var ropeContainerTween4 = new TweenMax.fromTo("#rope-obj", 1,
+		 // 	{
+		 // 		css: {
+		 // 			width: "30%",
+		 // 			height: "50%"
+		 // 		}
+		 // 	},{
+		 // 		ease: Linear.easeNone,
+		 // 		css: {
+		 // 			width: "27%",
+		 // 			height: "53%"
+		 // 		}
+		 // 	});
+			// var ropeContainerScene4 = new ScrollMagic.Scene({
+			// 	triggerElement: "#trigger1",
+			// 	offset: ropeContainerScene3.offset() + ropeContainerScene3.duration(),
+			// 	duration: "20%"
+		 //    })
+		 // 	.setTween(ropeContainerTween4)
+		 // 	.addIndicators({name: "rope 4____________________________", colorStart: "black", colorEnd: "black"})
+		 // 	.addTo(controller);
 
 
-		 	var ropeContainerTween5 = new TweenMax.fromTo("#rope-obj", 1,
-		 	{
-		 		css: {
-		 			width: "27%",
-		 			height: "53%"
-		 		}
-		 	},{
-		 		ease: Linear.easeNone,
-		 		css: {
-		 			width: "28%",
-		 			height: "64%"
-		 		}
-		 	});
-			var ropeContainerScene5 = new ScrollMagic.Scene({
-				triggerElement: "#trigger1",
-				offset: ropeContainerScene4.offset() + ropeContainerScene4.duration(),
-				duration: "20%"
-		    })
-		 	.setTween(ropeContainerTween5)
-		 	.addIndicators({name: "rope 5____________________________", colorStart: "black", colorEnd: "black"})
-		 	.addTo(controller);
+		 // 	var ropeContainerTween5 = new TweenMax.fromTo("#rope-obj", 1,
+		 // 	{
+		 // 		css: {
+		 // 			width: "27%",
+		 // 			height: "53%"
+		 // 		}
+		 // 	},{
+		 // 		ease: Linear.easeNone,
+		 // 		css: {
+		 // 			width: "28%",
+		 // 			height: "64%"
+		 // 		}
+		 // 	});
+			// var ropeContainerScene5 = new ScrollMagic.Scene({
+			// 	triggerElement: "#trigger1",
+			// 	offset: ropeContainerScene4.offset() + ropeContainerScene4.duration(),
+			// 	duration: "20%"
+		 //    })
+		 // 	.setTween(ropeContainerTween5)
+		 // 	.addIndicators({name: "rope 5____________________________", colorStart: "black", colorEnd: "black"})
+		 // 	.addTo(controller);
 
 
-		 	var ropeContainerTween6 = new TweenMax.fromTo("#rope-obj", 1,
-		 	{
-		 		css: {
-		 			width: "28%",
-		 			height: "66%"
-		 		}
-		 	},{
-		 		ease: Linear.easeNone,
-		 		css: {
-		 			width: "28%",
-		 			height: "67%"
-		 		}
-		 	});
-			var ropeContainerScene6 = new ScrollMagic.Scene({
-				triggerElement: "#trigger1",
-				offset: ropeContainerScene5.offset() + ropeContainerScene5.duration(),
-				duration: "13%"
-		    })
-		 	.setTween(ropeContainerTween6)
-		 	.addIndicators({name: "rope 6____________________________", colorStart: "black", colorEnd: "black"})
-		 	.addTo(controller);
+		 // 	var ropeContainerTween6 = new TweenMax.fromTo("#rope-obj", 1,
+		 // 	{
+		 // 		css: {
+		 // 			width: "28%",
+		 // 			height: "66%"
+		 // 		}
+		 // 	},{
+		 // 		ease: Linear.easeNone,
+		 // 		css: {
+		 // 			width: "28%",
+		 // 			height: "67%"
+		 // 		}
+		 // 	});
+			// var ropeContainerScene6 = new ScrollMagic.Scene({
+			// 	triggerElement: "#trigger1",
+			// 	offset: ropeContainerScene5.offset() + ropeContainerScene5.duration(),
+			// 	duration: "13%"
+		 //    })
+		 // 	.setTween(ropeContainerTween6)
+		 // 	.addIndicators({name: "rope 6____________________________", colorStart: "black", colorEnd: "black"})
+		 // 	.addTo(controller);
 
 
-		 	var ropeContainerTween7 = new TweenMax.fromTo("#rope-obj", 1,
-		 	{
-		 		css: {
-		 			width: "28%",
-		 			height: "67%"
-		 		}
-		 	},{
-		 		ease: Linear.easeNone,
-		 		css: {
-		 			width: "28%",
-		 			height: "69%"
-		 		}
-		 	});
-			var ropeContainerScene7 = new ScrollMagic.Scene({
-				triggerElement: "#trigger1",
-				offset: ropeContainerScene6.offset() + ropeContainerScene6.duration(),
-				duration: "20%"
-		    })
-		 	.setTween(ropeContainerTween7)
-		 	.addIndicators({name: "rope 7____________________________", colorStart: "black", colorEnd: "black"})
-		 	.addTo(controller);
+		 // 	var ropeContainerTween7 = new TweenMax.fromTo("#rope-obj", 1,
+		 // 	{
+		 // 		css: {
+		 // 			width: "28%",
+		 // 			height: "67%"
+		 // 		}
+		 // 	},{
+		 // 		ease: Linear.easeNone,
+		 // 		css: {
+		 // 			width: "28%",
+		 // 			height: "69%"
+		 // 		}
+		 // 	});
+			// var ropeContainerScene7 = new ScrollMagic.Scene({
+			// 	triggerElement: "#trigger1",
+			// 	offset: ropeContainerScene6.offset() + ropeContainerScene6.duration(),
+			// 	duration: "20%"
+		 //    })
+		 // 	.setTween(ropeContainerTween7)
+		 // 	.addIndicators({name: "rope 7____________________________", colorStart: "black", colorEnd: "black"})
+		 // 	.addTo(controller);
 
 
-		 	var ropeContainerTween8 = new TweenMax.fromTo("#rope-obj", 1,
-		 	{
-		 		css: {
-		 			width: "28%",
-		 			height: "69%"
-		 		}
-		 	},{
-		 		ease: Circ.easeOut,
-		 		css: {
-		 			width: "35%",
-		 			height: "105%"
-		 		}
-		 	});
-			var ropeContainerScene8 = new ScrollMagic.Scene({
-				triggerElement: "#trigger1",
-				offset: ropeContainerScene7.offset() + ropeContainerScene7.duration(),
-				duration: "12%"
-		    })
-		 	.setTween(ropeContainerTween8)
-		 	.addIndicators({name: "rope 8____________________________", colorStart: "black", colorEnd: "black"})
-		 	.addTo(controller);
+		 // 	var ropeContainerTween8 = new TweenMax.fromTo("#rope-obj", 1,
+		 // 	{
+		 // 		css: {
+		 // 			width: "28%",
+		 // 			height: "69%"
+		 // 		}
+		 // 	},{
+		 // 		ease: Circ.easeOut,
+		 // 		css: {
+		 // 			width: "35%",
+		 // 			height: "105%"
+		 // 		}
+		 // 	});
+			// var ropeContainerScene8 = new ScrollMagic.Scene({
+			// 	triggerElement: "#trigger1",
+			// 	offset: ropeContainerScene7.offset() + ropeContainerScene7.duration(),
+			// 	duration: "12%"
+		 //    })
+		 // 	.setTween(ropeContainerTween8)
+		 // 	.addIndicators({name: "rope 8____________________________", colorStart: "black", colorEnd: "black"})
+		 // 	.addTo(controller);
 
 
-		 	var ropeContainerTween9 = new TweenMax.fromTo("#rope-obj", 1,
-		 	{
-		 		css: {
-		 			width: "35%",
-		 			height: "105%"
-		 		}
-		 	},{
-		 		ease: Circ.easeIn,
-		 		css: {
-		 			width: "30%",
-		 			height: "115%"
-		 		}
-		 	});
-			var ropeContainerScene9 = new ScrollMagic.Scene({
-				triggerElement: "#trigger1",
-				offset: ropeContainerScene8.offset() + ropeContainerScene8.duration(),
-				duration: "14%"
-		    })
-		 	.setTween(ropeContainerTween9)
-		 	.addIndicators({name: "rope 9____________________________", colorStart: "black", colorEnd: "black"})
-		 	.addTo(controller);
+		 // 	var ropeContainerTween9 = new TweenMax.fromTo("#rope-obj", 1,
+		 // 	{
+		 // 		css: {
+		 // 			width: "35%",
+		 // 			height: "105%"
+		 // 		}
+		 // 	},{
+		 // 		ease: Circ.easeIn,
+		 // 		css: {
+		 // 			width: "30%",
+		 // 			height: "115%"
+		 // 		}
+		 // 	});
+			// var ropeContainerScene9 = new ScrollMagic.Scene({
+			// 	triggerElement: "#trigger1",
+			// 	offset: ropeContainerScene8.offset() + ropeContainerScene8.duration(),
+			// 	duration: "14%"
+		 //    })
+		 // 	.setTween(ropeContainerTween9)
+		 // 	.addIndicators({name: "rope 9____________________________", colorStart: "black", colorEnd: "black"})
+		 // 	.addTo(controller);
 
 
-		 	var ropeContainerTween10 = new TweenMax.fromTo("#rope-obj", 1,
-		 	{
-		 		css: {
-		 			width: "30%",
-		 			height: "115%"
-		 		}
-		 	},{
-		 		ease: Circ.easeOut,
-		 		css: {
-		 			width: "35%",
-		 			height: "150%"
-		 		}
-		 	});
-			var ropeContainerScene10 = new ScrollMagic.Scene({
-				triggerElement: "#trigger1",
-				offset: ropeContainerScene9.offset() + ropeContainerScene9.duration(),
-				duration: "13%"
-		    })
-		 	.setTween(ropeContainerTween10)
-		 	.addIndicators({name: "rope 10____________________________", colorStart: "black", colorEnd: "black"})
-		 	.addTo(controller);
+		 // 	var ropeContainerTween10 = new TweenMax.fromTo("#rope-obj", 1,
+		 // 	{
+		 // 		css: {
+		 // 			width: "30%",
+		 // 			height: "115%"
+		 // 		}
+		 // 	},{
+		 // 		ease: Circ.easeOut,
+		 // 		css: {
+		 // 			width: "35%",
+		 // 			height: "150%"
+		 // 		}
+		 // 	});
+			// var ropeContainerScene10 = new ScrollMagic.Scene({
+			// 	triggerElement: "#trigger1",
+			// 	offset: ropeContainerScene9.offset() + ropeContainerScene9.duration(),
+			// 	duration: "13%"
+		 //    })
+		 // 	.setTween(ropeContainerTween10)
+		 // 	.addIndicators({name: "rope 10____________________________", colorStart: "black", colorEnd: "black"})
+		 // 	.addTo(controller);
 
 
-		 	var ropeContainerTween11 = new TweenMax.fromTo("#rope-obj", 1,
-		 	{
-		 		css: {
-		 			width: "35%",
-		 			height: "150%"
-		 		}
-		 	},{
-		 		ease: Circ.easeIn,
-		 		css: {
-		 			width: "30%",
-		 			height: "170%"
-		 		}
-		 	});
-			var ropeContainerScene11 = new ScrollMagic.Scene({
-				triggerElement: "#trigger1",
-				offset: ropeContainerScene10.offset() + ropeContainerScene10.duration(),
-				duration: "12%"
-		    })
-		 	.setTween(ropeContainerTween11)
-		 	.addIndicators({name: "rope 11____________________________", colorStart: "black", colorEnd: "black"})
-		 	.addTo(controller);
+		 // 	var ropeContainerTween11 = new TweenMax.fromTo("#rope-obj", 1,
+		 // 	{
+		 // 		css: {
+		 // 			width: "35%",
+		 // 			height: "150%"
+		 // 		}
+		 // 	},{
+		 // 		ease: Circ.easeIn,
+		 // 		css: {
+		 // 			width: "30%",
+		 // 			height: "170%"
+		 // 		}
+		 // 	});
+			// var ropeContainerScene11 = new ScrollMagic.Scene({
+			// 	triggerElement: "#trigger1",
+			// 	offset: ropeContainerScene10.offset() + ropeContainerScene10.duration(),
+			// 	duration: "12%"
+		 //    })
+		 // 	.setTween(ropeContainerTween11)
+		 // 	.addIndicators({name: "rope 11____________________________", colorStart: "black", colorEnd: "black"})
+		 // 	.addTo(controller);
 
 
-		 	var ropeContainerTween12 = new TweenMax.fromTo("#rope-obj", 1,
-		 	{
-		 		css: {
-		 			width: "30%",
-		 			height: "170%"
-		 		}
-		 	},{
-		 		ease: Circ.easeOut,
-		 		css: {
-		 			width: "38%",
-		 			height: "202%"
-		 		}
-		 	});
-			var ropeContainerScene12 = new ScrollMagic.Scene({
-				triggerElement: "#trigger1",
-				offset: ropeContainerScene11.offset() + ropeContainerScene11.duration(),
-				duration: "13%"
-		    })
-		 	.setTween(ropeContainerTween12)
-		 	.addIndicators({name: "rope 12____________________________", colorStart: "black", colorEnd: "black"})
-		 	.addTo(controller);
+		 // 	var ropeContainerTween12 = new TweenMax.fromTo("#rope-obj", 1,
+		 // 	{
+		 // 		css: {
+		 // 			width: "30%",
+		 // 			height: "170%"
+		 // 		}
+		 // 	},{
+		 // 		ease: Circ.easeOut,
+		 // 		css: {
+		 // 			width: "38%",
+		 // 			height: "202%"
+		 // 		}
+		 // 	});
+			// var ropeContainerScene12 = new ScrollMagic.Scene({
+			// 	triggerElement: "#trigger1",
+			// 	offset: ropeContainerScene11.offset() + ropeContainerScene11.duration(),
+			// 	duration: "13%"
+		 //    })
+		 // 	.setTween(ropeContainerTween12)
+		 // 	.addIndicators({name: "rope 12____________________________", colorStart: "black", colorEnd: "black"})
+		 // 	.addTo(controller);
 
 
-		 	var ropeContainerTween13 = new TweenMax.fromTo("#rope-obj", 1,
-		 	{
-		 		css: {
-		 			width: "38%",
-		 			height: "202%"
-		 		}
-		 	},{
-		 		ease: Circ.easeOut,
-		 		css: {
-		 			borderRadius: "0px 110px 90px 0px",
-		 			width: "40%",
-		 			height: "206%"
-		 		}
-		 	});
-			var ropeContainerScene13 = new ScrollMagic.Scene({
-				triggerElement: "#trigger1",
-				offset: ropeContainerScene12.offset() + ropeContainerScene12.duration(),
-				duration: "2%"
-		    })
-		 	.setTween(ropeContainerTween13)
-		 	.addIndicators({name: "rope 13____________________________", colorStart: "black", colorEnd: "black"})
-		 	.addTo(controller);
+		 // 	var ropeContainerTween13 = new TweenMax.fromTo("#rope-obj", 1,
+		 // 	{
+		 // 		css: {
+		 // 			width: "38%",
+		 // 			height: "202%"
+		 // 		}
+		 // 	},{
+		 // 		ease: Circ.easeOut,
+		 // 		css: {
+		 // 			borderRadius: "0px 110px 90px 0px",
+		 // 			width: "40%",
+		 // 			height: "206%"
+		 // 		}
+		 // 	});
+			// var ropeContainerScene13 = new ScrollMagic.Scene({
+			// 	triggerElement: "#trigger1",
+			// 	offset: ropeContainerScene12.offset() + ropeContainerScene12.duration(),
+			// 	duration: "2%"
+		 //    })
+		 // 	.setTween(ropeContainerTween13)
+		 // 	.addIndicators({name: "rope 13____________________________", colorStart: "black", colorEnd: "black"})
+		 // 	.addTo(controller);
 
 
 		 	
