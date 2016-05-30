@@ -43,7 +43,23 @@
   <div style="height: 100%;">
     <a name="top">
     <section class="panel panel-1" id="trigger1" style="position: relative;">
-      <div class="layer-blue-sky" style="
+      <div id="trigger1-half" style="
+        top: 50vh;
+        width: 25vw;
+        height: 3px;
+        background: fuchsia;
+        position: absolute;
+      "></div>
+
+      <div id="trigger1-half-quarter" style="
+        top: 75vh;
+        width: 25vw;
+        height: 3px;
+        background: fuchsia;
+        position: absolute;
+      "></div>
+
+      <div class="layer-mask-blue-sky" style="
         position: fixed;
         background-color: lightyellow;
         opacity: .70;
@@ -55,7 +71,7 @@
         sky sky sky sky sky sky sky sky sky sky sky sky sky sky sky sky sky sky sky sky sky sky sky sky 
       </div>
 
-      <div class="layer-desert-ground" style="
+      <div class="layer-mask-desert-ground" style="
         position: fixed;
         background-color: lightblue;
         opacity: .70;
@@ -67,7 +83,8 @@
         desert + ground
       </div>
 
-      <div class="layer-cliff-me" style="
+
+      <div class="layer-mask-cliff-me" style="
         position: fixed;
         background-color: lightpink;
         opacity: .70;
@@ -77,17 +94,24 @@
         top: 2vh;
         overflow: hidden;
       ">
-        <div id="div-cliff" style="
+        <div id="div-cliff-me" style="
           position: relative;
         ">
-          <img src="img/svg/mini-cliff.svg">
+          <img id="img-cliff" src="img/svg/mini-cliff.svg">
+
+          <img id="img-me" style="
+            position: absolute;
+            width: 35vw;
+            left: 18vw;
+            top: -12vh;"
+            src="img/gifs/sitting-loop.gif">
         </div>
 
-        <div id="div-me" style="
+        <!-- <div id="div-me" style="
           position: fixed;
         ">
           <img id="img-me" src="img/gifs/sitting-loop.gif">
-        </div>
+        </div> -->
 
       </div>
 
@@ -95,12 +119,32 @@
 
     <a name="mid">
     <section class="panel panel-2" id="trigger2">
-      
+      <div id="trigger2-quarter" style="
+        top: 125vh;
+        width: 25vw;
+        height: 3px;
+        background: blue;
+        position: absolute;
+      "></div>
+
+      <div id="trigger2-half" style="
+        top: 150vh;
+        width: 25vw;
+        height: 3px;
+        background: blue;
+        position: absolute;
+      "></div>
     </section>
 
     <a name="bot">
     <section class="panel panel-3" id="trigger3">    
-
+      <div id="trigger3-half" style="
+        top: 250vh;
+        width: 25vw;
+        height: 3px;
+        background: orange;
+        position: absolute;
+      "></div>
     </section>
   </div>
 

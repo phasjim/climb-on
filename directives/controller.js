@@ -1,26 +1,32 @@
 (function(angular) {
 	"use strict";
 	angular.module("portfolio", [])
-		/* --------------------- CONTROLLER --------------------- */
+		/* =================== CONTROLLER =================== */
 		.controller("Controller", ["$scope", function($scope) {
 			var controller = new ScrollMagic.Controller();
 
 
-			/*------------------- CLIFF -------------------*/
-			var tweenCliff = new TweenMax.fromTo("#div-cliff", 1,
+			/*=================== CLIFF ===================*/
+
+			// ============================================================
+			// === Tween: The cliff is moving down.
+			// ============================================================
+			var tweenCliff = new TweenMax.fromTo("#div-cliff-me", 1,
 				// previous
 				{scale: 1.5,
 				 top: "85vh",
-				 left: "-30vw"
+				 left: "-30vw",
+				 ease: Power0.easeNone
 				},
 				// next
 				{top: "-100vh",
-				 left: "-15vw"
+				 // left: "-15vw"
 				}
 			);
+
 			var sceneCliff = new ScrollMagic.Scene({
 				triggerElement: "#trigger2",
-				triggerHook: 1,
+				triggerHook: 0.75,
 				duration: "200%"
 		    })
 		 	.setTween(tweenCliff)
@@ -28,148 +34,218 @@
 		 	.addTo(controller);
 
 
-		 	/*------------------- ME -------------------*/
-		 	var sittingImgs = [];
-		 	var maxSittingPng = 86;
+		 	/*=================== ME CLIMBING DOWN ===================*/
+		 	var climbImgArray = [];
+		 	var climbObj = {curImg: 0};
 
-			sittingImgs.push("img/gifs/sitting-loop.gif");
-			sittingImgs.push("img/gifs/cheers-short-once-back.gif");
+			// === Add "sitting" scene
+			climbImgArray.push("./img/gifs/sitting-short-loop.gif");
 
-			// while (maxSittingPng >= 0){
-			// 	var prefix;
-			// 	if      (maxSittingPng < 10)  prefix = "img/pngs/cheers/cheers_0000";
-			// 	else if (maxSittingPng < 100) prefix = "img/pngs/cheers/cheers_000";
-			// 	else  			  		    prefix = "img/pngs/cheers/cheers_00";
+			// === Then, add "cheers" scene
+			var maxCheers = 71;
 
-			// 	sittingImgs.push(prefix + maxSittingPng + ".png");
-			//     maxSittingPng--;
-			// }
+			while (maxCheers >= 0){
+				var prefix;
+				if      (maxCheers < 10)  prefix = "./img/pngs/cheers-cropped/cheers_0000";
+				else if (maxCheers < 100) prefix = "./img/pngs/cheers-cropped/cheers_000";
+				else  			  		  prefix = "./img/pngs/cheers-cropped/cheers_00";
 
-			var tweenMeSit = new TweenMax.fromTo("#div-me", 1,
-				// previous
-				{scale: 0.5,
-				 top: 0,
-				 left: "-30vw"
-				},
-				// next
-				{ 
-				 top: 0,
-				 left: "-30vw"
+				climbImgArray.push(prefix + maxCheers + ".png");
+			    maxCheers--;
+			}
+
+			// === Then, add "climb" scene
+			var maxClimb = 241;
+
+			while (maxClimb >= 0){
+				var prefix;
+				if      (maxClimb < 10)  prefix = "./img/pngs/climb-cropped/climb_0000";
+				else if (maxClimb < 100) prefix = "./img/pngs/climb-cropped/climb_000";
+				else  			  		  prefix = "./img/pngs/climb-cropped/climb_00";
+
+				climbImgArray.push(prefix + maxClimb + ".png");
+			    maxClimb--;
+			}
+
+			// ============================================================
+			// === Tween: Transitions from me sitting, to me doing "cheers",
+			//			  to me climbing down.
+			// ============================================================
+			var tweenMeClimb = new TweenMax.to(climbObj, 0.5,
+				{
+					curImg: climbImgArray.length - 1,
+					roundProps: "curImg",
+					immediateRender: true,
+					ease: Linear.easeNone,
+					onUpdate: function () {
+					  $("#img-me").attr("src", climbImgArray[climbObj.curImg]);
+					}
 				}
 			);
-			var sceneMeSit = new ScrollMagic.Scene({
-				triggerElement: "#trigger2",
-				triggerHook: 1
+
+			var sceneMeClimb = new ScrollMagic.Scene({
+				triggerElement: "#trigger1-half",
+				offset: "25",
+				duration: "90%"
+			})
+			.setTween(tweenMeClimb)
+			.addIndicators({name: "me climb__________", colorStart: "magenta", colorEnd: "magenta"})
+			.addTo(controller);
+
+
+			// ============================================================
+			// === Tween: Series of vertical and horizontal animations 
+			// ===		  for me doing "tweenMeClimb"
+			// ============================================================
+			var tweenMeClimbPos1 = new TweenMax.fromTo("#img-me", 1,
+				// previous
+				{
+				 top: "-12vh",
+				 ease: Power0.easeNone
+				},
+				// next
+				{
+				 top: "3vh"
+				}
+			);
+
+			var sceneMeClimbPos1 = new ScrollMagic.Scene({
+				triggerElement: "#trigger1-half-quarter",
+				duration: "20%"
 		    })
-		 	.setTween(tweenMeSit)
-		 	.addIndicators({name: "me sit__________", colorStart: "magenta", colorEnd: "magenta"})
+		 	.setTween(tweenMeClimbPos1)
+		 	.addIndicators({name: "me climb pos 1__________", colorStart: "purple", colorEnd: "purple"})
 		 	.addTo(controller);
 
 
-			 // Detect if scrolling up/down
-			 // If up, show cheers-short-once.gif
-			 // If down, show cheers-short-once-back.gif
-			var lastScrollTop = 0, delta = 5;
-			$(window).scroll(function(event){
-			   var st = $(this).scrollTop();
-			   
-			   if(Math.abs(lastScrollTop - st) <= delta)
-			      return;
-			   
-			   // ========= IF SCORLLING DOWN ========= //
-			   if (st > lastScrollTop){
-			        var cheersBackObj = {curImg: 0};
-				 	var tweenMeCheersBack = TweenMax.to(cheersBackObj, 2,
-						{
-							curImg: sittingImgs.length - 1,
-							roundProps: "curImg",
-							immediateRender: true,
-							ease: Linear.easeNone,
-							onUpdate: function () {
-							  $("#img-me").attr("src", "img/gifs/cheers-short-once-back.gif");
-							}
-						}
-					);
+		 	var tweenMeClimbPos2 = new TweenMax.fromTo("#img-me", 1,
+				// previous
+				{
+				 top: "3vh",
+				 left: "18vw",
+				 ease: Power0.easeNone
+				},
+				// next
+				{
+				 top: "8vh",
+				 left: "18vw",
+				}
+			);
 
-					var sceneMeCheersBack = new ScrollMagic.Scene({
-						triggerElement: "#trigger2",
-						triggerHook: 0.90,
-						duration: 0
-				    })
-				 	.setTween(tweenMeCheersBack)
-				 	.addIndicators({name: "me cheers back__________________", colorStart: "yellow", colorEnd: "yellow"})
-				 	.addTo(controller);
-			   }
-				// ========= IF SCORLLING UP ========= //
-			   else {
-			      	var cheersBackObj = {curImg: 0};
-				 	var tweenMeCheersBack = TweenMax.to(cheersBackObj, 2,
-						{
-							curImg: sittingImgs.length - 1,
-							roundProps: "curImg",
-							immediateRender: true,
-							ease: Linear.easeNone,
-							onUpdate: function () {
-							  $("#img-me").attr("src", "img/gifs/cheers-short-once.gif");
-							}
-						}
-					);
-
-					var sceneMeCheersBack = new ScrollMagic.Scene({
-						triggerElement: "#trigger2",
-						triggerHook: 0.90,
-						duration: 0
-				    })
-				 	.setTween(tweenMeCheersBack)
-				 	.addIndicators({name: "me cheers back__________________", colorStart: "yellow", colorEnd: "yellow"})
-				 	.addTo(controller);
-			   }
-
-			   lastScrollTop = st;
-			});
+			var sceneMeClimbPos2 = new ScrollMagic.Scene({
+				triggerElement: "#trigger1-half-quarter",
+				offset: sceneMeClimbPos1.offset() + sceneMeClimbPos1.duration(),
+				duration: "10%"
+		    })
+		 	.setTween(tweenMeClimbPos2)
+		 	.addIndicators({name: "me climb pos 2__________", colorStart: "purple", colorEnd: "purple"})
+		 	.addTo(controller);
 
 
+		 	var tweenMeClimbPos3 = new TweenMax.fromTo("#img-me", 1,
+				// previous
+				{
+				 top: "8vh",
+				 left: "16vw",
+				 ease: Power0.easeNone
+				},
+				// next
+				{
+				 top: "18vh",
+				 left: "20vw",
+				}
+			);
 
-			// var meClimbScene = new ScrollMagic.Scene({
-			// 	triggerElement: "#trigger2",
-			// 	triggerHook: 0.75,
-			// 	//duration: "90%"
-			// })
-			// .setTween(tweenSitting)
-			// .addIndicators({name: "me sit___________________", colorStart: "magenta", colorEnd: "magenta"})
-			// .addTo(controller);
+			var sceneMeClimbPos3 = new ScrollMagic.Scene({
+				triggerElement: "#trigger1-half-quarter",
+				offset: sceneMeClimbPos2.offset() + sceneMeClimbPos2.duration(),
+				duration: "10%"
+		    })
+		 	.setTween(tweenMeClimbPos3)
+		 	.addIndicators({name: "me climb pos 3__________", colorStart: "purple", colorEnd: "purple"})
+		 	.addTo(controller);
+
+
+		 	var tweenMeClimbPos4 = new TweenMax.fromTo("#img-me", 1,
+				// previous
+				{
+				 top: "18vh",
+				 left: "20vw",
+				 ease: Power0.easeNone
+				},
+				// next
+				{
+				 top: "23vh",
+				 left: "21vw",
+				}
+			);
+
+			var sceneMeClimbPos4 = new ScrollMagic.Scene({
+				triggerElement: "#trigger1-half-quarter",
+				offset: sceneMeClimbPos3.offset() + sceneMeClimbPos3.duration(),
+				duration: "10%"
+		    })
+		 	.setTween(tweenMeClimbPos4)
+		 	.addIndicators({name: "me climb pos 4________", colorStart: "purple", colorEnd: "purple"})
+		 	.addTo(controller);
+
+
+		 	var tweenMeClimbPos5 = new TweenMax.fromTo("#img-me", 1,
+				// previous
+				{
+				 top: "23vh",
+				 left: "21vw",
+				 ease: Circ.easeOut
+				},
+				// next
+				{
+				 top: "36vh",
+				 left: "24vw",
+				}
+			);
+
+			var sceneMeClimbPos5 = new ScrollMagic.Scene({
+				triggerElement: "#trigger1-half-quarter",
+				offset: sceneMeClimbPos4.offset() + sceneMeClimbPos4.duration(),
+				duration: "10%"
+		    })
+		 	.setTween(tweenMeClimbPos5)
+		 	.addIndicators({name: "me climb pos 5________", colorStart: "purple", colorEnd: "purple"})
+		 	.addTo(controller);
 
 
 
-		 // 	for(var i = 0, i <)
-		 // 	var images = [
-			// 	"../../img/example_imagesequence_01.png",
-			// 	"../../img/example_imagesequence_02.png",
-			// 	"../../img/example_imagesequence_03.png",
-			// 	"../../img/example_imagesequence_04.png",
-			// 	"../../img/example_imagesequence_05.png",
-			// 	"../../img/example_imagesequence_06.png",
-			// 	"../../img/example_imagesequence_07.png"
-			// ];
 
-			// var tweenMe = new TweenMax.fromTo("#div-me", 1,
-			// 	// previous
-			// 	{scale: "0.75",
-			// 	 top: "5vh",
-			// 	 left: "-3vw"
-			// 	},
-			// 	// next
-			// 	{//top: "-100vh",
-			// 	 //left: "-15vw"
-			// 	}
-			// );
-			// var containerScene1 = new ScrollMagic.Scene({
-			// 	triggerElement: "#trigger1" + "50%",
-			// 	duration: "200%"
-		 //    })
-		 // 	.setTween(tweenCliff)
-		 // 	.addIndicators({name: "me", colorStart: "pink", colorEnd: "pink"})
-		 // 	.addTo(controller);
+
+		 	/*=================== ME WELCOME ===================*/
+		 	var welcomeImgArray = [];
+		 	var welcomeObj = {curImg: 0};
+
+			// === Add "welcome" scene
+			welcomeImgArray.push("./img/gifs/welcome-short-loop.gif");
+
+			// ============================================================
+			// === Tween: Display the "welcome" scene where I am waving
+			// ============================================================
+			var tweenMeWelcome = new TweenMax.to(welcomeObj, 0.5,
+				{
+					curImg: welcomeImgArray.length - 1,
+					roundProps: "curImg",
+					immediateRender: true,
+					ease: Linear.easeNone,
+					onUpdate: function () {
+					  $("#img-me").attr("src", welcomeImgArray[welcomeObj.curImg]);
+					}
+				}
+			);
+
+			var meWelcomeScene = new ScrollMagic.Scene({
+				triggerElement: "#trigger1-half",
+				offset: sceneMeClimb.offset() + sceneMeClimb.duration(),
+			})
+			.setTween(tweenMeWelcome)
+			.addIndicators({name: "me welcome__________________________________", colorStart: "gray", colorEnd: "gray"})
+			.addTo(controller);
 
 
 
@@ -180,7 +256,7 @@
 
 
 
-		/* --------------------- DIRECTIVES --------------------- */
+		/* =================== DIRECTIVES =================== */
 		// .directive("sunSvg", function() {
 		// 	return {
 		// 		templateUrl: "directives/templates/sun-svg-template.html"
