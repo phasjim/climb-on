@@ -1,7 +1,15 @@
 /*=========================================================
   General Styles
   =========================================================*/
+body {
+  overflow-x: hidden;
+  margin: 0; }
+
 body, html {
+  height: 100%;
+  font-family: Helvetica, Arial, sans-serif; }
+
+.web-container {
   height: 100%; }
 
 .grain {
@@ -27,7 +35,7 @@ body, html {
   background-color: rgba(102, 102, 102, 0.5); }
 
 /*=========================================================
-  Scene Objects
+  Triggers
   =========================================================*/
 .view-trigger {
   background-color: #000; }
@@ -70,7 +78,8 @@ body, html {
   width: 100%; }
 
 .panel-1 {
-  background-color: #dddddd; }
+  background-color: #dddddd;
+  position: relative; }
 
 .panel-2 {
   background-color: white; }
@@ -132,6 +141,15 @@ body, html {
 /*=========================================================
   Scene Objects
   =========================================================*/
+#div-sun {
+  position: relative; }
+
+#img-sun {
+  position: absolute;
+  transform: scale(0.2);
+  top: -79vh;
+  left: 40vw; }
+
 #img-sun {
   transform-origin: center center;
   -webkit-animation-name: spin;
@@ -179,3 +197,179 @@ body, html {
     transform: rotate(-180deg) scale(0.3); }
   100% {
     transform: rotate(0) scale(0.25); } }
+#div-ground-1,
+#div-ground-2 {
+  position: relative; }
+
+#img-mountains {
+  transform: scale(0.75); }
+
+#img-sand {
+  position: absolute;
+  top: 27vh; }
+
+#img-cacti {
+  position: absolute;
+  transform: scale(0.45);
+  top: 8vh;
+  left: 4vw; }
+
+#img-flower-light1 {
+  position: absolute;
+  transform: scale(0.015);
+  left: 18.5vw;
+  top: -47vh; }
+
+#img-flower-light2 {
+  position: absolute;
+  transform: scale(0.015);
+  left: -11.4vw;
+  top: -45vh; }
+
+#img-flower-light3 {
+  position: absolute;
+  transform: scale(0.015);
+  left: -11vw;
+  top: -52.5vh; }
+
+#img-flower-dark1 {
+  position: absolute;
+  transform: scale(0.015);
+  left: 22vw;
+  top: -50vh; }
+
+#img-flower-dark2 {
+  position: absolute;
+  transform: scale(0.015);
+  left: 20.6vw;
+  top: -44vh; }
+
+#img-flower-dark3 {
+  position: absolute;
+  transform: scale(0.015);
+  left: -14vw;
+  top: -49vh; }
+
+#div-cliff-me {
+  position: relative; }
+
+#img-me {
+  position: absolute;
+  width: 35vw;
+  left: 18vw;
+  top: -12vh; }
+
+/*=========================================================
+  About Me Content
+  =========================================================*/
+.contact-btn {
+  margin: 5% auto;
+  padding: 5px;
+  width: 18vw;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 100px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1em;
+  letter-spacing: 0.25em;
+  font-weight: 400; }
+
+.about-me-btn {
+  margin-top: 10%;
+  background: #33a3b5;
+  /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left top, #33a3b5, #3bf574);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, #33a3b5, #3bf574);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, #33a3b5, #3bf574);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, #33a3b5, #3bf574);
+  /* Standard syntax */
+  box-shadow: 0 1px 2px rgba(20, 20, 20, 0.15);
+  transition: all 0.3s ease-in-out;
+  /* Hidden element for diffused box shadow */
+  /* Scale up the box */
+  /* Fade in the pseudo-element with the bigger shadow */ }
+  .about-me-btn:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    border-radius: 100px;
+    box-shadow: 0 5px 15px rgba(20, 20, 20, 0.3);
+    transition: opacity 0.3s ease-in-out; }
+  .about-me-btn:hover {
+    transform: scale(1.2, 1.2); }
+  .about-me-btn:hover::after {
+    opacity: 1; }
+
+.linkedin-btn {
+  background: #2a58b1;
+  /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left top, #2a58b1, #33a3b5);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, #2a58b1, #33a3b5);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, #2a58b1, #33a3b5);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, #2a58b1, #33a3b5);
+  /* Standard syntax */
+  box-shadow: 0 1px 2px rgba(20, 20, 20, 0.15);
+  transition: all 0.3s ease-in-out;
+  /* Hidden element for diffused box shadow */
+  /* Scale up the box */
+  /* Fade in the pseudo-element with the bigger shadow */ }
+  .linkedin-btn:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    border-radius: 100px;
+    box-shadow: 0 5px 15px rgba(20, 20, 20, 0.3);
+    transition: opacity 0.3s ease-in-out; }
+  .linkedin-btn:hover {
+    transform: scale(1.2, 1.2); }
+  .linkedin-btn:hover::after {
+    opacity: 1; }
+
+.resume-btn {
+  background: #c0a0e4;
+  /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left top, #c0a0e4, #72b5e2);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, #c0a0e4, #72b5e2);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, #c0a0e4, #72b5e2);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, #c0a0e4, #72b5e2);
+  /* Standard syntax */
+  box-shadow: 0 1px 2px rgba(20, 20, 20, 0.15);
+  transition: all 0.3s ease-in-out;
+  /* Hidden element for diffused box shadow */
+  /* Scale up the box */
+  /* Fade in the pseudo-element with the bigger shadow */ }
+  .resume-btn:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    border-radius: 100px;
+    box-shadow: 0 5px 15px rgba(20, 20, 20, 0.3);
+    transition: opacity 0.3s ease-in-out; }
+  .resume-btn:hover {
+    transform: scale(1.2, 1.2); }
+  .resume-btn:hover::after {
+    opacity: 1; }

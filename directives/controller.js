@@ -89,7 +89,7 @@
 				tweenMountrainVert: Moves the mountains left/right and
 				also up/down.
 			  =========================================================*/
-			var tweenMountainVert = new TweenMax.fromTo("#div-ground", 1,
+			var tweenMountainVert = new TweenMax.fromTo("#div-ground-1", 1,
 				// previous
 				{scale: 2,
 				 top: "150vh",
@@ -281,13 +281,13 @@
 				tweenGrass1-3: Pops the grass up when it reaches the
 				trigger.
 			  =========================================================*/
-			var tweenGrass1 = new TweenMax.fromTo("#img-grass1", 0.8,
+			var tweenGrass1 = new TweenMax.fromTo("#img-grass1", 0.5,
 				// previous
-				{scale: 0.045,
+				{scale: 0.1,
 				 rotationX: 90,
 				 transformOrigin: "left bottom",
-				 left: "65vw",
-            	 top: "-20vh",
+            	 left: "78vw",
+              	 top: "175vh",
 				 ease: Linear.easeNone
 				},
 				// next
@@ -303,13 +303,13 @@
 		 	.addTo(controller);
 
 
-		 	var tweenGrass2 = new TweenMax.fromTo("#img-grass2", 0.8,
+		 	var tweenGrass2 = new TweenMax.fromTo("#img-grass2", 0.5,
 				// previous
-				{scale: 0.045,
+				{scale: 0.1,
 				 rotationX: 90,
 				 transformOrigin: "left bottom",
-				 left: "39vw",
-            	 top: "-33vh",
+     			 left: "24vw",
+            	 top: "158vh",
 				 ease: Linear.easeNone
 				},
 				// next
@@ -325,13 +325,13 @@
 		 	.addTo(controller);
 
 
-		 	var tweenGrass3 = new TweenMax.fromTo("#img-grass3", 0.8,
+		 	var tweenGrass3 = new TweenMax.fromTo("#img-grass3", 0.5,
 				// previous
-				{scale: 0.045,
+				{scale: 0.1,
 				 rotationX: 90,
 				 transformOrigin: "left bottom",
-				 left: "46vw",
-            	 top: "-10vh",
+				 left: "37vw",
+            	 top: "202vh",
 				 ease: Linear.easeNone
 				},
 				// next
@@ -922,21 +922,21 @@
 				{
 				 top: "106vh",
 				 left: "18vw",
-				 onUpdate: function () {
-					$("#img-me").attr("src", "./img/gifs/sunbathe-loop.gif");
-				 },
 				 ease: Power0.easeNone
 				},
 				// next
 				{
 				 top: "106vh",
 				 left: "18vw",
+				 onUpdate: function () {
+					$("#img-me").attr("src", "./img/gifs/sunbathe-loop.gif");
+				 },
 				}
 			);
 			var sceneMeRepelPos6 = new ScrollMagic.Scene({
 				triggerElement: "#trigger2-half",
 				offset: sceneMeRepelPos5.offset() + sceneMeRepelPos5.duration(),
-				duration: "15%",
+				duration: "30%"
 		    })
 		 	.setTween(tweenMeRepelPos6)
 		 	//.addIndicators({name: "me repel pos6___________________________________", colorStart: "navy", colorEnd: "navy"})

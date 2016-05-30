@@ -34,17 +34,20 @@
   <script type="text/javascript" src="./js/scrollmagic/plugins/debug.addIndicators.min.js"></script>
   <script type="text/javascript" src="./js/snapsvg/snapsvg.min.js"></script>
 
+  <!-- GOOGLE FONTS -->
+  <link href='https://fonts.googleapis.com/css?family=Poppins:300,500' rel='stylesheet' type='text/css'>
+
   <!-- DIRECTIVES -->
   <script type="text/javascript" src="./directives/controller.js"></script>
 
 </head>
-<body style="overflow-x: hidden; margin: 0;" ng-controller="Controller">
+<body ng-controller="Controller">
 <!-- <body onload="window.location='#mid'"> -->
-  <div style="height: 100%;">
+  <div class="web-container">
 
     <!-- ================================= PANEL TOP ================================= -->
     <a name="top">
-    <section class="panel panel-1" id="trigger1" style="position: relative;">
+    <section class="panel panel-1" id="trigger1">
       <!-- ================================= TRIGGERS ================================= -->
       <div id="trigger1-half"></div>
       <div id="trigger1-half-quarter"></div>
@@ -60,111 +63,40 @@
 
       <!-- ================================= SUN ================================= -->
       <div class="layer-mask-sun">
-        <div id="div-sun" style="
-          position: relative;
-        ">
-          <img id="img-sun" style="
-            position: absolute;
-            transform: scale(0.2);
-            top: -79vh;
-            left: 40vw;"
-            src="img/svg/mini-sun.svg">
+        <div id="div-sun">
+          <img id="img-sun" src="img/svg/mini-sun.svg">
         </div>
       </div>
 
 
       <!-- ================================= DESERT GROUND ================================= -->
       <div class="layer-mask-desert-ground">
-        <div id="div-ground" style="
-          position: relative;
-        ">
+        <div id="div-ground-1">
           <!-- ================================= MOUNTAINS ================================= -->
-          <img id="img-mountains" style="
-            transform: scale(.75);"
-            src="img/svg/mini-mountains.svg">
-
-          <img id="img-sand" style="
-            position: absolute;
-            top: 27vh;"
-          src="img/svg/mini-sand.svg">
+          <img id="img-mountains" src="img/svg/mini-mountains.svg">
+          <img id="img-sand" src="img/svg/mini-sand.svg">
 
 
           <!-- ================================= CACTI ================================= -->
-          <img id="img-cacti" style="
-            position: absolute;
-            transform: scale(0.45);
-            top: 8vh;
-            left: 4vw;"
-          src="img/svg/mini-cacti.svg">
+          <img id="img-cacti" src="img/svg/mini-cacti.svg">
 
 
           <!-- ================================= FLOWERS LIGHT ================================= -->
-          <img id="img-flower-light1" style="
-            position: absolute;
-            transform: scale(.015);
-            left: 18.5vw;
-            top: -47vh;"
-          src="img/svg/mini-flower-light.svg">
-
-          <img id="img-flower-light2" style="
-            position: absolute;
-            transform: scale(.015);
-            left: -11.4vw;
-            top: -45vh;"
-          src="img/svg/mini-flower-light.svg">
-
-          <img id="img-flower-light3" style="
-            position: absolute;
-            transform: scale(.015);
-            left: -11vw;
-            top: -52.5vh;"
-          src="img/svg/mini-flower-light.svg">
+          <img id="img-flower-light1" src="img/svg/mini-flower-light.svg">
+          <img id="img-flower-light2" src="img/svg/mini-flower-light.svg">
+          <img id="img-flower-light3" src="img/svg/mini-flower-light.svg">
 
 
           <!-- ================================= FLOWERS DARK ================================= -->
-          <img id="img-flower-dark1" style="
-            position: absolute;
-            transform: scale(.015);
-            left: 22vw;
-            top: -50vh;"
-          src="img/svg/mini-flower-dark.svg">
-
-          <img id="img-flower-dark2" style="
-            position: absolute;
-            transform: scale(.015);
-            left: 20.6vw;
-            top: -44vh;"
-          src="img/svg/mini-flower-dark.svg">
-
-          <img id="img-flower-dark3" style="
-            position: absolute;
-            transform: scale(.015);
-            left: -14vw;
-            top: -49vh;"
-          src="img/svg/mini-flower-dark.svg">
+          <img id="img-flower-dark1" src="img/svg/mini-flower-dark.svg">
+          <img id="img-flower-dark2" src="img/svg/mini-flower-dark.svg">
+          <img id="img-flower-dark3" src="img/svg/mini-flower-dark.svg">
 
 
           <!-- ================================= GRASS ================================= -->
-          <img id="img-grass1" style="
-            position: absolute;
-            transform: scale(.045);
-            left: 65vw;
-            top: -20vh;"
-          src="img/svg/mini-grass.svg">
-
-          <img id="img-grass2" style="
-            position: absolute;
-            transform: scale(.045);
-            left: 39vw;
-            top: -33vh;"
-          src="img/svg/mini-grass.svg">
-
-          <img id="img-grass3" style="
-            position: absolute;
-            transform: scale(.045);
-            left: 46vw;
-            top: -10vh;"
-          src="img/svg/mini-grass.svg">
+          <!-- <img id="img-grass1" src="img/svg/mini-grass.svg">
+          <img id="img-grass2" src="img/svg/mini-grass.svg">
+          <img id="img-grass3" src="img/svg/mini-grass.svg"> -->
         </div>
 
       </div>
@@ -175,27 +107,20 @@
       <!-- =================================== CONTENT ================================== -->
       <!-- ============================================================================== -->
       <div class="layer-mask-cliff-me">
-        <div id="div-cliff-me" style="
-          position: relative;
-        ">
+        <div id="div-cliff-me">
           <!-- ================================= CLIFF ================================= -->
           <img id="img-cliff" src="img/svg/mini-cliff.svg">
 
 
           <!-- ================================= ME ================================= -->
-          <img id="img-me" style="
-            position: absolute;
-            width: 35vw;
-            left: 18vw;
-            top: -12vh;"
-            src="img/gifs/sitting-loop.gif">
+          <img id="img-me" src="img/gifs/sitting-loop.gif">
         </div>
       </div>
 
 
 
       <!-- ============================================================================== -->
-      <!-- =================================== SCENERY ================================== -->
+      <!-- ================================== NAVIGATION ================================ -->
       <!-- ============================================================================== -->
       <div class="layer-navigation" style="
         position: fixed;
@@ -233,6 +158,149 @@
         </div>
 
       </div>
+
+
+
+      <!-- ============================================================================== -->
+      <!-- =================================== ABOUT ME ================================= -->
+      <!-- ============================================================================== -->
+      <div class="layer-about-me" style="
+          position: fixed;
+          /* background-color: lightblue; */
+          /* opacity: .70; */
+          width: 112vh;
+          height: 100%;
+          right: 10vw;
+          top: 0vh;
+          /* overflow: hidden; */
+        ">
+         
+        <div id="content-about-me" style="
+          position: absolute;
+          top: 6.5vw;
+          left: 10vh;
+          background-color: rgba(255,255,255,0.75);
+          padding: 5vh 8vh;
+          width: 51vw;
+          height: 79%;
+          /* opacity: 0.7; */
+          /* border: 14px solid white; */
+          border-bottom: 0;
+          /* border-top: 0; */
+          border-top: 20px solid #c8c0d0;
+          border-bottom: 20px solid #edd2aa;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+          background-position: 0 0, 100% 0;
+          background-repeat: no-repeat;
+          -webkit-background-size: 20px 100%;
+          -moz-background-size: 20px 100%;
+          background-size: 20px 100%;
+          background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0d…0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2xlc3NoYXQtZ2VuZXJhdGVkKSIgLz48L3N2Zz4=),url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0d…0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2xlc3NoYXQtZ2VuZXJhdGVkKSIgLz48L3N2Zz4=);
+          background-image: -webkit-linear-gradient(top, #c8c0d0 0%, #edd2aa 100%), -webkit-linear-gradient(top, #c8c0d0 0%, #edd2aa 100%);
+          background-image: -moz-linear-gradient(top, #c8c0d0 0%, #edd2aa 100%), -moz-linear-gradient(top, #c8c0d0 0%, #edd2aa 100%);
+          background-image: -o-linear-gradient(top, #c8c0d0 0%, #edd2aa 100%), -o-linear-gradient(top, #c8c0d0 0%, #edd2aa 100%);
+          background-image: linear-gradient(to bottom, #c8c0d0 0%, #edd2aa 100%), linear-gradient(to bottom, #c8c0d0 0%, #edd2aa 100%);
+
+          font-family: 'Poppins', sans-serif;
+          font-size: 1em;
+          letter-spacing: 0.1em;
+          color: #162f5f;
+          margin: 0;
+          text-transform: lowercase;
+          font-weight: 300;
+          ">
+          <p>
+            Hello! I'm Prita!
+          </p>
+
+          <p>
+            I am a developer, designer, and everything else in between. I enjoy well tailored apps and thoughtful usability. My hobbies include rock climbing, listening to albums, watching cartoons, eating, and krumping. I love my dog, Lily. <a href="http://vsco.co/lilyjio/" target="_blank">Here is proof!</a> I am always in the mood for ice cream.
+          </p>
+
+          <p>
+           Thank you so much for stopping by my website!
+          </p>
+
+          <p>
+          </p>
+
+          <div class="contact-btn about-me-btn">
+            Say Hello
+          </div>
+
+          <div class="contact-btn linkedin-btn">
+            LinkedIn
+          </div>
+
+          <div class="contact-btn resume-btn">
+            Resume
+          </div>
+        </div>
+
+        <div id="title-about-me" style="
+          position: absolute;
+          top: 1.25vw;
+          left: 5vh;
+          ">
+          <h2 style="
+            font-family: 'Poppins', sans-serif;
+            font-size: 6em;
+            letter-spacing: 0.05em;
+            color: #162f5f;
+            margin: 0;
+            text-transform: lowercase;
+            font-weight: 400;">About Me</h2>
+        </div>
+<!--
+        <div id="nav-my-work" style="
+          position: absolute;
+          top: 2vw;
+          left: 85vh;
+          ">
+          My Work
+        </div> -->
+
+
+      </div>
+
+
+
+      <!-- ============================================================================== -->
+      <!-- ============================== FINISHING TOUCHES ============================= -->
+      <!-- ============================================================================== -->
+      <!-- <div class="layer-mask-finish" style="
+        position: fixed;
+        width: 89.5vw;
+        height: 93vh;
+        left: 2.5vw;
+        top: 3vh;
+        /*background-color: gray;
+        opacity: 0.5;*/
+      "> -->
+
+          <div id="div-ground-1">
+            <img id="img-grass1" style="
+              position: absolute;
+              transform: scale(.1);
+              left: 78vw;
+              top: 175vh;
+            " src="img/svg/mini-grass.svg">
+            <img id="img-grass2" style="
+              position: absolute;
+              transform: scale(.1);
+              left: 24vw;
+              top: 158vh;
+            " src="img/svg/mini-grass.svg">
+            <img id="img-grass3" style="
+              position: absolute;
+              transform: scale(.1);
+              left: 37vw;
+              top: 202vh;
+            " src="img/svg/mini-grass.svg">
+          </div>
+      <!-- </div> -->
 
     </section>
 
