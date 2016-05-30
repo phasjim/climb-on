@@ -41,64 +41,148 @@
 <body style="overflow-x: hidden; margin: 0;" ng-controller="Controller">
 <!-- <body onload="window.location='#mid'"> -->
   <div style="height: 100%;">
+
+    <!-- ================================= PANEL TOP ================================= -->
     <a name="top">
     <section class="panel panel-1" id="trigger1" style="position: relative;">
-      <div id="trigger1-half" style="
-        top: 50vh;
-        width: 25vw;
-        height: 3px;
-        background: fuchsia;
-        position: absolute;
-      "></div>
+      <!-- ================================= TRIGGERS ================================= -->
+      <div id="trigger1-half"></div>
+      <div id="trigger1-half-quarter"></div>
 
-      <div id="trigger1-half-quarter" style="
-        top: 75vh;
-        width: 25vw;
-        height: 3px;
-        background: fuchsia;
-        position: absolute;
-      "></div>
 
-      <div class="layer-mask-blue-sky" style="
-        position: fixed;
-        background-color: lightyellow;
-        opacity: .70;
-        width: 89.5vw;
-        height: 94vh;
-        left: 1vw;
-        top: 3.5vh;
-      ">
-        sky sky sky sky sky sky sky sky sky sky sky sky sky sky sky sky sky sky sky sky sky sky sky sky 
-      </div>
+      <!-- ================================= BLUE SKY ================================= -->
+      <div class="layer-mask-blue-sky"></div>
 
-      <div class="layer-mask-desert-ground" style="
-        position: fixed;
-        background-color: lightblue;
-        opacity: .70;
-        width: 89vw;
-        height: 94vh;
-        left: 1vw;
-        top: 3vh;
-      ">
-        desert + ground
+
+      <!-- ============================================================================== -->
+      <!-- =================================== SCENERY ================================== -->
+      <!-- ============================================================================== -->
+
+      <!-- ================================= SUN ================================= -->
+      <div class="layer-mask-sun">
+        <div id="div-sun" style="
+          position: relative;
+        ">
+          <img id="img-sun" style="
+            position: absolute;
+            transform: scale(0.2);
+            top: -79vh;
+            left: 40vw;"
+            src="img/svg/mini-sun.svg">
+        </div>
       </div>
 
 
-      <div class="layer-mask-cliff-me" style="
-        position: fixed;
-        background-color: lightpink;
-        opacity: .70;
-        width: 50vw;
-        height: 96vh;
-        left: 1vw;
-        top: 2vh;
-        overflow: hidden;
-      ">
+      <!-- ================================= DESERT GROUND ================================= -->
+      <div class="layer-mask-desert-ground">
+        <div id="div-ground" style="
+          position: relative;
+        ">
+          <!-- ================================= MOUNTAINS ================================= -->
+          <img id="img-mountains" style="
+            transform: scale(.75);"
+            src="img/svg/mini-mountains.svg">
+
+          <img id="img-sand" style="
+            position: absolute;
+            top: 27vh;"
+          src="img/svg/mini-sand.svg">
+
+
+          <!-- ================================= CACTI ================================= -->
+          <img id="img-cacti" style="
+            position: absolute;
+            transform: scale(0.45);
+            top: 8vh;
+            left: 4vw;"
+          src="img/svg/mini-cacti.svg">
+
+
+          <!-- ================================= FLOWERS LIGHT ================================= -->
+          <img id="img-flower-light1" style="
+            position: absolute;
+            transform: scale(.015);
+            left: 18.5vw;
+            top: -47vh;"
+          src="img/svg/mini-flower-light.svg">
+
+          <img id="img-flower-light2" style="
+            position: absolute;
+            transform: scale(.015);
+            left: -11.4vw;
+            top: -45vh;"
+          src="img/svg/mini-flower-light.svg">
+
+          <img id="img-flower-light3" style="
+            position: absolute;
+            transform: scale(.015);
+            left: -11vw;
+            top: -52.5vh;"
+          src="img/svg/mini-flower-light.svg">
+
+
+          <!-- ================================= FLOWERS DARK ================================= -->
+          <img id="img-flower-dark1" style="
+            position: absolute;
+            transform: scale(.015);
+            left: 22vw;
+            top: -50vh;"
+          src="img/svg/mini-flower-dark.svg">
+
+          <img id="img-flower-dark2" style="
+            position: absolute;
+            transform: scale(.015);
+            left: 20.6vw;
+            top: -44vh;"
+          src="img/svg/mini-flower-dark.svg">
+
+          <img id="img-flower-dark3" style="
+            position: absolute;
+            transform: scale(.015);
+            left: -14vw;
+            top: -49vh;"
+          src="img/svg/mini-flower-dark.svg">
+
+
+          <!-- ================================= GRASS ================================= -->
+          <img id="img-grass1" style="
+            position: absolute;
+            transform: scale(.045);
+            left: 65vw;
+            top: -20vh;"
+          src="img/svg/mini-grass.svg">
+
+          <img id="img-grass2" style="
+            position: absolute;
+            transform: scale(.045);
+            left: 39vw;
+            top: -33vh;"
+          src="img/svg/mini-grass.svg">
+
+          <img id="img-grass3" style="
+            position: absolute;
+            transform: scale(.045);
+            left: 46vw;
+            top: -10vh;"
+          src="img/svg/mini-grass.svg">
+        </div>
+
+      </div>
+
+
+
+      <!-- ============================================================================== -->
+      <!-- =================================== CONTENT ================================== -->
+      <!-- ============================================================================== -->
+      <div class="layer-mask-cliff-me">
         <div id="div-cliff-me" style="
           position: relative;
         ">
+          <!-- ================================= CLIFF ================================= -->
           <img id="img-cliff" src="img/svg/mini-cliff.svg">
 
+
+          <!-- ================================= ME ================================= -->
           <img id="img-me" style="
             position: absolute;
             width: 35vw;
@@ -106,45 +190,69 @@
             top: -12vh;"
             src="img/gifs/sitting-loop.gif">
         </div>
+      </div>
 
-        <!-- <div id="div-me" style="
-          position: fixed;
-        ">
-          <img id="img-me" src="img/gifs/sitting-loop.gif">
-        </div> -->
+
+
+      <!-- ============================================================================== -->
+      <!-- =================================== SCENERY ================================== -->
+      <!-- ============================================================================== -->
+      <div class="layer-navigation" style="
+        position: fixed;
+        background-color: lightpink;
+        opacity: .70;
+        width: 99vh;
+        height: 6vw;
+        right: -24vw;
+        top: 45vh;
+        overflow: hidden;
+        transform: rotate(-90deg);
+      ">
+        <div id="nav-about-me" style="
+          position: absolute;
+          top: 2vw;
+          left: 5vh;
+          ">
+          About Me
+        </div>
+
+        <div id="nav-home" style="
+          position: absolute;
+          top: 2vw;
+          left: 45vh;
+          ">
+          Home
+        </div>
+
+        <div id="nav-my-work" style="
+          position: absolute;
+          top: 2vw;
+          left: 85vh;
+          ">
+          My Work
+        </div>
 
       </div>
 
     </section>
 
+
+
+    <!-- ================================= PANEL MID ================================= -->
     <a name="mid">
     <section class="panel panel-2" id="trigger2">
-      <div id="trigger2-quarter" style="
-        top: 125vh;
-        width: 25vw;
-        height: 3px;
-        background: blue;
-        position: absolute;
-      "></div>
-
-      <div id="trigger2-half" style="
-        top: 150vh;
-        width: 25vw;
-        height: 3px;
-        background: blue;
-        position: absolute;
-      "></div>
+      <!-- ================================= TRIGGERS ================================= -->
+      <div id="trigger2-quarter"></div>
+      <div id="trigger2-half"></div>
     </section>
 
+
+
+    <!-- ================================= PANEL BOT ================================= -->
     <a name="bot">
-    <section class="panel panel-3" id="trigger3">    
-      <div id="trigger3-half" style="
-        top: 250vh;
-        width: 25vw;
-        height: 3px;
-        background: orange;
-        position: absolute;
-      "></div>
+    <section class="panel panel-3" id="trigger3">
+      <!-- ================================= TRIGGERS ================================= -->
+      <div id="trigger3-half"></div>
     </section>
   </div>
 
