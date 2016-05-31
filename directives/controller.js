@@ -5,14 +5,154 @@
 		.controller("Controller", ["$scope", function($scope) {
 			var controller = new ScrollMagic.Controller();
 
+			/*===================================================================================*/
+			/*=================================== HOME CONTENT ==================================*/
+			/*===================================================================================*/
+			var tweenName1 = new TweenMax.fromTo(".content-name", 0.65,
+				// previous
+				{opacity: 0,
+				 left: "13vw",
+				 ease: Expo.easeNone
+				},
+				// next
+				{
+				 opacity: 0.9,
+				 left: "10vw"
+				}
+			);
+			var sceneName1 = new ScrollMagic.Scene({
+				triggerElement: "#trigger2-quarter",
+				offset: 40,
+				duration: "22%"
+		    })
+		 	.setTween(tweenName1)
+		 	.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
+		 	.addTo(controller);
+
+
+		 	var tweenTagline1 = new TweenMax.fromTo(".content-tagline", 0.65,
+				// previous
+				{opacity: 0,
+				 left: "43vw",
+				 ease: Expo.easeNone
+				},
+				// next
+				{
+				 opacity: 0.9,
+				 left: "45vw"
+				}
+			);
+			var sceneTagline1 = new ScrollMagic.Scene({
+				triggerElement: "#trigger2-quarter",
+				offset: 40,
+				duration: "22%"
+		    })
+		 	.setTween(tweenTagline1)
+		 	.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
+		 	.addTo(controller);
+
+
+		 	var tweenName2 = new TweenMax.fromTo(".content-name", 0.65,
+				// previous
+				{
+				 opacity: 0.9,
+				 left: "10vw",
+				 ease: Expo.easeNone
+				},
+				// next
+				{
+				 opacity: 0,
+				 left: "7vw",
+				}
+			);
+			var sceneName2 = new ScrollMagic.Scene({
+				triggerElement: "#trigger2-half",
+				offset: 50,
+				duration: "22%"
+		    })
+		 	.setTween(tweenName2)
+		 	.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
+		 	.addTo(controller);
+
+
+		 	var tweenTagline2 = new TweenMax.fromTo(".content-tagline", 0.65,
+				// previous
+				{
+				 opacity: 0.9,
+				 left: "45vw",
+				 ease: Expo.easeNone
+				},
+				// next
+				{
+				 opacity: 0,
+				 left: "47vw",
+				}
+			);
+			var sceneTagline2 = new ScrollMagic.Scene({
+				triggerElement: "#trigger2-half",
+				offset: 50,
+				duration: "22%"
+		    })
+		 	.setTween(tweenTagline2)
+		 	.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
+		 	.addTo(controller);
+
+
+
+			/*===================================================================================*/
+			/*================================= ABOUT ME CONTENT ================================*/
+			/*===================================================================================*/
+			var tweenAboutMeContent = new TweenMax.fromTo("#content-about-me", 0.65,
+				// previous
+				{opacity: 0,
+				 top: "7vw",
+				 ease: Circ.easeNone
+				},
+				// next
+				{
+				 opacity: 1,
+				 top: "6.5vw"
+				}
+			);
+			var sceneAboutMeContent = new ScrollMagic.Scene({
+				triggerElement: "#trigger3",
+				triggerHook: 0,
+		    })
+		 	.setTween(tweenAboutMeContent)
+		 	.addIndicators({name: "about me content________________________", colorStart: "lightyellow", colorEnd: "lightyellow"})
+		 	.addTo(controller);
+
+
+		 	var tweenAboutMeTitle = new TweenMax.fromTo("#title-about-me", 0.65,
+				// previous
+				{opacity: 0,
+				 left: "4vh",
+				 ease: Circ.easeNone
+				},
+				// next
+				{
+				 opacity: 1,
+				 left: "5vh"
+				}
+			);
+			var sceneAboutMeTitle = new ScrollMagic.Scene({
+				triggerElement: "#trigger3",
+				triggerHook: 0,
+		    })
+		 	.setTween(tweenAboutMeTitle)
+		 	.addIndicators({name: "about me content________________________", colorStart: "lightyellow", colorEnd: "lightyellow"})
+		 	.addTo(controller);
+
+
+
 
 			/*===================================================================================*/
 			/*===================================== SETTING =====================================*/
 			/*===================================================================================*/
 
-			/*=================== SUN ===================*/
+			/*=================== SUN + CLOUDS ===================*/
 			/*=========================================================
-				tweenSun: Fades the sun in and out.
+				tweenSun: Fades the sun/clouds in and out.
 			  =========================================================*/
 			var tweenSun = new TweenMax.fromTo("#div-sun", 1,
 				// previous
@@ -30,6 +170,28 @@
 				duration: "40%"
 		    })
 		 	.setTween(tweenSun)
+		 	//.addIndicators({name: "sun~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "lightyellow", colorEnd: "lightyellow"})
+		 	.addTo(controller);
+
+
+		 	var tweenClouds = new TweenMax.fromTo(".layer-clouds", 1,
+				// previous
+				{opacity: 1,
+				 top: "2vh",
+				 ease: Circ.easeNone
+				},
+				// next
+				{
+				 opacity: 0,
+			     top: "0vh"
+				}
+			);
+			var sceneClouds = new ScrollMagic.Scene({
+				triggerElement: "#trigger1-half",
+				offset: 20,
+				duration: "40%"
+		    })
+		 	.setTween(tweenClouds)
 		 	//.addIndicators({name: "sun~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "lightyellow", colorEnd: "lightyellow"})
 		 	.addTo(controller);
 
@@ -350,7 +512,6 @@
 
 
 
-
 		 	/*===================================================================================*/
 			/*=================================== ME ANIMATION ==================================*/
 			/*===================================================================================*/
@@ -596,7 +757,7 @@
 
 			// === Add "repel" scene
 			var maxRepel1 = 1;
-			debugger;
+			
 			while (maxRepel1 < 20){
 				var prefix;
 				if      (maxRepel1 < 10)  prefix = "./img/pngs/repel2-cropped/repel_0000";
@@ -661,7 +822,7 @@
 
 			// === Add "repel" scene
 			var maxRepel2 = 20;
-			debugger;
+			
 			while (maxRepel2 < 32){
 				var prefix;
 				if      (maxRepel2 < 10)  prefix = "./img/pngs/repel2-cropped/repel_0000";
@@ -726,7 +887,7 @@
 
 			// === Add "repel" scene
 			var maxRepel3 = 32;
-			debugger;
+			
 			while (maxRepel3 < 42){
 				var prefix;
 				if      (maxRepel3 < 10)  prefix = "./img/pngs/repel2-cropped/repel_0000";
@@ -791,7 +952,7 @@
 
 			// === Add "repel" scene
 			var maxRepel4 = 42;
-			debugger;
+			
 			while (maxRepel4 < 54){
 				var prefix;
 				if      (maxRepel4 < 10)  prefix = "./img/pngs/repel2-cropped/repel_0000";

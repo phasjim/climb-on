@@ -33,9 +33,10 @@
   <script type="text/javascript" src="./js/scrollmagic/plugins/animation.gsap.min.js"></script>
   <script type="text/javascript" src="./js/scrollmagic/plugins/debug.addIndicators.min.js"></script>
   <script type="text/javascript" src="./js/snapsvg/snapsvg.min.js"></script>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/ScrollToPlugin.min.js"></script>
 
   <!-- GOOGLE FONTS -->
-  <link href='https://fonts.googleapis.com/css?family=Poppins:300,500' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Poppins:300,500,700' rel='stylesheet' type='text/css'>
 
   <!-- DIRECTIVES -->
   <script type="text/javascript" src="./directives/controller.js"></script>
@@ -55,6 +56,24 @@
 
       <!-- ================================= BLUE SKY ================================= -->
       <div class="layer-mask-blue-sky"></div>
+
+      <div class="layer-clouds">
+        <div class="cloud cloud-1"></div>
+        <!-- Time for multiple clouds to dance around -->
+        <div class="cloud-shape cloud2"></div>
+
+        <div id="title-my-work" style="
+          position: relative;
+          top: -25vh;
+          left: 19vw;
+        ">
+          <h2>My Work</h2>
+        </div>
+
+        <div class="cloud-shape cloud3"></div>
+        <div class="cloud-shape cloud4"></div>
+        <div class="cloud-shape cloud5"></div>
+      </div>
 
 
       <!-- ============================================================================== -->
@@ -91,12 +110,6 @@
           <img id="img-flower-dark1" src="img/svg/mini-flower-dark.svg">
           <img id="img-flower-dark2" src="img/svg/mini-flower-dark.svg">
           <img id="img-flower-dark3" src="img/svg/mini-flower-dark.svg">
-
-
-          <!-- ================================= GRASS ================================= -->
-          <!-- <img id="img-grass1" src="img/svg/mini-grass.svg">
-          <img id="img-grass2" src="img/svg/mini-grass.svg">
-          <img id="img-grass3" src="img/svg/mini-grass.svg"> -->
         </div>
 
       </div>
@@ -124,14 +137,22 @@
       <!-- ============================================================================== -->
       <div class="layer-navigation" style="
         position: fixed;
-        background-color: lightpink;
-        opacity: .70;
+        /*background-color: lightpink;
+        opacity: .70;*/
         width: 99vh;
         height: 6vw;
         right: -24vw;
         top: 45vh;
         overflow: hidden;
         transform: rotate(-90deg);
+
+        font-family: 'Poppins', sans-serif;
+        font-size: 1em;
+        letter-spacing: 0.03em;
+        color: #9d6cd4;
+        margin: 0;
+        text-transform: uppercase;
+        font-weight: 500;
       ">
         <div id="nav-about-me" style="
           position: absolute;
@@ -144,7 +165,7 @@
         <div id="nav-home" style="
           position: absolute;
           top: 2vw;
-          left: 45vh;
+          left: 48vh;
           ">
           Home
         </div>
@@ -162,61 +183,57 @@
 
 
       <!-- ============================================================================== -->
+      <!-- ================================== MY WORK =================================== -->
+      <!-- ============================================================================== -->
+<!--       <div class="layer-work" style="
+        position: fixed;
+        width: 90vw;
+        height: 100%;
+        left: 10vw;
+        top: 0vh;
+        opacity: 0.80;
+        background-color: white;
+      ">
+        <div class="content-name">
+          <h1>Prita Priscilla Hasjim</h1>
+        </div>
+
+        <div class="content-tagline">
+          <h3>I make stuff with code!</h3>
+        </div>
+
+      </div> -->
+
+
+
+      <!-- ============================================================================== -->
+      <!-- ================================== HOME PAGE ================================= -->
+      <!-- ============================================================================== -->
+      <div class="layer-home">
+        <div class="content-name">
+          <h1>Prita Priscilla Hasjim</h1>
+        </div>
+
+        <div class="content-tagline">
+          <h3>I make stuff with code!</h3>
+        </div>
+
+      </div>
+
+
+
+      <!-- ============================================================================== -->
       <!-- =================================== ABOUT ME ================================= -->
       <!-- ============================================================================== -->
-      <div class="layer-about-me" style="
-          position: fixed;
-          /* background-color: lightblue; */
-          /* opacity: .70; */
-          width: 112vh;
-          height: 100%;
-          right: 10vw;
-          top: 0vh;
-          /* overflow: hidden; */
-        ">
+      <div class="layer-about-me">
          
-        <div id="content-about-me" style="
-          position: absolute;
-          top: 6.5vw;
-          left: 10vh;
-          background-color: rgba(255,255,255,0.75);
-          padding: 5vh 8vh;
-          width: 51vw;
-          height: 79%;
-          /* opacity: 0.7; */
-          /* border: 14px solid white; */
-          border-bottom: 0;
-          /* border-top: 0; */
-          border-top: 20px solid #c8c0d0;
-          border-bottom: 20px solid #edd2aa;
-          -webkit-box-sizing: border-box;
-          -moz-box-sizing: border-box;
-          box-sizing: border-box;
-          background-position: 0 0, 100% 0;
-          background-repeat: no-repeat;
-          -webkit-background-size: 20px 100%;
-          -moz-background-size: 20px 100%;
-          background-size: 20px 100%;
-          background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0d…0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2xlc3NoYXQtZ2VuZXJhdGVkKSIgLz48L3N2Zz4=),url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0d…0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2xlc3NoYXQtZ2VuZXJhdGVkKSIgLz48L3N2Zz4=);
-          background-image: -webkit-linear-gradient(top, #c8c0d0 0%, #edd2aa 100%), -webkit-linear-gradient(top, #c8c0d0 0%, #edd2aa 100%);
-          background-image: -moz-linear-gradient(top, #c8c0d0 0%, #edd2aa 100%), -moz-linear-gradient(top, #c8c0d0 0%, #edd2aa 100%);
-          background-image: -o-linear-gradient(top, #c8c0d0 0%, #edd2aa 100%), -o-linear-gradient(top, #c8c0d0 0%, #edd2aa 100%);
-          background-image: linear-gradient(to bottom, #c8c0d0 0%, #edd2aa 100%), linear-gradient(to bottom, #c8c0d0 0%, #edd2aa 100%);
-
-          font-family: 'Poppins', sans-serif;
-          font-size: 1em;
-          letter-spacing: 0.1em;
-          color: #162f5f;
-          margin: 0;
-          text-transform: lowercase;
-          font-weight: 300;
-          ">
+        <div id="content-about-me">
           <p>
-            Hello! I'm Prita!
+            Hi, I'm Prita!
           </p>
 
           <p>
-            I am a developer, designer, and everything else in between. I enjoy well tailored apps and thoughtful usability. My hobbies include rock climbing, listening to albums, watching cartoons, eating, and krumping. I love my dog, Lily. <a href="http://vsco.co/lilyjio/" target="_blank">Here is proof!</a> I am always in the mood for ice cream.
+            I am a developer/designer living the life in San Diego, California. I enjoy well tailored apps and thoughtful usability. My hobbies include rock climbing, listening to albums, watching cartoons, eating, and krumping. I love my dog, Lily, and <a href="http://vsco.co/lilyjio/" target="_blank">here is proof</a>!
           </p>
 
           <p>
@@ -239,29 +256,9 @@
           </div>
         </div>
 
-        <div id="title-about-me" style="
-          position: absolute;
-          top: 1.25vw;
-          left: 5vh;
-          ">
-          <h2 style="
-            font-family: 'Poppins', sans-serif;
-            font-size: 6em;
-            letter-spacing: 0.05em;
-            color: #162f5f;
-            margin: 0;
-            text-transform: lowercase;
-            font-weight: 400;">About Me</h2>
+        <div id="title-about-me">
+          <h2>About Me</h2>
         </div>
-<!--
-        <div id="nav-my-work" style="
-          position: absolute;
-          top: 2vw;
-          left: 85vh;
-          ">
-          My Work
-        </div> -->
-
 
       </div>
 
@@ -270,37 +267,11 @@
       <!-- ============================================================================== -->
       <!-- ============================== FINISHING TOUCHES ============================= -->
       <!-- ============================================================================== -->
-      <!-- <div class="layer-mask-finish" style="
-        position: fixed;
-        width: 89.5vw;
-        height: 93vh;
-        left: 2.5vw;
-        top: 3vh;
-        /*background-color: gray;
-        opacity: 0.5;*/
-      "> -->
-
-          <div id="div-ground-1">
-            <img id="img-grass1" style="
-              position: absolute;
-              transform: scale(.1);
-              left: 78vw;
-              top: 175vh;
-            " src="img/svg/mini-grass.svg">
-            <img id="img-grass2" style="
-              position: absolute;
-              transform: scale(.1);
-              left: 24vw;
-              top: 158vh;
-            " src="img/svg/mini-grass.svg">
-            <img id="img-grass3" style="
-              position: absolute;
-              transform: scale(.1);
-              left: 37vw;
-              top: 202vh;
-            " src="img/svg/mini-grass.svg">
-          </div>
-      <!-- </div> -->
+      <div id="div-ground-2">
+        <img id="img-grass1" src="img/svg/mini-grass.svg">
+        <img id="img-grass2" src="img/svg/mini-grass.svg">
+        <img id="img-grass3" src="img/svg/mini-grass.svg">
+      </div>
 
     </section>
 
@@ -324,8 +295,29 @@
     </section>
   </div>
 
+<script>
+  $(function(){ 
+    var $window = $(window);
+    var scrollTime = 1.8;
+    var scrollDistance = 170;
 
-<!--   <div class="grain"></div>
- -->
+    $window.on("mousewheel DOMMouseScroll", function(event){
+
+      event.preventDefault(); 
+
+      var delta = event.originalEvent.wheelDelta/120 || -event.originalEvent.detail/3;
+      var scrollTop = $window.scrollTop();
+      var finalScroll = scrollTop - parseInt(delta*scrollDistance);
+
+      TweenMax.to($window, scrollTime, {
+        scrollTo : { y: finalScroll, autoKill:true },
+          ease: Power1.easeOut,
+          overwrite: 5              
+        });
+
+    });
+  });
+</script>
+
 </body>
 </html>
