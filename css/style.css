@@ -4,7 +4,7 @@
 body {
   overflow-x: hidden;
   margin: 0;
-  background-color: #f8fbfd; }
+  background-color: #f1f7fc; }
 
 body, html {
   height: 100%;
@@ -106,7 +106,7 @@ h3 {
   width: 100%; }
 
 .panel-1 {
-  background-color: #f8fbfd;
+  background-color: #f1f7fc;
   position: relative; }
 
 .panel-2 {
@@ -319,6 +319,18 @@ h3 {
   width: 35vw;
   left: 18vw;
   top: -12vh; }
+
+/*=========================================================
+  My Work Content
+  =========================================================*/
+.item-my-work {
+  width: 18vw;
+  display: inline-block;
+  margin: 1vh 1vw 1vh 0;
+  text-align: center;
+  padding: 7vh 0;
+  background-color: lightpink;
+  opacity: 0.5; }
 
 /*=========================================================
   Home Content

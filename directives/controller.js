@@ -6,6 +6,128 @@
 			var controller = new ScrollMagic.Controller();
 
 			/*===================================================================================*/
+			/*================================= MY WORK CONTENT =================================*/
+			/*===================================================================================*/
+
+			/*=================== MAIN CONTENT BOX ===================*/
+			/*=========================================================
+				tweenWork1, tweenWork2: Fades the main content box and
+				moves it to the right (so it doesn't interfere with the
+				interaction on the "about me" screen)
+			  =========================================================*/
+			var tweenWork1 = new TweenMax.fromTo(".layer-my-work", 0.25,
+				// previous
+				{
+				 opacity: 1,
+				 ease: Circ.easeNone
+				},
+				// next
+				{
+				 opacity: 0,
+				}
+			);
+			var sceneWork1 = new ScrollMagic.Scene({
+				triggerElement: "#trigger1-half",
+				offset: 20,
+				duration: 100
+		    })
+		 	.setTween(tweenWork1)
+		 	//.addIndicators({name: "my work_________________________________", colorStart: "green", colorEnd: "green"})
+		 	.addTo(controller);
+
+
+		 	var tweenWork2 = new TweenMax.fromTo(".layer-my-work", 0.2,
+				// previous
+				{
+				 left: "10vw",
+				 ease: Circ.easeNone
+				},
+				// next
+				{
+				left: "120vw",
+				}
+			);
+			var sceneWork2 = new ScrollMagic.Scene({
+				triggerElement: "#trigger3"
+		    })
+		 	.setTween(tweenWork2)
+		 	//.addIndicators({name: "my work - move right_________________________________", colorStart: "green", colorEnd: "green"})
+		 	.addTo(controller);
+
+
+		 	/*=================== CONTENT ITEMS ===================*/
+			/*=========================================================
+				tweenItemRow1-3: Scales and fades in the rows of items.
+			  =========================================================*/
+			var tweenItemRow1 = new TweenMax.fromTo(".item-row1", 0.25,
+				// previous
+				{
+				 scale: 1,
+				 opacity: 1,
+				 ease: Back.easeOut
+				},
+				// next
+				{
+				 scale: 0.75,
+				 opacity: 0,
+				}
+			);
+			var sceneItemRow1 = new ScrollMagic.Scene({
+				triggerElement: "#trigger1-half",
+				offset: 40
+		    })
+		 	.setTween(tweenItemRow1)
+		 	//.addIndicators({name: "my work row 1______________", colorStart: "red", colorEnd: "red"})
+		 	.addTo(controller);
+
+
+		 	var tweenItemRow2 = new TweenMax.fromTo(".item-row2", 0.25,
+				// previous
+				{
+				 scale: 1,
+				 opacity: 1,
+				 ease: Back.easeOut
+				},
+				// next
+				{
+				 scale: 0.75,
+				 opacity: 0,
+				}
+			);
+			var sceneItemRow2 = new ScrollMagic.Scene({
+				triggerElement: "#trigger1-half",
+				offset: 60
+		    })
+		 	.setTween(tweenItemRow2)
+		 	//.addIndicators({name: "my work row 2______________", colorStart: "red", colorEnd: "red"})
+		 	.addTo(controller);
+
+
+		 	var tweenItemRow3 = new TweenMax.fromTo(".item-row3", 0.25,
+				// previous
+				{
+				 scale: 1,
+				 opacity: 1,
+				 ease: Back.easeOut
+				},
+				// next
+				{
+				 scale: 0.75,
+				 opacity: 0,
+				}
+			);
+			var sceneItemRow3 = new ScrollMagic.Scene({
+				triggerElement: "#trigger1-half",
+				offset: 80
+		    })
+		 	.setTween(tweenItemRow3)
+		 	//.addIndicators({name: "my work row 3______________", colorStart: "red", colorEnd: "red"})
+		 	.addTo(controller);
+
+
+
+
+			/*===================================================================================*/
 			/*=================================== HOME CONTENT ==================================*/
 			/*===================================================================================*/
 			var tweenName1 = new TweenMax.fromTo(".content-name", 0.65,
@@ -26,7 +148,7 @@
 				duration: "22%"
 		    })
 		 	.setTween(tweenName1)
-		 	.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
+		 	//.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
 		 	.addTo(controller);
 
 
@@ -48,7 +170,7 @@
 				duration: "22%"
 		    })
 		 	.setTween(tweenTagline1)
-		 	.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
+		 	//.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
 		 	.addTo(controller);
 
 
@@ -71,7 +193,7 @@
 				duration: "22%"
 		    })
 		 	.setTween(tweenName2)
-		 	.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
+		 	//.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
 		 	.addTo(controller);
 
 
@@ -94,7 +216,7 @@
 				duration: "22%"
 		    })
 		 	.setTween(tweenTagline2)
-		 	.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
+		 	//.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
 		 	.addTo(controller);
 
 
@@ -119,7 +241,7 @@
 				triggerHook: 0,
 		    })
 		 	.setTween(tweenAboutMeContent)
-		 	.addIndicators({name: "about me content________________________", colorStart: "lightyellow", colorEnd: "lightyellow"})
+		 	//.addIndicators({name: "about me content________________________", colorStart: "lightyellow", colorEnd: "lightyellow"})
 		 	.addTo(controller);
 
 
@@ -140,7 +262,7 @@
 				triggerHook: 0,
 		    })
 		 	.setTween(tweenAboutMeTitle)
-		 	.addIndicators({name: "about me content________________________", colorStart: "lightyellow", colorEnd: "lightyellow"})
+		 	//.addIndicators({name: "about me content________________________", colorStart: "lightyellow", colorEnd: "lightyellow"})
 		 	.addTo(controller);
 
 
