@@ -5,13 +5,6 @@
 		.controller("Controller", ["$scope", "preloader",
 			function($scope, preloader) {
 
-			/* =================== ON DOCUMENT LOAD =================== */
-			// angular.element(document).ready(function () {
-			// 	// On load, start on the middle of the website
-			// 	var height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-		 //        $(this).scrollTop(height);
-		 //    });
-
 
 			/* =================== SCROLLING FUNCTIONS =================== */
 			// https://css-tricks.com/snippets/jquery/smooth-scrolling/
@@ -23,7 +16,7 @@
 		        if (target.length) {
 		          $('html, body').animate({
 		            scrollTop: target.offset().top
-		          }, 1000);
+		          }, 2000);
 		          return false;
 		        }
 		      }
@@ -49,6 +42,8 @@
 		        });
 
 		    });
+
+
 
 
 		    /* =================== IMAGE LOADING FUNCTION =================== */
@@ -100,6 +95,9 @@
 		 	var repelImgArray1 = [];
 		 	var repelObj1 = {curImg: 0};
 
+		 	// === Add "Welcome" gif to repelImgArray1
+			repelImgArray1.push("./img/gifs/welcome-short-loop.gif");
+
 			var maxRepel1 = 1;
 			addToImageArrayPlus(repelImgArray1, maxRepel1, 20, "./img/pngs/repel2-cropped/repel_");
 			
@@ -150,8 +148,8 @@
             // Populate images in the array
             $scope.imageLocations = [];
 
-            $scope.imageLocations = $scope.imageLocations.concat(climbImgArray)
-            											 .concat(repelImgArray1).concat(repelImgArray2).concat(repelImgArray3)
+            $scope.imageLocations = $scope.imageLocations.concat(climbImgArray).concat(repelImgArray1)
+            											 .concat(repelImgArray2).concat(repelImgArray3)
             											 .concat(repelImgArray4).concat(repelImgArray5);
 
 
@@ -175,23 +173,27 @@
                     console.info( "Percent loaded:", event.percent );
                 }
             );
-            
 
 
+            /* =================== WHEN IMAGES LOADED, JUMP TO MID =================== */
+            $scope.$watch('isLoading', function() {
+            	// if not loading, and successfully loaded
+			    if(!$scope.isLoading && $scope.isSuccessful){
+			    	var fadeTime = 500;
 
+			    	// scroll to middle
+			    	setTimeout(function() {
+					    var height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+						$('html, body').animate({scrollTop: height}, fadeTime);
+					}, 10);
 
-
-
-
-
-
-
-
-
-
-
-
-
+			    	// fade body
+					setTimeout(function() {
+						$(".web-container").addClass("fade-in");
+					}, fadeTime);
+					
+			    }
+			});
 
 
 
@@ -239,7 +241,7 @@
 				duration: 100
 		    })
 		 	.setTween(tweenWork1)
-		 	.addIndicators({name: "my work_________________________________", colorStart: "green", colorEnd: "green"})
+		 	//.addIndicators({name: "my work_________________________________", colorStart: "green", colorEnd: "green"})
 		 	.addTo(controller);
 
 
@@ -258,7 +260,7 @@
 				triggerElement: "#trigger3"
 		    })
 		 	.setTween(tweenWork2)
-		 	.addIndicators({name: "my work - move right_________________________________", colorStart: "green", colorEnd: "green"})
+		 	//.addIndicators({name: "my work - move right_________________________________", colorStart: "green", colorEnd: "green"})
 		 	.addTo(controller);
 
 
@@ -284,7 +286,7 @@
 				offset: 40
 		    })
 		 	.setTween(tweenItemRow1)
-		 	.addIndicators({name: "my work row 1______________", colorStart: "red", colorEnd: "red"})
+		 	//.addIndicators({name: "my work row 1______________", colorStart: "red", colorEnd: "red"})
 		 	.addTo(controller);
 
 
@@ -306,7 +308,7 @@
 				offset: 60
 		    })
 		 	.setTween(tweenItemRow2)
-		 	.addIndicators({name: "my work row 2______________", colorStart: "red", colorEnd: "red"})
+		 	//.addIndicators({name: "my work row 2______________", colorStart: "red", colorEnd: "red"})
 		 	.addTo(controller);
 
 
@@ -328,7 +330,7 @@
 				offset: 80
 		    })
 		 	.setTween(tweenItemRow3)
-		 	.addIndicators({name: "my work row 3______________", colorStart: "red", colorEnd: "red"})
+		 	//.addIndicators({name: "my work row 3______________", colorStart: "red", colorEnd: "red"})
 		 	.addTo(controller);
 
 
@@ -355,7 +357,7 @@
 				duration: "22%"
 		    })
 		 	.setTween(tweenName1)
-		 	.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
+		 	//.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
 		 	.addTo(controller);
 
 
@@ -377,7 +379,7 @@
 				duration: "22%"
 		    })
 		 	.setTween(tweenTagline1)
-		 	.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
+		 	//.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
 		 	.addTo(controller);
 
 
@@ -400,7 +402,7 @@
 				duration: "22%"
 		    })
 		 	.setTween(tweenName2)
-		 	.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
+		 	//.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
 		 	.addTo(controller);
 
 
@@ -423,7 +425,7 @@
 				duration: "22%"
 		    })
 		 	.setTween(tweenTagline2)
-		 	.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
+		 	//.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
 		 	.addTo(controller);
 
 
@@ -448,7 +450,7 @@
 				triggerHook: 0,
 		    })
 		 	.setTween(tweenAboutMeContent)
-		 	.addIndicators({name: "about me content________________________", colorStart: "lightyellow", colorEnd: "lightyellow"})
+		 	//.addIndicators({name: "about me content________________________", colorStart: "lightyellow", colorEnd: "lightyellow"})
 		 	.addTo(controller);
 
 
@@ -469,7 +471,7 @@
 				triggerHook: 0,
 		    })
 		 	.setTween(tweenAboutMeTitle)
-		 	.addIndicators({name: "about me content________________________", colorStart: "lightyellow", colorEnd: "lightyellow"})
+		 	//.addIndicators({name: "about me content________________________", colorStart: "lightyellow", colorEnd: "lightyellow"})
 		 	.addTo(controller);
 
 
@@ -499,7 +501,7 @@
 				duration: "40%"
 		    })
 		 	.setTween(tweenSun)
-		 	.addIndicators({name: "sun~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "lightyellow", colorEnd: "lightyellow"})
+		 	//.addIndicators({name: "sun~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "lightyellow", colorEnd: "lightyellow"})
 		 	.addTo(controller);
 
 
@@ -521,7 +523,7 @@
 				duration: "40%"
 		    })
 		 	.setTween(tweenClouds)
-		 	.addIndicators({name: "sun~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "lightyellow", colorEnd: "lightyellow"})
+		 	//.addIndicators({name: "sun~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "lightyellow", colorEnd: "lightyellow"})
 		 	.addTo(controller);
 
 
@@ -547,7 +549,7 @@
 				duration: "200%"
 		    })
 		 	.setTween(tweenCliffVert)
-		 	.addIndicators({name: "cliff~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "brown", colorEnd: "brown"})
+		 	//.addIndicators({name: "cliff~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "brown", colorEnd: "brown"})
 		 	.addTo(controller);
 
 		 	/*=========================================================
@@ -570,7 +572,7 @@
 				duration: "100%"
 		    })
 		 	.setTween(tweenCliffHor1)
-		 	.addIndicators({name: "cliff horizontal~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "grey", colorEnd: "grey"})
+		 	//.addIndicators({name: "cliff horizontal~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "grey", colorEnd: "grey"})
 		 	.addTo(controller);
 
 
@@ -599,7 +601,7 @@
 				duration: "200%"
 		    })
 		 	.setTween(tweenMountainVert)
-		 	.addIndicators({name: "mountain~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "purple", colorEnd: "purple"})
+		 	//.addIndicators({name: "mountain~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "purple", colorEnd: "purple"})
 		 	.addTo(controller);
 
 			/*=========================================================
@@ -624,7 +626,7 @@
 				duration: "200%"
 		    })
 		 	.setTween(tweenSandVert)
-		 	.addIndicators({name: "mountain~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "orange", colorEnd: "orange"})
+		 	//.addIndicators({name: "mountain~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "orange", colorEnd: "orange"})
 		 	.addTo(controller);
 
 
@@ -652,7 +654,7 @@
 				duration: "200%"
 		    })
 		 	.setTween(tweenFlowerLight1)
-		 	.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
+		 	//.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
 		 	.addTo(controller);
 
 
@@ -674,7 +676,7 @@
 				duration: "200%"
 		    })
 		 	.setTween(tweenFlowerLight2)
-		 	.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
+		 	//.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
 		 	.addTo(controller);
 
 
@@ -696,7 +698,7 @@
 				duration: "200%"
 		    })
 		 	.setTween(tweenFlowerLight3)
-		 	.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
+		 	//.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
 		 	.addTo(controller);
 
 
@@ -718,7 +720,7 @@
 				duration: "200%"
 		    })
 		 	.setTween(tweenFlowerDark1)
-		 	.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
+		 	//.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
 		 	.addTo(controller);
 
 
@@ -740,7 +742,7 @@
 				duration: "200%"
 		    })
 		 	.setTween(tweenFlowerDark2)
-		 	.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
+		 	//.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
 		 	.addTo(controller);
 
 
@@ -762,7 +764,7 @@
 				duration: "200%"
 		    })
 		 	.setTween(tweenFlowerDark3)
-		 	.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
+		 	//.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
 		 	.addTo(controller);
 
 
@@ -790,7 +792,7 @@
 				triggerElement: "#trigger3-half",
 		    })
 		 	.setTween(tweenGrass1)
-		 	.addIndicators({name: "grass_____________________________________", colorStart: "lightgreen", colorEnd: "lightgreen"})
+		 	//.addIndicators({name: "grass_____________________________________", colorStart: "lightgreen", colorEnd: "lightgreen"})
 		 	.addTo(controller);
 
 
@@ -812,7 +814,7 @@
 				triggerElement: "#trigger3-half",
 		    })
 		 	.setTween(tweenGrass2)
-		 	.addIndicators({name: "grass_____________________________________", colorStart: "lightgreen", colorEnd: "lightgreen"})
+		 	//.addIndicators({name: "grass_____________________________________", colorStart: "lightgreen", colorEnd: "lightgreen"})
 		 	.addTo(controller);
 
 
@@ -834,7 +836,7 @@
 				triggerElement: "#trigger3-half",
 		    })
 		 	.setTween(tweenGrass3)
-		 	.addIndicators({name: "grass_____________________________________", colorStart: "lightgreen", colorEnd: "lightgreen"})
+		 	//.addIndicators({name: "grass_____________________________________", colorStart: "lightgreen", colorEnd: "lightgreen"})
 		 	.addTo(controller);
 
 
@@ -871,7 +873,7 @@
 				duration: "75%"
 		    })
 		 	.setTween(tweenMeClimbPos0)
-		 	.addIndicators({name: "me climbing down pos0_________", colorStart: "magenta", colorEnd: "magenta"})
+		 	//.addIndicators({name: "me climbing down pos0_________", colorStart: "magenta", colorEnd: "magenta"})
 		 	.addTo(controller);
 
 
@@ -895,7 +897,7 @@
 				duration: "90%"
 			})
 			.setTween(tweenMeClimb)
-			.addIndicators({name: "me climbing down", colorStart: "magenta", colorEnd: "magenta"})
+			//.addIndicators({name: "me climbing down", colorStart: "magenta", colorEnd: "magenta"})
 			.addTo(controller);
 
 
@@ -919,7 +921,7 @@
 				duration: "20%"
 		    })
 		 	.setTween(tweenMeClimbPos1)
-		 	.addIndicators({name: "me climbing down pos1_________", colorStart: "magenta", colorEnd: "magenta"})
+		 	//.addIndicators({name: "me climbing down pos1_________", colorStart: "magenta", colorEnd: "magenta"})
 		 	.addTo(controller);
 
 
@@ -942,7 +944,7 @@
 				duration: "10%"
 		    })
 		 	.setTween(tweenMeClimbPos2)
-		 	.addIndicators({name: "me climbing down pos2_________", colorStart: "magenta", colorEnd: "magenta"})
+		 	//.addIndicators({name: "me climbing down pos2_________", colorStart: "magenta", colorEnd: "magenta"})
 		 	.addTo(controller);
 
 
@@ -965,7 +967,7 @@
 				duration: "10%"
 		    })
 		 	.setTween(tweenMeClimbPos3)
-		 	.addIndicators({name: "me climbing down pos3_________", colorStart: "magenta", colorEnd: "magenta"})
+		 	//.addIndicators({name: "me climbing down pos3_________", colorStart: "magenta", colorEnd: "magenta"})
 		 	.addTo(controller);
 
 
@@ -988,7 +990,7 @@
 				duration: "10%"
 		    })
 		 	.setTween(tweenMeClimbPos4)
-		 	.addIndicators({name: "me climbing down pos4_________", colorStart: "magenta", colorEnd: "magenta"})
+		 	//.addIndicators({name: "me climbing down pos4_________", colorStart: "magenta", colorEnd: "magenta"})
 		 	.addTo(controller);
 
 
@@ -1011,36 +1013,40 @@
 				duration: "10%"
 		    })
 		 	.setTween(tweenMeClimbPos5)
-		 	.addIndicators({name: "me climbing down pos5_________", colorStart: "magenta", colorEnd: "magenta"})
+		 	//.addIndicators({name: "me climbing down pos5_________", colorStart: "magenta", colorEnd: "magenta"})
 		 	.addTo(controller);
 
 
 
 		 	/*=================== ME WELCOME ===================*/
 
-			/*=========================================================
-				tweenMeWelcome: Just plain, ol' me, waving.
+		 	/*=========================================================
+				tweenMeWelcome: Just hanging out and waving at newcomers.
 			  =========================================================*/
-			// var tweenMeWelcome = new TweenMax.to(welcomeObj, 0.5,
-			// 	{
-			// 		curImg: welcomeImgArray.length - 1,
-			// 		roundProps: "curImg",
-			// 		immediateRender: true,
-			// 		ease: Linear.easeNone,
-			// 		onUpdate: function () {
-			// 		  $("#img-me").attr("src", welcomeImgArray[welcomeObj.curImg]);
-			// 		}
-			// 	}
-			// );
-
-			// var meWelcomeScene = new ScrollMagic.Scene({
-			// 	triggerElement: "#trigger1-half",
-			// 	offset: sceneMeClimb.offset() + sceneMeClimb.duration(),
-			// })
-			// .setTween(tweenMeWelcome)
-			// .addIndicators({name: "me welcome__________________________________", colorStart: "gold", colorEnd: "gold"})
-			// .addTo(controller);
-
+			var tweenMeWelcome = new TweenMax.fromTo("#img-me", 1,
+				// previous
+				{
+				 top: "36vh",
+				 left: "23.5vw",
+	             onUpdate: function () {
+					$("#img-me").attr("src", "./img/gifs/welcome-short-loop.gif");
+				 },
+				 ease: Power0.easeNone
+				},
+				// next
+				{
+				 top: "36vh",
+				 left: "23.5vw",
+				}
+			);
+			var sceneMeWelcome = new ScrollMagic.Scene({
+				triggerElement: "#trigger1-half",
+				offset: sceneMeClimb.offset() + sceneMeClimb.duration(),
+				duration: "22%"
+		    })
+		 	.setTween(tweenMeWelcome)
+		 	//.addIndicators({name: "me welcome_________________________", colorStart: "brown", colorEnd: "brown"})
+		 	.addTo(controller);
 
 
 
@@ -1066,7 +1072,7 @@
 				duration: "10%"
 			})
 			.setTween(tweenMeRepel1)
-			.addIndicators({name: "me repel 1___________________________________", colorStart: "navy", colorEnd: "navy"})
+			//.addIndicators({name: "me repel 1___________________________________", colorStart: "navy", colorEnd: "navy"})
 			.addTo(controller);
 
 
@@ -1089,7 +1095,7 @@
 				duration: sceneMeRepel1.duration(),
 		    })
 		 	.setTween(tweenMeRepelPos1)
-		 	.addIndicators({name: "me repel pos1___________________________________", colorStart: "navy", colorEnd: "navy"})
+		 	//.addIndicators({name: "me repel pos1___________________________________", colorStart: "navy", colorEnd: "navy"})
 		 	.addTo(controller);
 
 
@@ -1116,7 +1122,7 @@
 				duration: "20%",
 			})
 			.setTween(tweenMeRepel2)
-			.addIndicators({name: "me repel 2___________________________________", colorStart: "navy", colorEnd: "navy"})
+			//.addIndicators({name: "me repel 2___________________________________", colorStart: "navy", colorEnd: "navy"})
 			.addTo(controller);
 
 
@@ -1139,7 +1145,7 @@
 				duration: sceneMeRepel2.duration(),
 		    })
 		 	.setTween(tweenMeRepelPos2)
-		 	.addIndicators({name: "me repel pos1___________________________________", colorStart: "navy", colorEnd: "navy"})
+		 	//.addIndicators({name: "me repel pos2___________________________________", colorStart: "navy", colorEnd: "navy"})
 		 	.addTo(controller);
 
 
@@ -1166,7 +1172,7 @@
 				duration: "20%",
 			})
 			.setTween(tweenMeRepel3)
-			.addIndicators({name: "me repel 3___________________________________", colorStart: "navy", colorEnd: "navy"})
+			//.addIndicators({name: "me repel 3___________________________________", colorStart: "navy", colorEnd: "navy"})
 			.addTo(controller);
 
 
@@ -1189,7 +1195,7 @@
 				duration: sceneMeRepel3.duration(),
 		    })
 		 	.setTween(tweenMeRepelPos3)
-		 	.addIndicators({name: "me repel pos3___________________________________", colorStart: "navy", colorEnd: "navy"})
+		 	//.addIndicators({name: "me repel pos3___________________________________", colorStart: "navy", colorEnd: "navy"})
 		 	.addTo(controller);
 
 
@@ -1216,7 +1222,7 @@
 				duration: "20%"
 			})
 			.setTween(tweenMeRepel4)
-			.addIndicators({name: "me repel 4___________________________________", colorStart: "navy", colorEnd: "navy"})
+			//.addIndicators({name: "me repel 4___________________________________", colorStart: "navy", colorEnd: "navy"})
 			.addTo(controller);
 
 
@@ -1239,7 +1245,7 @@
 				duration: sceneMeRepel4.duration(),
 		    })
 		 	.setTween(tweenMeRepelPos4)
-		 	.addIndicators({name: "me repel pos4___________________________________", colorStart: "navy", colorEnd: "navy"})
+		 	//.addIndicators({name: "me repel pos4___________________________________", colorStart: "navy", colorEnd: "navy"})
 		 	.addTo(controller);
 
 
@@ -1265,7 +1271,7 @@
 				duration: "20%",
 			})
 			.setTween(tweenMeRepel5)
-			.addIndicators({name: "me repel 5___________________________________", colorStart: "navy", colorEnd: "navy"})
+			//.addIndicators({name: "me repel 5___________________________________", colorStart: "navy", colorEnd: "navy"})
 			.addTo(controller);
 
 
@@ -1288,7 +1294,7 @@
 				duration: sceneMeRepel5.duration(),
 		    })
 		 	.setTween(tweenMeRepelPos5)
-		 	.addIndicators({name: "me repel pos5___________________________________", colorStart: "navy", colorEnd: "navy"})
+		 	//.addIndicators({name: "me repel pos5___________________________________", colorStart: "navy", colorEnd: "navy"})
 		 	.addTo(controller);
 
 
@@ -1318,7 +1324,7 @@
 				duration: "30%"
 		    })
 		 	.setTween(tweenMeRepelPos6)
-		 	.addIndicators({name: "me repel pos6___________________________________", colorStart: "navy", colorEnd: "navy"})
+		 	//.addIndicators({name: "me repel pos6___________________________________", colorStart: "navy", colorEnd: "navy"})
 		 	.addTo(controller);
 
 

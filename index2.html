@@ -77,13 +77,14 @@
 
 
 
-  <div class="load-container" ng-show="isLoading" style="height:100%">
-    Your images are being loaded... {{ percentLoaded }}%
+  <div class="load-container" ng-show="isLoading" ng-cloak>
+    <div class="load-spinner"></div>
   </div>
 
+
   <!-- ================================= MAIN SCENE ================================= -->
-  <div class="web-container" ng-show="!isLoading">
-    <div class="load-error" ng-show="!isSuccessful" style="height:100%">
+  <div class="web-container" ng-show="!isLoading" ng-cloak>
+    <div class="load-error" ng-show="!isSuccessful" ng-cloak style="height:100%">
       OOPS ONE OF YOUR IMAGES FAILED TO LOAD
     </div>
 
@@ -369,7 +370,7 @@
           <div id="nav-about-me" style="
             position: absolute;
             top: 2vw;
-            left: 5vh;
+            left: 8vh;
             ">
             <a href="#bot" style="
               color: #9d6cd4;
@@ -391,7 +392,7 @@
           <div id="nav-my-work" style="
             position: absolute;
             top: 2vw;
-            left: 85vh;
+            left: 82vh;
             ">
             <a href="#top" style="
               color: #9d6cd4;
