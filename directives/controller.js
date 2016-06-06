@@ -2,7 +2,214 @@
 	"use strict";
 	angular.module("portfolio", [])
 		/* =================== CONTROLLER =================== */
-		.controller("Controller", ["$scope", function($scope) {
+		.controller("Controller", ["$scope", "preloader",
+			function($scope, preloader) {
+
+			/* =================== ON DOCUMENT LOAD =================== */
+			// angular.element(document).ready(function () {
+			// 	// On load, start on the middle of the website
+			// 	var height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+		 //        $(this).scrollTop(height);
+		 //    });
+
+
+			/* =================== SCROLLING FUNCTIONS =================== */
+			// https://css-tricks.com/snippets/jquery/smooth-scrolling/
+			// Smooth scroll for navigation links
+		    $('a[href*="#"]:not([href="#"])').click(function() {
+		      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+		        var target = $(this.hash);
+		        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+		        if (target.length) {
+		          $('html, body').animate({
+		            scrollTop: target.offset().top
+		          }, 1000);
+		          return false;
+		        }
+		      }
+		    });
+
+		    // Smooth scrolling throughout
+		    var $window = $(window);
+		    var scrollTime = 1.8;
+		    var scrollDistance = 170;
+
+		    $window.on("mousewheel DOMMouseScroll", function(event){
+
+		      event.preventDefault(); 
+
+		      var delta = event.originalEvent.wheelDelta/120 || -event.originalEvent.detail/3;
+		      var scrollTop = $window.scrollTop();
+		      var finalScroll = scrollTop - parseInt(delta*scrollDistance);
+
+		      TweenMax.to($window, scrollTime, {
+		        scrollTo : { y: finalScroll, autoKill:true },
+		          ease: Power1.easeOut,
+		          overwrite: 5              
+		        });
+
+		    });
+
+
+		    /* =================== IMAGE LOADING FUNCTION =================== */
+		    // Here we load all of the imgArrays for the animations
+			var addToImageArrayMinus = function(array, max, url){
+				while (max > 0){
+					var prefix;
+					if      (max < 10)  prefix = url + "0000";
+					else if (max < 100) prefix = url + "000";
+					else 				prefix = url + "00";
+
+					array.push(prefix + max + ".png");
+				    max--;
+				}
+			}
+
+			var addToImageArrayPlus = function(array, min, max, url){
+				while (min < max){
+					var prefix;
+					if      (min < 10)  prefix = url + "0000";
+					else if (min < 100) prefix = url + "000";
+					else 				prefix = url + "00";
+
+					array.push(prefix + min + ".png");
+				    min++;
+				}
+			}
+
+		    /* =================== CLIMB IMG ARRAY =================== */
+		    var climbImgArray = [];
+		 	var climbObj = {curImg: 0};
+
+			// === Add "sitting" scene
+			climbImgArray.push("./img/gifs/sitting-short-loop.gif");
+
+			// === Then, add "cheers" scene
+			var maxCheers = 71;
+			addToImageArrayMinus(climbImgArray, maxCheers, "./img/pngs/cheers-cropped/cheers_");
+
+			var maxClimb = 241;
+			addToImageArrayMinus(climbImgArray, maxClimb, "./img/pngs/climb-cropped/climb_");
+
+			// === Add "Welcome" gif to climbImgArray
+			climbImgArray.push("./img/gifs/welcome-short-loop.gif");
+
+
+		 	/* =================== REPEL IMG ARRAYS =================== */
+		 	// === Add "repel1" scene
+		 	var repelImgArray1 = [];
+		 	var repelObj1 = {curImg: 0};
+
+			var maxRepel1 = 1;
+			addToImageArrayPlus(repelImgArray1, maxRepel1, 20, "./img/pngs/repel2-cropped/repel_");
+			
+
+			// === Add "repel2" scene
+			var repelImgArray2 = [];
+		 	var repelObj2 = {curImg: 0};
+
+			var maxRepel2 = 20;
+			addToImageArrayPlus(repelImgArray2, maxRepel2, 32, "./img/pngs/repel2-cropped/repel_");
+
+
+			// === Add "repel3" scene
+		 	var repelImgArray3 = [];
+		 	var repelObj3 = {curImg: 0};
+
+			var maxRepel3 = 32;
+			addToImageArrayPlus(repelImgArray3, maxRepel3, 42, "./img/pngs/repel2-cropped/repel_");
+			
+
+			// === Add "repel4" scene
+		 	var repelImgArray4 = [];
+		 	var repelObj4 = {curImg: 0};
+
+			var maxRepel4 = 42;
+			addToImageArrayPlus(repelImgArray4, maxRepel4, 54, "./img/pngs/repel2-cropped/repel_");
+
+			
+			// === Add "repel4" scene
+		 	var repelImgArray5 = [];
+		 	var repelObj5 = {curImg: 0};
+
+			var maxRepel5 = 54;
+			addToImageArrayPlus(repelImgArray5, maxRepel5, 75, "./img/pngs/repel2-cropped/repel_");
+			
+			// === Add "Sunbathe" gif to maxRepel5
+			repelImgArray5.push("./img/gifs/sunbathe-loop.gif");
+
+
+
+
+		    // http://www.bennadel.com/blog/2597-preloading-images-in-angularjs-with-promises.htm
+		    // I keep track of the state of the loading images.
+            $scope.isLoading = true;
+            $scope.isSuccessful = false;
+            $scope.percentLoaded = 0;
+            
+            // Populate images in the array
+            $scope.imageLocations = [];
+
+            $scope.imageLocations = $scope.imageLocations.concat(climbImgArray)
+            											 .concat(repelImgArray1).concat(repelImgArray2).concat(repelImgArray3)
+            											 .concat(repelImgArray4).concat(repelImgArray5);
+
+
+            // Preload the images; then, update display when returned.
+            preloader.preloadImages( $scope.imageLocations ).then(
+                function handleResolve( imageLocations ) {
+                    // Loading was successful.
+                    $scope.isLoading = false;
+                    $scope.isSuccessful = true;
+                    console.info( "Preload Successful" );
+                },
+                function handleReject( imageLocation ) {
+                    // Loading failed on at least one image.
+                    $scope.isLoading = false;
+                    $scope.isSuccessful = false;
+                    console.error( "Image Failed", imageLocation );
+                    console.info( "Preload Failure" );
+                },
+                function handleNotify( event ) {
+                    $scope.percentLoaded = event.percent;
+                    console.info( "Percent loaded:", event.percent );
+                }
+            );
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            /*===================================================================================*/
+			/*=================================== SCROLLMAGIC ===================================*/
+			/*===================================================================================*/
+
 			var controller = new ScrollMagic.Controller();
 
 			/*===================================================================================*/
@@ -32,7 +239,7 @@
 				duration: 100
 		    })
 		 	.setTween(tweenWork1)
-		 	//.addIndicators({name: "my work_________________________________", colorStart: "green", colorEnd: "green"})
+		 	.addIndicators({name: "my work_________________________________", colorStart: "green", colorEnd: "green"})
 		 	.addTo(controller);
 
 
@@ -51,7 +258,7 @@
 				triggerElement: "#trigger3"
 		    })
 		 	.setTween(tweenWork2)
-		 	//.addIndicators({name: "my work - move right_________________________________", colorStart: "green", colorEnd: "green"})
+		 	.addIndicators({name: "my work - move right_________________________________", colorStart: "green", colorEnd: "green"})
 		 	.addTo(controller);
 
 
@@ -77,7 +284,7 @@
 				offset: 40
 		    })
 		 	.setTween(tweenItemRow1)
-		 	//.addIndicators({name: "my work row 1______________", colorStart: "red", colorEnd: "red"})
+		 	.addIndicators({name: "my work row 1______________", colorStart: "red", colorEnd: "red"})
 		 	.addTo(controller);
 
 
@@ -99,7 +306,7 @@
 				offset: 60
 		    })
 		 	.setTween(tweenItemRow2)
-		 	//.addIndicators({name: "my work row 2______________", colorStart: "red", colorEnd: "red"})
+		 	.addIndicators({name: "my work row 2______________", colorStart: "red", colorEnd: "red"})
 		 	.addTo(controller);
 
 
@@ -121,7 +328,7 @@
 				offset: 80
 		    })
 		 	.setTween(tweenItemRow3)
-		 	//.addIndicators({name: "my work row 3______________", colorStart: "red", colorEnd: "red"})
+		 	.addIndicators({name: "my work row 3______________", colorStart: "red", colorEnd: "red"})
 		 	.addTo(controller);
 
 
@@ -148,7 +355,7 @@
 				duration: "22%"
 		    })
 		 	.setTween(tweenName1)
-		 	//.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
+		 	.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
 		 	.addTo(controller);
 
 
@@ -170,7 +377,7 @@
 				duration: "22%"
 		    })
 		 	.setTween(tweenTagline1)
-		 	//.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
+		 	.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
 		 	.addTo(controller);
 
 
@@ -193,7 +400,7 @@
 				duration: "22%"
 		    })
 		 	.setTween(tweenName2)
-		 	//.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
+		 	.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
 		 	.addTo(controller);
 
 
@@ -216,7 +423,7 @@
 				duration: "22%"
 		    })
 		 	.setTween(tweenTagline2)
-		 	//.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
+		 	.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
 		 	.addTo(controller);
 
 
@@ -241,7 +448,7 @@
 				triggerHook: 0,
 		    })
 		 	.setTween(tweenAboutMeContent)
-		 	//.addIndicators({name: "about me content________________________", colorStart: "lightyellow", colorEnd: "lightyellow"})
+		 	.addIndicators({name: "about me content________________________", colorStart: "lightyellow", colorEnd: "lightyellow"})
 		 	.addTo(controller);
 
 
@@ -262,7 +469,7 @@
 				triggerHook: 0,
 		    })
 		 	.setTween(tweenAboutMeTitle)
-		 	//.addIndicators({name: "about me content________________________", colorStart: "lightyellow", colorEnd: "lightyellow"})
+		 	.addIndicators({name: "about me content________________________", colorStart: "lightyellow", colorEnd: "lightyellow"})
 		 	.addTo(controller);
 
 
@@ -292,7 +499,7 @@
 				duration: "40%"
 		    })
 		 	.setTween(tweenSun)
-		 	//.addIndicators({name: "sun~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "lightyellow", colorEnd: "lightyellow"})
+		 	.addIndicators({name: "sun~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "lightyellow", colorEnd: "lightyellow"})
 		 	.addTo(controller);
 
 
@@ -314,7 +521,7 @@
 				duration: "40%"
 		    })
 		 	.setTween(tweenClouds)
-		 	//.addIndicators({name: "sun~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "lightyellow", colorEnd: "lightyellow"})
+		 	.addIndicators({name: "sun~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "lightyellow", colorEnd: "lightyellow"})
 		 	.addTo(controller);
 
 
@@ -340,7 +547,7 @@
 				duration: "200%"
 		    })
 		 	.setTween(tweenCliffVert)
-		 	//.addIndicators({name: "cliff~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "brown", colorEnd: "brown"})
+		 	.addIndicators({name: "cliff~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "brown", colorEnd: "brown"})
 		 	.addTo(controller);
 
 		 	/*=========================================================
@@ -363,7 +570,7 @@
 				duration: "100%"
 		    })
 		 	.setTween(tweenCliffHor1)
-		 	//.addIndicators({name: "cliff horizontal~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "grey", colorEnd: "grey"})
+		 	.addIndicators({name: "cliff horizontal~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "grey", colorEnd: "grey"})
 		 	.addTo(controller);
 
 
@@ -392,7 +599,7 @@
 				duration: "200%"
 		    })
 		 	.setTween(tweenMountainVert)
-		 	//.addIndicators({name: "mountain~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "purple", colorEnd: "purple"})
+		 	.addIndicators({name: "mountain~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "purple", colorEnd: "purple"})
 		 	.addTo(controller);
 
 			/*=========================================================
@@ -417,7 +624,7 @@
 				duration: "200%"
 		    })
 		 	.setTween(tweenSandVert)
-		 	//.addIndicators({name: "mountain~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "orange", colorEnd: "orange"})
+		 	.addIndicators({name: "mountain~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "orange", colorEnd: "orange"})
 		 	.addTo(controller);
 
 
@@ -445,7 +652,7 @@
 				duration: "200%"
 		    })
 		 	.setTween(tweenFlowerLight1)
-		 	//.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
+		 	.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
 		 	.addTo(controller);
 
 
@@ -467,7 +674,7 @@
 				duration: "200%"
 		    })
 		 	.setTween(tweenFlowerLight2)
-		 	//.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
+		 	.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
 		 	.addTo(controller);
 
 
@@ -489,7 +696,7 @@
 				duration: "200%"
 		    })
 		 	.setTween(tweenFlowerLight3)
-		 	//.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
+		 	.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
 		 	.addTo(controller);
 
 
@@ -511,7 +718,7 @@
 				duration: "200%"
 		    })
 		 	.setTween(tweenFlowerDark1)
-		 	//.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
+		 	.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
 		 	.addTo(controller);
 
 
@@ -533,7 +740,7 @@
 				duration: "200%"
 		    })
 		 	.setTween(tweenFlowerDark2)
-		 	//.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
+		 	.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
 		 	.addTo(controller);
 
 
@@ -555,7 +762,7 @@
 				duration: "200%"
 		    })
 		 	.setTween(tweenFlowerDark3)
-		 	//.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
+		 	.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
 		 	.addTo(controller);
 
 
@@ -583,7 +790,7 @@
 				triggerElement: "#trigger3-half",
 		    })
 		 	.setTween(tweenGrass1)
-		 	//.addIndicators({name: "grass_____________________________________", colorStart: "lightgreen", colorEnd: "lightgreen"})
+		 	.addIndicators({name: "grass_____________________________________", colorStart: "lightgreen", colorEnd: "lightgreen"})
 		 	.addTo(controller);
 
 
@@ -605,7 +812,7 @@
 				triggerElement: "#trigger3-half",
 		    })
 		 	.setTween(tweenGrass2)
-		 	//.addIndicators({name: "grass_____________________________________", colorStart: "lightgreen", colorEnd: "lightgreen"})
+		 	.addIndicators({name: "grass_____________________________________", colorStart: "lightgreen", colorEnd: "lightgreen"})
 		 	.addTo(controller);
 
 
@@ -627,7 +834,7 @@
 				triggerElement: "#trigger3-half",
 		    })
 		 	.setTween(tweenGrass3)
-		 	//.addIndicators({name: "grass_____________________________________", colorStart: "lightgreen", colorEnd: "lightgreen"})
+		 	.addIndicators({name: "grass_____________________________________", colorStart: "lightgreen", colorEnd: "lightgreen"})
 		 	.addTo(controller);
 
 
@@ -639,37 +846,6 @@
 			/*===================================================================================*/
 
 		 	/*=================== ME CLIMBING DOWN ===================*/
-		 	var climbImgArray = [];
-		 	var climbObj = {curImg: 0};
-
-			// === Add "sitting" scene
-			climbImgArray.push("./img/gifs/sitting-short-loop.gif");
-
-			// === Then, add "cheers" scene
-			var maxCheers = 71;
-
-			while (maxCheers > 0){
-				var prefix;
-				if      (maxCheers < 10)  prefix = "./img/pngs/cheers-cropped/cheers_0000";
-				else if (maxCheers < 100) prefix = "./img/pngs/cheers-cropped/cheers_000";
-				else  			  		  prefix = "./img/pngs/cheers-cropped/cheers_00";
-
-				climbImgArray.push(prefix + maxCheers + ".png");
-			    maxCheers--;
-			}
-
-			// === Then, add "climb" scene
-			var maxClimb = 241;
-
-			while (maxClimb > 0){
-				var prefix;
-				if      (maxClimb < 10)  prefix = "./img/pngs/climb-cropped/climb_0000";
-				else if (maxClimb < 100) prefix = "./img/pngs/climb-cropped/climb_000";
-				else  			  		  prefix = "./img/pngs/climb-cropped/climb_00";
-
-				climbImgArray.push(prefix + maxClimb + ".png");
-			    maxClimb--;
-			}
 
 			/*=========================================================
 				tweenMeClimbPos0: Zero position of me sitting at the top.
@@ -695,7 +871,7 @@
 				duration: "75%"
 		    })
 		 	.setTween(tweenMeClimbPos0)
-		 	//.addIndicators({name: "me climbing down pos0_________", colorStart: "magenta", colorEnd: "magenta"})
+		 	.addIndicators({name: "me climbing down pos0_________", colorStart: "magenta", colorEnd: "magenta"})
 		 	.addTo(controller);
 
 
@@ -719,7 +895,7 @@
 				duration: "90%"
 			})
 			.setTween(tweenMeClimb)
-			//.addIndicators({name: "me climbing down", colorStart: "magenta", colorEnd: "magenta"})
+			.addIndicators({name: "me climbing down", colorStart: "magenta", colorEnd: "magenta"})
 			.addTo(controller);
 
 
@@ -743,7 +919,7 @@
 				duration: "20%"
 		    })
 		 	.setTween(tweenMeClimbPos1)
-		 	//.addIndicators({name: "me climbing down pos1_________", colorStart: "magenta", colorEnd: "magenta"})
+		 	.addIndicators({name: "me climbing down pos1_________", colorStart: "magenta", colorEnd: "magenta"})
 		 	.addTo(controller);
 
 
@@ -766,7 +942,7 @@
 				duration: "10%"
 		    })
 		 	.setTween(tweenMeClimbPos2)
-		 	//.addIndicators({name: "me climbing down pos2_________", colorStart: "magenta", colorEnd: "magenta"})
+		 	.addIndicators({name: "me climbing down pos2_________", colorStart: "magenta", colorEnd: "magenta"})
 		 	.addTo(controller);
 
 
@@ -789,7 +965,7 @@
 				duration: "10%"
 		    })
 		 	.setTween(tweenMeClimbPos3)
-		 	//.addIndicators({name: "me climbing down pos3_________", colorStart: "magenta", colorEnd: "magenta"})
+		 	.addIndicators({name: "me climbing down pos3_________", colorStart: "magenta", colorEnd: "magenta"})
 		 	.addTo(controller);
 
 
@@ -812,7 +988,7 @@
 				duration: "10%"
 		    })
 		 	.setTween(tweenMeClimbPos4)
-		 	//.addIndicators({name: "me climbing down pos4_________", colorStart: "magenta", colorEnd: "magenta"})
+		 	.addIndicators({name: "me climbing down pos4_________", colorStart: "magenta", colorEnd: "magenta"})
 		 	.addTo(controller);
 
 
@@ -826,7 +1002,7 @@
 				// next
 				{
 				 top: "36vh",
-				 left: "24vw",
+				 left: "23.5vw",
 				}
 			);
 			var sceneMeClimbPos5 = new ScrollMagic.Scene({
@@ -835,60 +1011,40 @@
 				duration: "10%"
 		    })
 		 	.setTween(tweenMeClimbPos5)
-		 	//.addIndicators({name: "me climbing down pos5_________", colorStart: "magenta", colorEnd: "magenta"})
+		 	.addIndicators({name: "me climbing down pos5_________", colorStart: "magenta", colorEnd: "magenta"})
 		 	.addTo(controller);
 
 
 
 		 	/*=================== ME WELCOME ===================*/
-		 	var welcomeImgArray = [];
-		 	var welcomeObj = {curImg: 0};
-
-			// === Add "welcome" scene
-			welcomeImgArray.push("./img/gifs/welcome-short-loop.gif");
 
 			/*=========================================================
 				tweenMeWelcome: Just plain, ol' me, waving.
 			  =========================================================*/
-			var tweenMeWelcome = new TweenMax.to(welcomeObj, 0.5,
-				{
-					curImg: welcomeImgArray.length - 1,
-					roundProps: "curImg",
-					immediateRender: true,
-					ease: Linear.easeNone,
-					onUpdate: function () {
-					  $("#img-me").attr("src", welcomeImgArray[welcomeObj.curImg]);
-					}
-				}
-			);
+			// var tweenMeWelcome = new TweenMax.to(welcomeObj, 0.5,
+			// 	{
+			// 		curImg: welcomeImgArray.length - 1,
+			// 		roundProps: "curImg",
+			// 		immediateRender: true,
+			// 		ease: Linear.easeNone,
+			// 		onUpdate: function () {
+			// 		  $("#img-me").attr("src", welcomeImgArray[welcomeObj.curImg]);
+			// 		}
+			// 	}
+			// );
 
-			var meWelcomeScene = new ScrollMagic.Scene({
-				triggerElement: "#trigger1-half",
-				offset: sceneMeClimb.offset() + sceneMeClimb.duration(),
-			})
-			.setTween(tweenMeWelcome)
-			//.addIndicators({name: "me welcome__________________________________", colorStart: "gold", colorEnd: "gold"})
-			.addTo(controller);
+			// var meWelcomeScene = new ScrollMagic.Scene({
+			// 	triggerElement: "#trigger1-half",
+			// 	offset: sceneMeClimb.offset() + sceneMeClimb.duration(),
+			// })
+			// .setTween(tweenMeWelcome)
+			// .addIndicators({name: "me welcome__________________________________", colorStart: "gold", colorEnd: "gold"})
+			// .addTo(controller);
 
 
 
 
 			/*=================== ME REPELLING DOWN 1 ===================*/
-		 	var repelImgArray1 = [];
-		 	var repelObj1 = {curImg: 0};
-
-			// === Add "repel" scene
-			var maxRepel1 = 1;
-			
-			while (maxRepel1 < 20){
-				var prefix;
-				if      (maxRepel1 < 10)  prefix = "./img/pngs/repel2-cropped/repel_0000";
-				else if (maxRepel1 < 100) prefix = "./img/pngs/repel2-cropped/repel_000";
-				else  			  		  prefix = "./img/pngs/repel2-cropped/repel_00";
-
-				repelImgArray1.push(prefix + maxRepel1 + ".png");
-			    maxRepel1++;
-			}
 
 			/*=========================================================
 				tweenMeRepel1: Repelling, part 1.
@@ -910,7 +1066,7 @@
 				duration: "10%"
 			})
 			.setTween(tweenMeRepel1)
-			//.addIndicators({name: "me repel 1___________________________________", colorStart: "navy", colorEnd: "navy"})
+			.addIndicators({name: "me repel 1___________________________________", colorStart: "navy", colorEnd: "navy"})
 			.addTo(controller);
 
 
@@ -933,27 +1089,12 @@
 				duration: sceneMeRepel1.duration(),
 		    })
 		 	.setTween(tweenMeRepelPos1)
-		 	//.addIndicators({name: "me repel pos1___________________________________", colorStart: "navy", colorEnd: "navy"})
+		 	.addIndicators({name: "me repel pos1___________________________________", colorStart: "navy", colorEnd: "navy"})
 		 	.addTo(controller);
 
 
 
 		 	/*=================== ME REPELLING DOWN 2 ===================*/
-		 	var repelImgArray2 = [];
-		 	var repelObj2 = {curImg: 0};
-
-			// === Add "repel" scene
-			var maxRepel2 = 20;
-			
-			while (maxRepel2 < 32){
-				var prefix;
-				if      (maxRepel2 < 10)  prefix = "./img/pngs/repel2-cropped/repel_0000";
-				else if (maxRepel2 < 100) prefix = "./img/pngs/repel2-cropped/repel_000";
-				else  			  		  prefix = "./img/pngs/repel2-cropped/repel_00";
-
-				repelImgArray2.push(prefix + maxRepel2 + ".png");
-			    maxRepel2++;
-			}
 
 			/*=========================================================
 				tweenMeRepel1: Repelling, part 2.
@@ -975,7 +1116,7 @@
 				duration: "20%",
 			})
 			.setTween(tweenMeRepel2)
-			//.addIndicators({name: "me repel 2___________________________________", colorStart: "navy", colorEnd: "navy"})
+			.addIndicators({name: "me repel 2___________________________________", colorStart: "navy", colorEnd: "navy"})
 			.addTo(controller);
 
 
@@ -998,27 +1139,12 @@
 				duration: sceneMeRepel2.duration(),
 		    })
 		 	.setTween(tweenMeRepelPos2)
-		 	//.addIndicators({name: "me repel pos1___________________________________", colorStart: "navy", colorEnd: "navy"})
+		 	.addIndicators({name: "me repel pos1___________________________________", colorStart: "navy", colorEnd: "navy"})
 		 	.addTo(controller);
 
 
 
 		 	/*=================== ME REPELLING DOWN 3 ===================*/
-		 	var repelImgArray3 = [];
-		 	var repelObj3 = {curImg: 0};
-
-			// === Add "repel" scene
-			var maxRepel3 = 32;
-			
-			while (maxRepel3 < 42){
-				var prefix;
-				if      (maxRepel3 < 10)  prefix = "./img/pngs/repel2-cropped/repel_0000";
-				else if (maxRepel3 < 100) prefix = "./img/pngs/repel2-cropped/repel_000";
-				else  			  		  prefix = "./img/pngs/repel2-cropped/repel_00";
-
-				repelImgArray3.push(prefix + maxRepel3 + ".png");
-			    maxRepel3++;
-			}
 
 			/*=========================================================
 				tweenMeRepel3: Repelling, part 3.
@@ -1040,7 +1166,7 @@
 				duration: "20%",
 			})
 			.setTween(tweenMeRepel3)
-			//.addIndicators({name: "me repel 3___________________________________", colorStart: "navy", colorEnd: "navy"})
+			.addIndicators({name: "me repel 3___________________________________", colorStart: "navy", colorEnd: "navy"})
 			.addTo(controller);
 
 
@@ -1063,27 +1189,12 @@
 				duration: sceneMeRepel3.duration(),
 		    })
 		 	.setTween(tweenMeRepelPos3)
-		 	//.addIndicators({name: "me repel pos3___________________________________", colorStart: "navy", colorEnd: "navy"})
+		 	.addIndicators({name: "me repel pos3___________________________________", colorStart: "navy", colorEnd: "navy"})
 		 	.addTo(controller);
 
 
 
 			/*=================== ME REPELLING DOWN 4 ===================*/
-		 	var repelImgArray4 = [];
-		 	var repelObj4 = {curImg: 0};
-
-			// === Add "repel" scene
-			var maxRepel4 = 42;
-			
-			while (maxRepel4 < 54){
-				var prefix;
-				if      (maxRepel4 < 10)  prefix = "./img/pngs/repel2-cropped/repel_0000";
-				else if (maxRepel4 < 100) prefix = "./img/pngs/repel2-cropped/repel_000";
-				else  			  		  prefix = "./img/pngs/repel2-cropped/repel_00";
-
-				repelImgArray4.push(prefix + maxRepel4 + ".png");
-			    maxRepel4++;
-			}
 
 			/*=========================================================
 				tweenMeRepel4: Repelling, part 4.
@@ -1105,7 +1216,7 @@
 				duration: "20%"
 			})
 			.setTween(tweenMeRepel4)
-			//.addIndicators({name: "me repel 4___________________________________", colorStart: "navy", colorEnd: "navy"})
+			.addIndicators({name: "me repel 4___________________________________", colorStart: "navy", colorEnd: "navy"})
 			.addTo(controller);
 
 
@@ -1128,26 +1239,11 @@
 				duration: sceneMeRepel4.duration(),
 		    })
 		 	.setTween(tweenMeRepelPos4)
-		 	//.addIndicators({name: "me repel pos4___________________________________", colorStart: "navy", colorEnd: "navy"})
+		 	.addIndicators({name: "me repel pos4___________________________________", colorStart: "navy", colorEnd: "navy"})
 		 	.addTo(controller);
 
 
 		 	/*=================== ME REPELLING DOWN 5 ===================*/
-		 	var repelImgArray5 = [];
-		 	var repelObj5 = {curImg: 0};
-
-			// === Add "repel" scene
-			var maxRepel5 = 54;
-			
-			while (maxRepel5 < 75){
-				var prefix;
-				if      (maxRepel5 < 10)  prefix = "./img/pngs/repel2-cropped/repel_0000";
-				else if (maxRepel5 < 100) prefix = "./img/pngs/repel2-cropped/repel_000";
-				else  			  		  prefix = "./img/pngs/repel2-cropped/repel_00";
-
-				repelImgArray5.push(prefix + maxRepel5 + ".png");
-			    maxRepel5++;
-			}
 
 			/*=========================================================
 				tweenMeRepel5: Repelling, part 5.
@@ -1169,7 +1265,7 @@
 				duration: "20%",
 			})
 			.setTween(tweenMeRepel5)
-			//.addIndicators({name: "me repel 5___________________________________", colorStart: "navy", colorEnd: "navy"})
+			.addIndicators({name: "me repel 5___________________________________", colorStart: "navy", colorEnd: "navy"})
 			.addTo(controller);
 
 
@@ -1192,7 +1288,7 @@
 				duration: sceneMeRepel5.duration(),
 		    })
 		 	.setTween(tweenMeRepelPos5)
-		 	//.addIndicators({name: "me repel pos5___________________________________", colorStart: "navy", colorEnd: "navy"})
+		 	.addIndicators({name: "me repel pos5___________________________________", colorStart: "navy", colorEnd: "navy"})
 		 	.addTo(controller);
 
 
@@ -1222,14 +1318,163 @@
 				duration: "30%"
 		    })
 		 	.setTween(tweenMeRepelPos6)
-		 	//.addIndicators({name: "me repel pos6___________________________________", colorStart: "navy", colorEnd: "navy"})
+		 	.addIndicators({name: "me repel pos6___________________________________", colorStart: "navy", colorEnd: "navy"})
 		 	.addTo(controller);
 
 
 
 		}])
 
-
+		.factory(
+			"preloader",
+            function( $q, $rootScope ) {
+                // I manage the preloading of image objects. Accepts an array of image URLs.
+                function Preloader( imageLocations ) {
+                    // I am the image SRC values to preload.
+                    this.imageLocations = imageLocations;
+                    // As the images load, we'll need to keep track of the load/error
+                    // counts when announing the progress on the loading.
+                    this.imageCount = this.imageLocations.length;
+                    this.loadCount = 0;
+                    this.errorCount = 0;
+                    // I am the possible states that the preloader can be in.
+                    this.states = {
+                        PENDING: 1,
+                        LOADING: 2,
+                        RESOLVED: 3,
+                        REJECTED: 4
+                    };
+                    // I keep track of the current state of the preloader.
+                    this.state = this.states.PENDING;
+                    // When loading the images, a promise will be returned to indicate
+                    // when the loading has completed (and / or progressed).
+                    this.deferred = $q.defer();
+                    this.promise = this.deferred.promise;
+                }
+                // ---
+                // STATIC METHODS.
+                // ---
+                // I reload the given images [Array] and return a promise. The promise
+                // will be resolved with the array of image locations.
+                Preloader.preloadImages = function( imageLocations ) {
+                    var preloader = new Preloader( imageLocations );
+                    return( preloader.load() );
+                };
+                // ---
+                // INSTANCE METHODS.
+                // ---
+                Preloader.prototype = {
+                    // Best practice for "instnceof" operator.
+                    constructor: Preloader,
+                    // ---
+                    // PUBLIC METHODS.
+                    // ---
+                    // I determine if the preloader has started loading images yet.
+                    isInitiated: function isInitiated() {
+                        return( this.state !== this.states.PENDING );
+                    },
+                    // I determine if the preloader has failed to load all of the images.
+                    isRejected: function isRejected() {
+                        return( this.state === this.states.REJECTED );
+                    },
+                    // I determine if the preloader has successfully loaded all of the images.
+                    isResolved: function isResolved() {
+                        return( this.state === this.states.RESOLVED );
+                    },
+                    // I initiate the preload of the images. Returns a promise.
+                    load: function load() {
+                        // If the images are already loading, return the existing promise.
+                        if ( this.isInitiated() ) {
+                            return( this.promise );
+                        }
+                        this.state = this.states.LOADING;
+                        for ( var i = 0 ; i < this.imageCount ; i++ ) {
+                            this.loadImageLocation( this.imageLocations[ i ] );
+                        }
+                        // Return the deferred promise for the load event.
+                        return( this.promise );
+                    },
+                    // ---
+                    // PRIVATE METHODS.
+                    // ---
+                    // I handle the load-failure of the given image location.
+                    handleImageError: function handleImageError( imageLocation ) {
+                        this.errorCount++;
+                        // If the preload action has already failed, ignore further action.
+                        if ( this.isRejected() ) {
+                            return;
+                        }
+                        this.state = this.states.REJECTED;
+                        this.deferred.reject( imageLocation );
+                    },
+                    // I handle the load-success of the given image location.
+                    handleImageLoad: function handleImageLoad( imageLocation ) {
+                        this.loadCount++;
+                        // If the preload action has already failed, ignore further action.
+                        if ( this.isRejected() ) {
+                            return;
+                        }
+                        // Notify the progress of the overall deferred. This is different
+                        // than Resolving the deferred - you can call notify many times
+                        // before the ultimate resolution (or rejection) of the deferred.
+                        this.deferred.notify({
+                            percent: Math.ceil( this.loadCount / this.imageCount * 100 ),
+                            imageLocation: imageLocation
+                        });
+                        // If all of the images have loaded, we can resolve the deferred
+                        // value that we returned to the calling context.
+                        if ( this.loadCount === this.imageCount ) {
+                            this.state = this.states.RESOLVED;
+                            this.deferred.resolve( this.imageLocations );
+                        }
+                    },
+                    // I load the given image location and then wire the load / error
+                    // events back into the preloader instance.
+                    // --
+                    // NOTE: The load/error events trigger a $digest.
+                    loadImageLocation: function loadImageLocation( imageLocation ) {
+                        var preloader = this;
+                        // When it comes to creating the image object, it is critical that
+                        // we bind the event handlers BEFORE we actually set the image
+                        // source. Failure to do so will prevent the events from proper
+                        // triggering in some browsers.
+                        var image = $( new Image() )
+                            .load(
+                                function( event ) {
+                                    // Since the load event is asynchronous, we have to
+                                    // tell AngularJS that something changed.
+                                    $rootScope.$apply(
+                                        function() {
+                                            preloader.handleImageLoad( event.target.src );
+                                            // Clean up object reference to help with the
+                                            // garbage collection in the closure.
+                                            preloader = image = event = null;
+                                        }
+                                    );
+                                }
+                            )
+                            .error(
+                                function( event ) {
+                                    // Since the load event is asynchronous, we have to
+                                    // tell AngularJS that something changed.
+                                    $rootScope.$apply(
+                                        function() {
+                                            preloader.handleImageError( event.target.src );
+                                            // Clean up object reference to help with the
+                                            // garbage collection in the closure.
+                                            preloader = image = event = null;
+                                        }
+                                    );
+                                }
+                            )
+                            .prop( "src", imageLocation )
+                        ;
+                    }
+                };
+                // Return the factory instance.
+                return( Preloader );
+            }
+		)
 
 		/* =================== DIRECTIVES =================== */
 		// .directive("sunSvg", function() {

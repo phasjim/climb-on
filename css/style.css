@@ -393,7 +393,9 @@ h3 {
   font-family: 'Poppins', sans-serif;
   font-size: 1.1em;
   letter-spacing: 0.25em;
-  font-weight: 400; }
+  font-weight: 400;
+  text-decoration: none;
+  cursor: pointer; }
 
 .about-me-btn {
   margin-top: 10%;
