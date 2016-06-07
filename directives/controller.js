@@ -1,10 +1,14 @@
 (function(angular) {
 	"use strict";
-	angular.module("portfolio", [])
+	angular.module("portfolioApp", ["angular-responsive"])
 		/* =================== CONTROLLER =================== */
 		.controller("Controller", ["$scope", "preloader",
 			function($scope, preloader) {
 
+			/* =================== ON DOCUMENT LOAD =================== */
+ 			angular.element(document).ready(function () {
+ 				// On load, set the width and height
+ 		    });
 
 			/* =================== SCROLLING FUNCTIONS =================== */
 			// https://css-tricks.com/snippets/jquery/smooth-scrolling/
@@ -77,17 +81,17 @@
 		 	var climbObj = {curImg: 0};
 
 			// === Add "sitting" scene
-			climbImgArray.push("./img/gifs/sitting-short-loop.gif");
+			climbImgArray.push("./img/gifs/sitting-loop.gif");
 
 			// === Then, add "cheers" scene
 			var maxCheers = 71;
-			addToImageArrayMinus(climbImgArray, maxCheers, "./img/pngs/cheers-cropped/cheers_");
+			addToImageArrayMinus(climbImgArray, maxCheers, "./img/pngs/cheers/cheers_");
 
 			var maxClimb = 241;
-			addToImageArrayMinus(climbImgArray, maxClimb, "./img/pngs/climb-cropped/climb_");
+			addToImageArrayMinus(climbImgArray, maxClimb, "./img/pngs/climb/climb_");
 
 			// === Add "Welcome" gif to climbImgArray
-			climbImgArray.push("./img/gifs/welcome-short-loop.gif");
+			climbImgArray.push("./img/gifs/welcome-loop.gif");
 
 
 		 	/* =================== REPEL IMG ARRAYS =================== */
@@ -96,10 +100,10 @@
 		 	var repelObj1 = {curImg: 0};
 
 		 	// === Add "Welcome" gif to repelImgArray1
-			repelImgArray1.push("./img/gifs/welcome-short-loop.gif");
+			repelImgArray1.push("./img/gifs/welcome-loop.gif");
 
 			var maxRepel1 = 1;
-			addToImageArrayPlus(repelImgArray1, maxRepel1, 20, "./img/pngs/repel2-cropped/repel_");
+			addToImageArrayPlus(repelImgArray1, maxRepel1, 20, "./img/pngs/repel/repel_");
 			
 
 			// === Add "repel2" scene
@@ -107,7 +111,7 @@
 		 	var repelObj2 = {curImg: 0};
 
 			var maxRepel2 = 20;
-			addToImageArrayPlus(repelImgArray2, maxRepel2, 32, "./img/pngs/repel2-cropped/repel_");
+			addToImageArrayPlus(repelImgArray2, maxRepel2, 32, "./img/pngs/repel/repel_");
 
 
 			// === Add "repel3" scene
@@ -115,7 +119,7 @@
 		 	var repelObj3 = {curImg: 0};
 
 			var maxRepel3 = 32;
-			addToImageArrayPlus(repelImgArray3, maxRepel3, 42, "./img/pngs/repel2-cropped/repel_");
+			addToImageArrayPlus(repelImgArray3, maxRepel3, 42, "./img/pngs/repel/repel_");
 			
 
 			// === Add "repel4" scene
@@ -123,7 +127,7 @@
 		 	var repelObj4 = {curImg: 0};
 
 			var maxRepel4 = 42;
-			addToImageArrayPlus(repelImgArray4, maxRepel4, 54, "./img/pngs/repel2-cropped/repel_");
+			addToImageArrayPlus(repelImgArray4, maxRepel4, 54, "./img/pngs/repel/repel_");
 
 			
 			// === Add "repel4" scene
@@ -131,7 +135,7 @@
 		 	var repelObj5 = {curImg: 0};
 
 			var maxRepel5 = 54;
-			addToImageArrayPlus(repelImgArray5, maxRepel5, 75, "./img/pngs/repel2-cropped/repel_");
+			addToImageArrayPlus(repelImgArray5, maxRepel5, 75, "./img/pngs/repel/repel_");
 			
 			// === Add "Sunbathe" gif to maxRepel5
 			repelImgArray5.push("./img/gifs/sunbathe-loop.gif");
@@ -858,7 +862,7 @@
 				 top: "-12vh",
 	             left: "18vw",
 	             onUpdate: function () {
-					$("#img-me").attr("src", "./img/gifs/sitting-short-loop.gif");
+					$("#img-me").attr("src", "./img/gifs/sitting-loop.gif");
 				 },
 				 ease: Power0.easeNone
 				},
@@ -1029,7 +1033,7 @@
 				 top: "36vh",
 				 left: "23.5vw",
 	             onUpdate: function () {
-					$("#img-me").attr("src", "./img/gifs/welcome-short-loop.gif");
+					$("#img-me").attr("src", "./img/gifs/welcome-loop.gif");
 				 },
 				 ease: Power0.easeNone
 				},
@@ -1495,48 +1499,4 @@
 		// 	};
 		// })
 
-		// .directive("sandSvg", function() {
-		// 	return {
-		// 		templateUrl: "directives/templates/sand-svg-template.html"
-		// 	};
-		// })
-
-		// .directive("mountainsSvg", function() {
-		// 	return {
-		// 		templateUrl: "directives/templates/mountains-svg-template.html"
-		// 	};
-		// })
-
-		// .directive("cactiSvg", function() {
-		// 	return {
-		// 		templateUrl: "directives/templates/cacti-svg-template.html"
-		// 	};
-		// })
-
-		// .directive("cactiFlowerLightSvg", function() {
-		// 	return {
-		// 		templateUrl: "directives/templates/cacti-flower-light-svg-template.html",
-		// 		scope: {
-		// 			index: "="
-		// 		}
-		// 	};
-		// })
-
-		// .directive("cactiFlowerDarkSvg", function() {
-		// 	return {
-		// 		templateUrl: "directives/templates/cacti-flower-dark-svg-template.html",
-		// 		scope: {
-		// 			index: "="
-		// 		}
-		// 	};
-		// })
-
-		// .directive("grassSvg", function() {
-		// 	return {
-		// 		templateUrl: "directives/templates/grass-svg-template.html",
-		// 		scope: {
-		// 			index: "="
-		// 		}
-		// 	};
-		// })
 })(window.angular);
