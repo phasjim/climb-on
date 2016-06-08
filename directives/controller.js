@@ -179,25 +179,25 @@
             );
 
 
-            /* =================== WHEN IMAGES LOADED, JUMP TO MID =================== */
-            $scope.$watch('isLoading', function() {
-            	// if not loading, and successfully loaded
-			    if(!$scope.isLoading && $scope.isSuccessful){
-			    	var fadeTime = 500;
+            /* =================== WHEN IMAGES LOADED, JUMP TO MIDDLE =================== */
+   //          $scope.$watch('isLoading', function() {
+   //          	// if not loading, and successfully loaded
+			//     if(!$scope.isLoading && $scope.isSuccessful){
+			//     	var fadeTime = 500;
 
-			    	// scroll to middle
-			    	setTimeout(function() {
-					    var height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-						$('html, body').animate({scrollTop: height}, fadeTime);
-					}, 10);
+			//     	// scroll to middle
+			//     	setTimeout(function() {
+			// 		    var height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+			// 			$('html, body').animate({scrollTop: height}, fadeTime);
+			// 		}, 10);
 
-			    	// fade body
-					setTimeout(function() {
-						$(".web-container").addClass("fade-in");
-					}, fadeTime);
+			//     	// fade body
+			// 		setTimeout(function() {
+			// 			$(".web-container").addClass("fade-in");
+			// 		}, fadeTime);
 					
-			    }
-			});
+			//     }
+			// });
 
 
 
@@ -509,7 +509,7 @@
 		 	.addTo(controller);
 
 
-		 	var tweenClouds = new TweenMax.fromTo(".layer-clouds", 1,
+		 	var tweenClouds = new TweenMax.fromTo(".layer-mask-clouds", 1,
 				// previous
 				{opacity: 1,
 				 top: "2vh",
@@ -586,27 +586,27 @@
 				tweenMountrainVert: Moves the mountains left/right and
 				also up/down.
 			  =========================================================*/
-			var tweenMountainVert = new TweenMax.fromTo("#div-ground-1", 1,
-				// previous
-				{scale: 2,
-				 top: "150vh",
-				 left: "0vw",
-				 ease: Power0.easeNone
-				},
-				// next
-				{
-				 top: "-35vh",
-				 left: "-10vw",
-				}
-			);
-			var sceneMountainVert = new ScrollMagic.Scene({
-				triggerElement: "#trigger2",
-				triggerHook: 0.75,
-				duration: "200%"
-		    })
-		 	.setTween(tweenMountainVert)
-		 	//.addIndicators({name: "mountain~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "purple", colorEnd: "purple"})
-		 	.addTo(controller);
+			// var tweenMountainVert = new TweenMax.fromTo("#div-ground-1", 1,
+			// 	// previous
+			// 	{scale: 2,
+			// 	 top: "150vh",
+			// 	 left: "0vw",
+			// 	 ease: Power0.easeNone
+			// 	},
+			// 	// next
+			// 	{
+			// 	 top: "-35vh",
+			// 	 left: "-10vw",
+			// 	}
+			// );
+			// var sceneMountainVert = new ScrollMagic.Scene({
+			// 	triggerElement: "#trigger2",
+			// 	triggerHook: 0.75,
+			// 	duration: "200%"
+		 //    })
+		 // 	.setTween(tweenMountainVert)
+		 // 	//.addIndicators({name: "mountain~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "purple", colorEnd: "purple"})
+		 // 	.addTo(controller);
 
 			/*=========================================================
 				tweenSandVert: Moves the sand left/right and
