@@ -26,7 +26,8 @@
 
   <!-- JS -->
   <script type="text/javascript" src="./js/jquery.min.js"></script>
-  <script type="text/javascript" src="./js/angular.min.js"></script>
+<!--   <script type="text/javascript" src="./js/fittext.js"></script>
+ -->  <script type="text/javascript" src="./js/angular.min.js"></script>
   <script type="text/javascript" src="./js/TweenMax.min.js"></script>
   <script type="text/javascript" src="./js/ScrollToPlugin.min.js"></script>
   <script type="text/javascript" src="./js/scrollmagic/ScrollMagic.min.js"></script>
@@ -37,6 +38,7 @@
   <!-- DIRECTIVES -->
   <script type="text/javascript" src="./directives/controller.js"></script>
   <script type="text/javascript" src="./directives/dirs/responsive-directive.js"></script>
+  <script type="text/javascript" src="./directives/dirs/ng-FitText.min.js"></script>
 
 </head>
 <body id="web-body" ng-controller="Controller">
@@ -123,7 +125,7 @@
           <!-- ============================================================================== -->
           <!-- =================================== CONTENT ================================== -->
           <!-- ============================================================================== -->
-          <div id="layer-cliff-me" class="layer-mask-cliff-me">
+          <div id="layer-cliff-me-div" class="layer-mask-cliff-me">
             <div id="div-cliff-me">
               <!-- ================================= CLIFF ================================= -->
               <img id="img-cliff" src="img/svg/cliff.svg">
@@ -138,23 +140,23 @@
           <!-- ============================================================================== -->
           <!-- ================================== HOME PAGE ================================= -->
           <!-- ============================================================================== -->
-          <!-- <div class="layer-home">
-            <div class="content-name">
-              <h1>Prita Priscilla Hasjim</h1>
+          <div id="layer-home-div" class="layer-home">
+            <div class="content-name" style="width:100%;">
+              <h1 id="home-title" data-fittext="0.7" data-fittext-min="20" data-fittext-max="110">Prita Priscilla Hasjim</h1>
             </div>
 
-            <div class="content-tagline">
-              <h3>I make stuff with code!</h3>
+            <div class="content-tagline" style="width:100%;">
+              <h3 id="home-subtitle" data-fittext="0.7" data-fittext-min="15" data-fittext-max="30">I make stuff with code!</h3>
             </div>
 
-          </div> -->
+          </div>
 
 
 
           <!-- ============================================================================== -->
           <!-- =================================== ABOUT ME ================================= -->
           <!-- ============================================================================== -->
-          <!-- <div class="layer-about-me">
+          <div class="layer-about-me">
              
             <div id="content-about-me">
               <p>
@@ -190,11 +192,11 @@
 
             </div>
 
-            <div id="title-about-me">
-              <h2>About Me</h2>
+            <div id="title-about-me" style="width:100%;top: 6%;">
+              <h2 id="about-me-title" data-fittext-min="20" data-fittext-max="80">About Me</h2>
             </div>
 
-          </div> -->
+          </div>
 
 
 
@@ -415,7 +417,7 @@
 
 <script>
   (function () {
-    /* =================== RESIZING FUNCTIONS =================== */
+    /* ================ RESIZING SCENE OBJECTS ================ */
     // http://www.williammalone.com/articles/html5-game-scaling/
 
     /*=========================================================
@@ -437,8 +439,9 @@
       clouds: document.getElementById("layer-clouds-div"),
       sun: document.getElementById("layer-sun-div"),
       mountainsSand: document.getElementById("layer-mountains-sand-div"),
-      cliff: document.getElementById("layer-cliff-me"),
+      cliff: document.getElementById("layer-cliff-me-div"),
       me: document.getElementById("img-me"),
+      home: document.getElementById("layer-home-div"),
     };
     
     /*=========================================================
@@ -446,6 +449,7 @@
                       size.
       =========================================================*/
     var resizeSceneDiv = function () {
+      /* ================ RESIZING CONTENT ======================= */
       var viewport, newSceneWidth, newSceneHeight, newSceneX, newSceneY;
 
       // Get the dimensions of the viewport
@@ -485,6 +489,8 @@
 
       layerDiv.me.style.width = newSceneWidth*(3/5) + "px";
 
+      layerDiv.home.style.width = "calc(" + newSceneWidth + "px + 5%)";
+      layerDiv.home.style.height = newSceneHeight + "px";
 
 
       // Resize newSceneX, newSceneY
@@ -493,8 +499,8 @@
 
       // Set the new padding of the sceneDiv so it will be centered
       sceneDiv.element.style.margin = newSceneY + "px " + newSceneX + "px";
-
     };
+
 
     // Resizes Scene when user resizes the window
     window.addEventListener("resize", resizeSceneDiv);
