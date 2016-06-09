@@ -252,12 +252,12 @@
 		 	var tweenWork2 = new TweenMax.fromTo(".layer-my-work", 0.2,
 				// previous
 				{
-				 left: "10vw",
+				 left: "10%",
 				 ease: Circ.easeNone
 				},
 				// next
 				{
-				left: "120vw",
+				left: "120%",
 				}
 			);
 			var sceneWork2 = new ScrollMagic.Scene({
@@ -346,13 +346,13 @@
 			var tweenName1 = new TweenMax.fromTo(".content-name", 0.65,
 				// previous
 				{opacity: 0,
-				 left: "13vw",
+				 left: "13%",
 				 ease: Expo.easeNone
 				},
 				// next
 				{
 				 opacity: 0.9,
-				 left: "10vw"
+				 left: "10%"
 				}
 			);
 			var sceneName1 = new ScrollMagic.Scene({
@@ -368,13 +368,13 @@
 		 	var tweenTagline1 = new TweenMax.fromTo(".content-tagline", 0.65,
 				// previous
 				{opacity: 0,
-				 left: "43vw",
+				 left: "43%",
 				 ease: Expo.easeNone
 				},
 				// next
 				{
 				 opacity: 0.9,
-				 left: "45vw"
+				 left: "45%"
 				}
 			);
 			var sceneTagline1 = new ScrollMagic.Scene({
@@ -391,13 +391,13 @@
 				// previous
 				{
 				 opacity: 0.9,
-				 left: "10vw",
+				 left: "10%",
 				 ease: Expo.easeNone
 				},
 				// next
 				{
 				 opacity: 0,
-				 left: "7vw",
+				 left: "7%",
 				}
 			);
 			var sceneName2 = new ScrollMagic.Scene({
@@ -414,13 +414,13 @@
 				// previous
 				{
 				 opacity: 0.9,
-				 left: "45vw",
+				 left: "45%",
 				 ease: Expo.easeNone
 				},
 				// next
 				{
 				 opacity: 0,
-				 left: "47vw",
+				 left: "47%",
 				}
 			);
 			var sceneTagline2 = new ScrollMagic.Scene({
@@ -440,13 +440,13 @@
 			var tweenAboutMeContent = new TweenMax.fromTo("#content-about-me", 0.65,
 				// previous
 				{opacity: 0,
-				 top: "7vw",
+				 top: "7%",
 				 ease: Circ.easeNone
 				},
 				// next
 				{
 				 opacity: 1,
-				 top: "6.5vw"
+				 top: "6.5%"
 				}
 			);
 			var sceneAboutMeContent = new ScrollMagic.Scene({
@@ -461,13 +461,13 @@
 		 	var tweenAboutMeTitle = new TweenMax.fromTo("#title-about-me", 0.65,
 				// previous
 				{opacity: 0,
-				 left: "4vh",
+				 left: "4%",
 				 ease: Circ.easeNone
 				},
 				// next
 				{
 				 opacity: 1,
-				 left: "5vh"
+				 left: "5%"
 				}
 			);
 			var sceneAboutMeTitle = new ScrollMagic.Scene({
@@ -512,13 +512,13 @@
 		 	var tweenClouds = new TweenMax.fromTo(".layer-mask-clouds", 1,
 				// previous
 				{opacity: 1,
-				 top: "2vh",
+				 top: "2%",
 				 ease: Circ.easeNone
 				},
 				// next
 				{
 				 opacity: 0,
-			     top: "0vh"
+			     top: "0%"
 				}
 			);
 			var sceneClouds = new ScrollMagic.Scene({
@@ -538,13 +538,13 @@
 			  =========================================================*/
 			var tweenCliffVert = new TweenMax.fromTo("#div-cliff-me", 1,
 				// previous
-				{scale: 1.5,
-				 top: "85vh",
+				{
+				 top: "55%",
 				 ease: Power0.easeNone
 				},
 				// next
 				{
-				 top: "-100vh",
+				 top: "-240%",
 				}
 			);
 			var sceneCliffVert = new ScrollMagic.Scene({
@@ -561,13 +561,13 @@
 			  =========================================================*/
 		 	var tweenCliffHor1 = new TweenMax.fromTo("#div-cliff-me", 1,
 				// previous
-				{scale: 1.5,
-				 left: "-24vw",
+				{
+				 left: "-65%",
 				 ease: Power0.easeNone
 				},
 				// next
 				{
-				 left: "-30vw",
+				 left: "-60%",
 				}
 			);
 			var sceneCliffHor1 = new ScrollMagic.Scene({
@@ -583,54 +583,30 @@
 
 		 	/*=================== MOUNTAINS + SAND ===================*/
 			/*=========================================================
-				tweenMountrainVert: Moves the mountains left/right and
+				tweenMountainsSandVert: Moves the mountains left/right and
 				also up/down.
 			  =========================================================*/
-			// var tweenMountainVert = new TweenMax.fromTo("#div-ground-1", 1,
-			// 	// previous
-			// 	{scale: 2,
-			// 	 top: "150vh",
-			// 	 left: "0vw",
-			// 	 ease: Power0.easeNone
-			// 	},
-			// 	// next
-			// 	{
-			// 	 top: "-35vh",
-			// 	 left: "-10vw",
-			// 	}
-			// );
-			// var sceneMountainVert = new ScrollMagic.Scene({
-			// 	triggerElement: "#trigger2",
-			// 	triggerHook: 0.75,
-			// 	duration: "200%"
-		 //    })
-		 // 	.setTween(tweenMountainVert)
-		 // 	//.addIndicators({name: "mountain~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "purple", colorEnd: "purple"})
-		 // 	.addTo(controller);
-
-			/*=========================================================
-				tweenSandVert: Moves the sand left/right and
-				also up/down.
-			  =========================================================*/
-		 	var tweenSandVert = new TweenMax.fromTo("#img-sand", 1,
+			var tweenMountainsSandVert = new TweenMax.fromTo("#div-ground-1", 1,
 				// previous
-				{scale: 2,
-				 top: "40vh",
+				{
+				 scale: 2,
+				 bottom: "-185%",
+				 left: "0%",
 				 ease: Power0.easeNone
 				},
 				// next
 				{
-				 top: "35vh",
+				 bottom: "0%",
+				 left: "-10%",
 				}
 			);
-
-			var sceneSandVert = new ScrollMagic.Scene({
+			var sceneMountainsSandVert = new ScrollMagic.Scene({
 				triggerElement: "#trigger2",
 				triggerHook: 0.75,
 				duration: "200%"
 		    })
-		 	.setTween(tweenSandVert)
-		 	//.addIndicators({name: "mountain~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "orange", colorEnd: "orange"})
+		 	.setTween(tweenMountainsSandVert)
+		 	//.addIndicators({name: "mountain~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "purple", colorEnd: "purple"})
 		 	.addTo(controller);
 
 
@@ -783,8 +759,8 @@
 				{scale: 0.1,
 				 rotationX: 90,
 				 transformOrigin: "left bottom",
-            	 left: "78vw",
-              	 top: "175vh",
+            	 left: "78%",
+              	 top: "175%",
 				 ease: Linear.easeNone
 				},
 				// next
@@ -805,8 +781,8 @@
 				{scale: 0.1,
 				 rotationX: 90,
 				 transformOrigin: "left bottom",
-     			 left: "24vw",
-            	 top: "158vh",
+     			 left: "24%",
+            	 top: "158%",
 				 ease: Linear.easeNone
 				},
 				// next
@@ -827,8 +803,8 @@
 				{scale: 0.1,
 				 rotationX: 90,
 				 transformOrigin: "left bottom",
-				 left: "37vw",
-            	 top: "202vh",
+				 left: "37%",
+            	 top: "202%",
 				 ease: Linear.easeNone
 				},
 				// next
@@ -859,8 +835,8 @@
 			var tweenMeClimbPos0 = new TweenMax.fromTo("#img-me", 1,
 				// previous
 				{
-				 top: "-12vh",
-	             left: "18vw",
+				 top: "-6%",
+	             left: "45%",
 	             onUpdate: function () {
 					$("#img-me").attr("src", "./img/gifs/sitting-loop.gif");
 				 },
@@ -868,8 +844,8 @@
 				},
 				// next
 				{
-				 top: "-12vh",
-	             left: "18vw",
+				 top: "-6%",
+	             left: "45%",
 				}
 			);
 			var sceneMeClimbPos0 = new ScrollMagic.Scene({
@@ -877,7 +853,7 @@
 				duration: "75%"
 		    })
 		 	.setTween(tweenMeClimbPos0)
-		 	//.addIndicators({name: "me climbing down pos0_________", colorStart: "magenta", colorEnd: "magenta"})
+		 	.addIndicators({name: "me climbing down pos0_________", colorStart: "magenta", colorEnd: "magenta"})
 		 	.addTo(controller);
 
 
@@ -911,13 +887,14 @@
 			var tweenMeClimbPos1 = new TweenMax.fromTo("#img-me", 1,
 				// previous
 				{
-				 top: "-12vh",
-	             left: "18vw",
+				 top: "-6%",
+	             left: "45%",
 				 ease: Power0.easeNone
 				},
 				// next
 				{
-				 top: "3vh"
+				 top: "0%",
+				 left: "47%",
 				}
 			);
 			var sceneMeClimbPos1 = new ScrollMagic.Scene({
@@ -925,21 +902,21 @@
 				duration: "20%"
 		    })
 		 	.setTween(tweenMeClimbPos1)
-		 	//.addIndicators({name: "me climbing down pos1_________", colorStart: "magenta", colorEnd: "magenta"})
+		 	.addIndicators({name: "me climbing down pos1_________", colorStart: "magenta", colorEnd: "magenta"})
 		 	.addTo(controller);
 
 
 		 	var tweenMeClimbPos2 = new TweenMax.fromTo("#img-me", 1,
 				// previous
 				{
-				 top: "3vh",
-				 left: "18vw",
+				 top: "0%",
+				 left: "47%",
 				 ease: Power0.easeNone
 				},
 				// next
 				{
-				 top: "8vh",
-				 left: "18vw",
+				 top: "8%",
+				 left: "50%",
 				}
 			);
 			var sceneMeClimbPos2 = new ScrollMagic.Scene({
@@ -948,21 +925,21 @@
 				duration: "10%"
 		    })
 		 	.setTween(tweenMeClimbPos2)
-		 	//.addIndicators({name: "me climbing down pos2_________", colorStart: "magenta", colorEnd: "magenta"})
+		 	.addIndicators({name: "me climbing down pos2_________", colorStart: "magenta", colorEnd: "magenta"})
 		 	.addTo(controller);
 
 
 		 	var tweenMeClimbPos3 = new TweenMax.fromTo("#img-me", 1,
 				// previous
 				{
-				 top: "8vh",
-				 left: "16vw",
+				 top: "8%",
+				 left: "50%",
 				 ease: Power0.easeNone
 				},
 				// next
 				{
-				 top: "18vh",
-				 left: "20vw",
+				 top: "17%",
+				 left: "44%",
 				}
 			);
 			var sceneMeClimbPos3 = new ScrollMagic.Scene({
@@ -971,21 +948,21 @@
 				duration: "10%"
 		    })
 		 	.setTween(tweenMeClimbPos3)
-		 	//.addIndicators({name: "me climbing down pos3_________", colorStart: "magenta", colorEnd: "magenta"})
+		 	.addIndicators({name: "me climbing down pos3_________", colorStart: "magenta", colorEnd: "magenta"})
 		 	.addTo(controller);
 
 
 		 	var tweenMeClimbPos4 = new TweenMax.fromTo("#img-me", 1,
 				// previous
 				{
-				 top: "18vh",
-				 left: "20vw",
+				 top: "17%",
+				 left: "44%",
 				 ease: Power0.easeNone
 				},
 				// next
 				{
-				 top: "23vh",
-				 left: "21vw",
+				 top: "26%",
+				 left: "47%",
 				}
 			);
 			var sceneMeClimbPos4 = new ScrollMagic.Scene({
@@ -994,21 +971,21 @@
 				duration: "10%"
 		    })
 		 	.setTween(tweenMeClimbPos4)
-		 	//.addIndicators({name: "me climbing down pos4_________", colorStart: "magenta", colorEnd: "magenta"})
+		 	.addIndicators({name: "me climbing down pos4_________", colorStart: "magenta", colorEnd: "magenta"})
 		 	.addTo(controller);
 
 
 		 	var tweenMeClimbPos5 = new TweenMax.fromTo("#img-me", 1,
 				// previous
 				{
-				 top: "23vh",
-				 left: "21vw",
+				 top: "26%",
+				 left: "47%",
 				 ease: Circ.easeOut
 				},
 				// next
 				{
-				 top: "36vh",
-				 left: "23.5vw",
+				 top: "35%",
+				 left: "49%",
 				}
 			);
 			var sceneMeClimbPos5 = new ScrollMagic.Scene({
@@ -1017,7 +994,7 @@
 				duration: "10%"
 		    })
 		 	.setTween(tweenMeClimbPos5)
-		 	//.addIndicators({name: "me climbing down pos5_________", colorStart: "magenta", colorEnd: "magenta"})
+		 	.addIndicators({name: "me climbing down pos5_________", colorStart: "magenta", colorEnd: "magenta"})
 		 	.addTo(controller);
 
 
@@ -1030,8 +1007,8 @@
 			var tweenMeWelcome = new TweenMax.fromTo("#img-me", 1,
 				// previous
 				{
-				 top: "36vh",
-				 left: "23.5vw",
+				 top: "35%",
+				 left: "49%",
 	             onUpdate: function () {
 					$("#img-me").attr("src", "./img/gifs/welcome-loop.gif");
 				 },
@@ -1039,17 +1016,17 @@
 				},
 				// next
 				{
-				 top: "36vh",
-				 left: "23.5vw",
+				 top: "35%",
+				 left: "49%",
 				}
 			);
 			var sceneMeWelcome = new ScrollMagic.Scene({
-				triggerElement: "#trigger1-half",
-				offset: sceneMeClimb.offset() + sceneMeClimb.duration(),
-				duration: "22%"
+				triggerElement: "#trigger1-half-quarter",
+				offset: sceneMeClimbPos5.offset() + sceneMeClimbPos5.duration(),
+				duration: "15%"
 		    })
 		 	.setTween(tweenMeWelcome)
-		 	//.addIndicators({name: "me welcome_________________________", colorStart: "brown", colorEnd: "brown"})
+		 	.addIndicators({name: "me welcome_________________________", colorStart: "brown", colorEnd: "brown"})
 		 	.addTo(controller);
 
 
@@ -1071,9 +1048,9 @@
 				}
 			);
 			var sceneMeRepel1 = new ScrollMagic.Scene({
-				triggerElement: "#trigger2-half",
-				offset: "50",
-				duration: "10%"
+				triggerElement: "#trigger1-half-quarter",
+				offset: sceneMeWelcome.offset() + sceneMeWelcome.duration(),
+				duration: "12%"
 			})
 			.setTween(tweenMeRepel1)
 			//.addIndicators({name: "me repel 1___________________________________", colorStart: "navy", colorEnd: "navy"})
@@ -1083,23 +1060,23 @@
 			var tweenMeRepelPos1 = new TweenMax.fromTo("#img-me", 1,
 				// previous
 				{
-				 top: "36vh",
-				 left: "24vw",
+				 top: "35%",
+				 left: "49%",
 				 ease: Circ.easeOut
 				},
 				// next
 				{
-				 top: "43vh",
-				 left: "30vw",
+				 top: "43%",
+				 left: "56%",
 				}
 			);
 			var sceneMeRepelPos1 = new ScrollMagic.Scene({
-				triggerElement: "#trigger2-half",
-				offset: "50",
+				triggerElement: "#trigger1-half-quarter",
+				offset: sceneMeWelcome.offset() + sceneMeWelcome.duration(),
 				duration: sceneMeRepel1.duration(),
 		    })
 		 	.setTween(tweenMeRepelPos1)
-		 	//.addIndicators({name: "me repel pos1___________________________________", colorStart: "navy", colorEnd: "navy"})
+		 	.addIndicators({name: "me repel pos1___________________________________", colorStart: "navy", colorEnd: "navy"})
 		 	.addTo(controller);
 
 
@@ -1121,9 +1098,9 @@
 				}
 			);
 			var sceneMeRepel2 = new ScrollMagic.Scene({
-				triggerElement: "#trigger2-half",
+				triggerElement: "#trigger1-half-quarter",
 				offset: sceneMeRepelPos1.offset() + sceneMeRepelPos1.duration(),
-				duration: "20%",
+				duration: "13%",
 			})
 			.setTween(tweenMeRepel2)
 			//.addIndicators({name: "me repel 2___________________________________", colorStart: "navy", colorEnd: "navy"})
@@ -1133,23 +1110,23 @@
 			var tweenMeRepelPos2 = new TweenMax.fromTo("#img-me", 2,
 				// previous
 				{
-				 top: "43vh",
-				 left: "30vw",
+				 top: "43%",
+				 left: "56%",
 				 ease: Circ.easeOut
 				},
 				// next
 				{
-				 top: "53vh",
-				 left: "24vw",
+				 top: "53%",
+				 left: "48.5%",
 				}
 			);
 			var sceneMeRepelPos2 = new ScrollMagic.Scene({
-				triggerElement: "#trigger2-half",
+				triggerElement: "#trigger1-half-quarter",
 				offset: sceneMeRepelPos1.offset() + sceneMeRepelPos1.duration(),
 				duration: sceneMeRepel2.duration(),
 		    })
 		 	.setTween(tweenMeRepelPos2)
-		 	//.addIndicators({name: "me repel pos2___________________________________", colorStart: "navy", colorEnd: "navy"})
+		 	.addIndicators({name: "me repel pos2___________________________________", colorStart: "navy", colorEnd: "navy"})
 		 	.addTo(controller);
 
 
@@ -1171,9 +1148,9 @@
 				}
 			);
 			var sceneMeRepel3 = new ScrollMagic.Scene({
-				triggerElement: "#trigger2-half",
+				triggerElement: "#trigger1-half-quarter",
 				offset: sceneMeRepelPos2.offset() + sceneMeRepelPos2.duration(),
-				duration: "20%",
+				duration: "13%",
 			})
 			.setTween(tweenMeRepel3)
 			//.addIndicators({name: "me repel 3___________________________________", colorStart: "navy", colorEnd: "navy"})
@@ -1183,23 +1160,23 @@
 			var tweenMeRepelPos3 = new TweenMax.fromTo("#img-me", 3,
 				// previous
 				{
-				 top: "53vh",
-				 left: "24vw",
+				 top: "53%",
+				 left: "48.5%",
 				 ease: Circ.easeOut
 				},
 				// next
 				{
-				 top: "66vh",
-				 left: "30vw",
+				 top: "55%",
+				 left: "55%",
 				}
 			);
 			var sceneMeRepelPos3 = new ScrollMagic.Scene({
-				triggerElement: "#trigger2-half",
+				triggerElement: "#trigger1-half-quarter",
 				offset: sceneMeRepelPos2.offset() + sceneMeRepelPos2.duration(),
 				duration: sceneMeRepel3.duration(),
 		    })
 		 	.setTween(tweenMeRepelPos3)
-		 	//.addIndicators({name: "me repel pos3___________________________________", colorStart: "navy", colorEnd: "navy"})
+		 	.addIndicators({name: "me repel pos3___________________________________", colorStart: "navy", colorEnd: "navy"})
 		 	.addTo(controller);
 
 
@@ -1221,9 +1198,9 @@
 				}
 			);
 			var sceneMeRepel4 = new ScrollMagic.Scene({
-				triggerElement: "#trigger2-half",
+				triggerElement: "#trigger1-half-quarter",
 				offset: sceneMeRepelPos3.offset() + sceneMeRepelPos3.duration(),
-				duration: "20%"
+				duration: "13.5%"
 			})
 			.setTween(tweenMeRepel4)
 			//.addIndicators({name: "me repel 4___________________________________", colorStart: "navy", colorEnd: "navy"})
@@ -1233,23 +1210,23 @@
 			var tweenMeRepelPos4 = new TweenMax.fromTo("#img-me", 4,
 				// previous
 				{
-				 top: "66vh",
-				 left: "30vw",
+				 top: "55%",
+				 left: "55%",
 				 ease: Circ.easeOut
 				},
 				// next
 				{
-				 top: "76vh",
-				 left: "24vw",
+				 top: "59.5%",
+				 left: "50%",
 				}
 			);
 			var sceneMeRepelPos4 = new ScrollMagic.Scene({
-				triggerElement: "#trigger2-half",
+				triggerElement: "#trigger1-half-quarter",
 				offset: sceneMeRepelPos3.offset() + sceneMeRepelPos3.duration(),
 				duration: sceneMeRepel4.duration(),
 		    })
 		 	.setTween(tweenMeRepelPos4)
-		 	//.addIndicators({name: "me repel pos4___________________________________", colorStart: "navy", colorEnd: "navy"})
+		 	.addIndicators({name: "me repel pos4___________________________________", colorStart: "navy", colorEnd: "navy"})
 		 	.addTo(controller);
 
 
@@ -1270,9 +1247,9 @@
 				}
 			);
 			var sceneMeRepel5 = new ScrollMagic.Scene({
-				triggerElement: "#trigger2-half",
+				triggerElement: "#trigger1-half-quarter",
 				offset: sceneMeRepelPos4.offset() + sceneMeRepelPos4.duration(),
-				duration: "20%",
+				duration: "13.5%",
 			})
 			.setTween(tweenMeRepel5)
 			//.addIndicators({name: "me repel 5___________________________________", colorStart: "navy", colorEnd: "navy"})
@@ -1282,53 +1259,23 @@
 			var tweenMeRepelPos5 = new TweenMax.fromTo("#img-me", 5,
 				// previous
 				{
-				 top: "76vh",
-				 left: "24vw",
+				 top: "59.5%",
+				 left: "50%",
 				 ease: Circ.easeOut
 				},
 				// next
 				{
-				 top: "106vh",
-				 left: "18vw",
+				 top: "75%",
+				 left: "45%",
 				}
 			);
 			var sceneMeRepelPos5 = new ScrollMagic.Scene({
-				triggerElement: "#trigger2-half",
+				triggerElement: "#trigger1-half-quarter",
 				offset: sceneMeRepelPos4.offset() + sceneMeRepelPos4.duration(),
 				duration: sceneMeRepel5.duration(),
 		    })
 		 	.setTween(tweenMeRepelPos5)
-		 	//.addIndicators({name: "me repel pos5___________________________________", colorStart: "navy", colorEnd: "navy"})
-		 	.addTo(controller);
-
-
-		 	/*=========================================================
-				tweenMeClimbPos6: Last position of me chilling and
-				relaxing at the bottom of the cliff.
-			  =========================================================*/
-		 	var tweenMeRepelPos6 = new TweenMax.fromTo("#img-me", 5,
-				// previous
-				{
-				 top: "106vh",
-				 left: "18vw",
-				 ease: Power0.easeNone
-				},
-				// next
-				{
-				 top: "106vh",
-				 left: "18vw",
-				 onUpdate: function () {
-					$("#img-me").attr("src", "./img/gifs/sunbathe-loop.gif");
-				 },
-				}
-			);
-			var sceneMeRepelPos6 = new ScrollMagic.Scene({
-				triggerElement: "#trigger2-half",
-				offset: sceneMeRepelPos5.offset() + sceneMeRepelPos5.duration(),
-				duration: "30%"
-		    })
-		 	.setTween(tweenMeRepelPos6)
-		 	//.addIndicators({name: "me repel pos6___________________________________", colorStart: "navy", colorEnd: "navy"})
+		 	.addIndicators({name: "me repel pos5___________________________________", colorStart: "navy", colorEnd: "navy"})
 		 	.addTo(controller);
 
 

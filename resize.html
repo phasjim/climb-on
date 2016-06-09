@@ -99,27 +99,21 @@
 
 
           <!-- ================================= DESERT GROUND ================================= -->
-          <div id="layer-ground-div" class="layer-mask-desert-ground">
+          <div id="layer-mountains-sand-div" class="layer-mask-desert-ground">
             <div id="div-ground-1">
-              <!-- ================================= MOUNTAINS ================================= -->
-              <img id="img-mountains" src="img/svg/mountains.svg">
-<!--               <img id="img-sand" src="img/svg/sand.svg">
- -->
+              <!-- ================================= MOUNTAINS + SAND ================================= -->
+              <img id="img-mountains-sand" src="img/svg/mountains-sand.svg">
 
               <!-- ================================= CACTI ================================= -->
-<!--               <img id="img-cacti" src="img/svg/cacti.svg">
- -->
+              <img id="img-cacti" src="img/svg/cacti.svg">
 
               <!-- ================================= FLOWERS LIGHT ================================= -->
-<!--               <img id="img-flower-light1" src="img/svg/flower-light.svg">
+              <img id="img-flower-light1" src="img/svg/flower-light.svg">
               <img id="img-flower-light2" src="img/svg/flower-light.svg">
-              <img id="img-flower-light3" src="img/svg/flower-light.svg"> -->
-
-
-              <!-- ================================= FLOWERS DARK ================================= -->
-<!--               <img id="img-flower-dark1" src="img/svg/flower-dark.svg">
+              <img id="img-flower-light3" src="img/svg/flower-light.svg">
+              <img id="img-flower-dark1" src="img/svg/flower-dark.svg">
               <img id="img-flower-dark2" src="img/svg/flower-dark.svg">
-              <img id="img-flower-dark3" src="img/svg/flower-dark.svg"> -->
+              <img id="img-flower-dark3" src="img/svg/flower-dark.svg">
             </div>
 
           </div>
@@ -129,16 +123,15 @@
           <!-- ============================================================================== -->
           <!-- =================================== CONTENT ================================== -->
           <!-- ============================================================================== -->
-<!--           <div class="layer-mask-cliff-me">
-            <div id="div-cliff-me"> -->
+          <div id="layer-cliff-me" class="layer-mask-cliff-me">
+            <div id="div-cliff-me">
               <!-- ================================= CLIFF ================================= -->
-<!--               <img id="img-cliff" src="img/svg/cliff.svg">
- -->
+              <img id="img-cliff" src="img/svg/cliff.svg">
 
               <!-- ================================= ME ================================= -->
-              <!-- <img id="img-me">
+              <img id="img-me">
             </div>
-          </div> -->
+          </div>
 
 
 
@@ -443,7 +436,9 @@
       blueSky: document.getElementById("layer-sky-div"),
       clouds: document.getElementById("layer-clouds-div"),
       sun: document.getElementById("layer-sun-div"),
-      ground: document.getElementById("layer-ground-div"),
+      mountainsSand: document.getElementById("layer-mountains-sand-div"),
+      cliff: document.getElementById("layer-cliff-me"),
+      me: document.getElementById("img-me"),
     };
     
     /*=========================================================
@@ -482,8 +477,15 @@
       layerDiv.sun.style.width = "calc(" + newSceneWidth + "px - 10%)";
       layerDiv.sun.style.height = newSceneHeight + "px";
 
-      layerDiv.ground.style.width = "calc(" + newSceneWidth + "px - 8.5%)";
-      layerDiv.ground.style.height = 3*newSceneHeight + "px";
+      layerDiv.mountainsSand.style.width = "calc(" + newSceneWidth + "px - 8.5%)";
+      layerDiv.mountainsSand.style.height = newSceneHeight + "px";
+
+      layerDiv.cliff.style.width = newSceneWidth + "px";
+      layerDiv.cliff.style.height = newSceneHeight + "px";
+      debugger;
+      layerDiv.me.style.width = newSceneWidth*(3/5) + "px";
+
+
 
       // Resize newSceneX, newSceneY
       newSceneX = (viewport.width - newSceneWidth) / 2;

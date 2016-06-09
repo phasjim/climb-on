@@ -204,7 +204,7 @@ h3 {
   =========================================================*/
 .layer-mask-blue-sky {
   position: fixed;
-  margin-left: 1.5%;
+  margin-left: 2%;
   overflow: hidden;
 
   background: rgb(170,210,237); /* Old browsers */
@@ -221,25 +221,21 @@ h3 {
 .layer-mask-sun {
   position: fixed;
   margin-top: -0.5%;
-  margin-left: 1.75%;
+  margin-left: 2.5%;
   overflow: hidden;
 }
 
 
 .layer-mask-desert-ground {
-  // position: fixed;
-  // margin-left: 1%;
+  position: fixed;
+  margin-left: 1.5%;
   overflow: hidden;
 }
 
 
 .layer-mask-cliff-me {
   position: fixed;
-  margin-left: 1.5%;
-  // width: 50vw;
-  // height: 96vh;
-  // left: 1vw;
-  // top: 2vh;
+  margin-left: 1%;
   overflow: hidden;
 }
 
@@ -490,62 +486,57 @@ h3 {
   position: relative;
 }
 
-  #img-mountains {
-    transform: scale(.75);
-  }
-
-  #img-sand {
-    position: absolute;
-    top: 27vh;
+  #img-mountains-sand {
+    transform: scale(0.75);
   }
 
   #img-cacti {
     position: absolute;
-    transform: scale(0.45);
-    top: 8vh;
-    left: 4vw;
+    transform: scale(0.4);
+    top: 5%;
+    left: 7.5%;
   }
 
   #img-flower-light1 {
     position: absolute;
     transform: scale(.015);
-    left: 18.5vw;
-    top: -47vh;
+    left: -6.9%;
+    top: -59%;
   }
 
   #img-flower-light2 {
     position: absolute;
     transform: scale(.015);
-    left: -11.4vw;
-    top: -45vh;
+    left: 19.8%;
+    top: -52%;
   }
 
   #img-flower-light3 {
     position: absolute;
     transform: scale(.015);
-    left: -11vw;
-    top: -52.5vh;
+    left: 24.9%;
+    top: -56.5%;
   }
 
   #img-flower-dark1 {
     position: absolute;
     transform: scale(.015);
-    left: 22vw;
-    top: -50vh;
+    left: -4.8%;
+    top: -56%;
   }
 
   #img-flower-dark2 {
     position: absolute;
     transform: scale(.015);
-    left: 20.6vw;
-    top: -44vh;
+    left: 23.8%;
+    top: -50%;
   }
 
   #img-flower-dark3 {
     position: absolute;
     transform: scale(.015);
-    left: -14vw;
-    top: -49vh;
+    left: -8.3%;
+    top: -53%;
   }
 
   #img-grass1 {
@@ -576,9 +567,6 @@ h3 {
 
   #img-me {
     position: absolute;
-    width: 35vw;
-    left: 18vw;
-    top: -12vh;
   }
 
 
