@@ -153,6 +153,7 @@ h3 {
   =========================================================*/
 .layer-mask-blue-sky {
   position: fixed;
+  margin-top: 0.5%;
   margin-left: 2%;
   overflow: hidden;
   background: #aad2ed;
@@ -180,11 +181,13 @@ h3 {
 
 .layer-mask-desert-ground {
   position: fixed;
+  margin-top: 0.1%;
   margin-left: 1.5%;
   overflow: hidden; }
 
 .layer-mask-cliff-me {
   position: fixed;
+  margin-top: -0.5%;
   margin-left: 1%;
   overflow: hidden; }
 
