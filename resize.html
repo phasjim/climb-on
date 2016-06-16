@@ -163,7 +163,11 @@
               </p>
 
               <p>
-                I am a developer+designer living the life in San Diego, California. I enjoy well tailored apps and thoughtful usability. My hobbies include rock climbing, listening to albums, watching cartoons, eating, and krumping. I love my dog, Lily, and <a href="http://vsco.co/lilyjio/" target="_blank">here is proof</a>!
+                I am a developer+designer living the life in San Diego, California. I graduated from UC San Diego in 2014 with a Bachelor's in Computer Science and Interdisciplinary Computing in the Arts (ICAM). I currently work as a front-end developer at Illumina where I get to design and build software for our Next-Gen Sequencing platforms.
+              </p>
+
+              <p>
+                I enjoy well tailored apps and thoughtful usability. My hobbies include rock climbing, dancing, listening to albums, and watching cartoons. I am obsessed with my dog, Lily, and <a href="http://vsco.co/lilyjio/" target="_blank">here is proof</a>!
               </p>
 
               <p>
@@ -174,7 +178,7 @@
               </p>
 
               
-              <div onclick="window.open('http://www.google.com','mywindow');"
+              <div onclick="window.open('mailto:me@pritahasj.im?Subject=Hello%20there%21','mywindow');"
                    class="contact-btn about-me-btn">
                   Say Hello
               </div>
@@ -371,8 +375,8 @@
         <a name="mid">
         <section class="panel panel-2" id="trigger2" style="background-color:lightpink;">
           <!-- ================================= TRIGGERS ================================= -->
-          <div id="trigger2-quarter"></div>
-          <div id="trigger2-half"></div>
+          <div id="trigger2-quarter" class="view-trigger"></div>
+          <div id="trigger2-half" class="view-trigger"></div>
         </section>
 
 
@@ -381,7 +385,7 @@
         <a name="bot">
         <section class="panel panel-3" id="trigger3" style="background-color:lightblue;">
           <!-- ================================= TRIGGERS ================================= -->
-          <div id="trigger3-half"></div>
+          <div id="trigger3-half" class="view-trigger"></div>
         </section>
 
 
@@ -457,12 +461,19 @@
         height: window.innerHeight
       };
 
-      if (sceneDiv.height / sceneDiv.width > viewport.height / viewport.width) {
-        newSceneHeight = viewport.height;
-        newSceneWidth = newSceneHeight * sceneDiv.width / sceneDiv.height;  
-      } else {
-        newSceneWidth = viewport.width;
-        newSceneHeight = newSceneWidth * sceneDiv.height / sceneDiv.width;     
+      if ( (sceneDiv.height < viewport.height) && (sceneDiv.width < viewport.width) ){
+        newSceneHeight = sceneDiv.height;
+        newSceneWidth = sceneDiv.width;
+      }
+      else {
+        if (sceneDiv.height / sceneDiv.width > viewport.height / viewport.width) {
+          newSceneHeight = viewport.height;
+          newSceneWidth = newSceneHeight * sceneDiv.width / sceneDiv.height;  
+        }
+        else {
+          newSceneWidth = viewport.width;
+          newSceneHeight = newSceneWidth * sceneDiv.height / sceneDiv.width;     
+        }
       }
 
       // Resize main scene div

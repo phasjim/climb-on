@@ -50,6 +50,10 @@ h3 {
   opacity: 0.3;
 }
 
+.scene-resize-div {
+  max-width:1420px !important;
+}
+
 
 
 /*=========================================================
@@ -92,40 +96,40 @@ h3 {
 
 
 #trigger1-half {
-  top: 50vh;
-  width: 25vw;
+  top: 50%;
+  width: 25%;
   height: 3px;
   position: absolute;
 }
 
 
 #trigger1-half-quarter{
-  top: 75vh;
-  width: 25vw;
+  top: 75%;
+  width: 25%;
   height: 3px;
   position: absolute;
 }
 
 
 #trigger2-quarter {
-  top: 125vh;
-  width: 25vw;
+  top: 125%;
+  width: 25%;
   height: 3px;
   position: absolute;
 }
 
 
 #trigger2-half {
-  top: 150vh;
-  width: 25vw;
+  top: 150%;
+  width: 25%;
   height: 3px;
   position: absolute;
 }
 
 
 #trigger3-half {
-  top: 250vh;
-  width: 25vw;
+  top: 250%;
+  width: 25%;
   height: 3px;
   position: absolute;
 }
@@ -437,8 +441,8 @@ h3 {
   #img-sun {
     position: absolute;
     transform: scale(0.2);
-    top: -79vh;
-    left: 40vw;
+    top: -79vh; // Keep as vh
+    left: 40vw; // Keep as vw
   }
 
   #img-sun {
@@ -600,8 +604,8 @@ h3 {
 
 .content-tagline {
   position: absolute;
-  left: 45vw;
-  top: 44vh;
+  left: 45%;
+  top: 44%;
   opacity: 0;
 }
 
