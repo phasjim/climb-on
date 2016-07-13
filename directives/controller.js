@@ -240,9 +240,10 @@
 				}
 			);
 			var sceneWork1 = new ScrollMagic.Scene({
-				triggerElement: "#trigger1-half",
-				offset: 20,
-				duration: 100
+				triggerHook: 0,
+				triggerElement: "#triggerTop",
+				offset: 50,
+				duration: 80,
 		    })
 		 	.setTween(tweenWork1)
 		 	//.addIndicators({name: "my work_________________________________", colorStart: "green", colorEnd: "green"})
@@ -261,10 +262,10 @@
 				}
 			);
 			var sceneWork2 = new ScrollMagic.Scene({
-				triggerElement: "#trigger3"
+				triggerElement: "#trigger2-half"
 		    })
 		 	.setTween(tweenWork2)
-		 	//.addIndicators({name: "my work - move right_________________________________", colorStart: "green", colorEnd: "green"})
+		 	//.addIndicators({name: "my work - hide right_________________________________", colorStart: "green", colorEnd: "green"})
 		 	.addTo(controller);
 
 
@@ -286,8 +287,9 @@
 				}
 			);
 			var sceneItemRow1 = new ScrollMagic.Scene({
-				triggerElement: "#trigger1-half",
-				offset: 40
+				triggerHook: 0,
+				triggerElement: "#triggerTop",
+				offset: 55,
 		    })
 		 	.setTween(tweenItemRow1)
 		 	//.addIndicators({name: "my work row 1______________", colorStart: "red", colorEnd: "red"})
@@ -308,8 +310,9 @@
 				}
 			);
 			var sceneItemRow2 = new ScrollMagic.Scene({
-				triggerElement: "#trigger1-half",
-				offset: 60
+				triggerHook: 0,
+				triggerElement: "#triggerTop",
+				offset: 95,
 		    })
 		 	.setTween(tweenItemRow2)
 		 	//.addIndicators({name: "my work row 2______________", colorStart: "red", colorEnd: "red"})
@@ -330,8 +333,9 @@
 				}
 			);
 			var sceneItemRow3 = new ScrollMagic.Scene({
-				triggerElement: "#trigger1-half",
-				offset: 80
+				triggerHook: 0,
+				triggerElement: "#triggerTop",
+				offset: 135,
 		    })
 		 	.setTween(tweenItemRow3)
 		 	//.addIndicators({name: "my work row 3______________", colorStart: "red", colorEnd: "red"})
@@ -356,12 +360,12 @@
 				}
 			);
 			var sceneName1 = new ScrollMagic.Scene({
-				triggerElement: "#trigger2-quarter",
-				offset: 40,
+				triggerHook: 100,
+				triggerElement: "#triggerMid-half",
 				duration: "22%"
 		    })
 		 	.setTween(tweenName1)
-		 	.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
+		 	.addIndicators({name: "name upper_______________", colorStart: "purple", colorEnd: "purple"})
 		 	.addTo(controller);
 
 
@@ -378,12 +382,12 @@
 				}
 			);
 			var sceneTagline1 = new ScrollMagic.Scene({
-				triggerElement: "#trigger2-quarter",
-				offset: 40,
+				triggerHook: 100,
+				triggerElement: "#triggerMid-half",
 				duration: "22%"
 		    })
 		 	.setTween(tweenTagline1)
-		 	.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
+		 	//.addIndicators({name: "name upper_______________", colorStart: "purple", colorEnd: "purple"})
 		 	.addTo(controller);
 
 
@@ -401,12 +405,13 @@
 				}
 			);
 			var sceneName2 = new ScrollMagic.Scene({
-				triggerElement: "#trigger2-half",
+				triggerHook: 100,
+				triggerElement: "#triggerBot",
 				offset: 50,
 				duration: "22%"
 		    })
 		 	.setTween(tweenName2)
-		 	.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
+		 	//.addIndicators({name: "name lower_______________", colorStart: "purple", colorEnd: "purple"})
 		 	.addTo(controller);
 
 
@@ -424,12 +429,13 @@
 				}
 			);
 			var sceneTagline2 = new ScrollMagic.Scene({
-				triggerElement: "#trigger2-half",
+				triggerHook: 100,
+				triggerElement: "#triggerBot",
 				offset: 50,
 				duration: "22%"
 		    })
 		 	.setTween(tweenTagline2)
-		 	.addIndicators({name: "name_______________", colorStart: "purple", colorEnd: "purple"})
+		 	//.addIndicators({name: "name lower_______________", colorStart: "purple", colorEnd: "purple"})
 		 	.addTo(controller);
 
 
