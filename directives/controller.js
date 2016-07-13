@@ -365,7 +365,7 @@
 				duration: "22%"
 		    })
 		 	.setTween(tweenName1)
-		 	.addIndicators({name: "name upper_______________", colorStart: "purple", colorEnd: "purple"})
+		 	//.addIndicators({name: "name upper_______________", colorStart: "purple", colorEnd: "purple"})
 		 	.addTo(controller);
 
 
@@ -456,12 +456,12 @@
 				}
 			);
 			var sceneAboutMeContent = new ScrollMagic.Scene({
-				triggerElement: "#trigger2-half",
-				triggerHook: 0,
+				triggerHook: 100,
+				triggerElement: "#triggerBot-half",
 				offset: 30,
 		    })
 		 	.setTween(tweenAboutMeContent)
-		 	.addIndicators({name: "about me content div___________________________________", colorStart: "lightyellow", colorEnd: "lightyellow"})
+		 	//.addIndicators({name: "about me content div___________________________________", colorStart: "lightyellow", colorEnd: "lightyellow"})
 		 	.addTo(controller);
 
 
@@ -478,12 +478,12 @@
 				}
 			);
 			var sceneAboutMeTitle = new ScrollMagic.Scene({
-				triggerElement: "#trigger2-half",
-				triggerHook: 0,
+				triggerHook: 100,
+				triggerElement: "#triggerBot-half",
 				offset: 30,
 		    })
 		 	.setTween(tweenAboutMeTitle)
-		 	.addIndicators({name: "about me content________________________", colorStart: "lightyellow", colorEnd: "lightyellow"})
+		 	//.addIndicators({name: "about me content________________________", colorStart: "lightyellow", colorEnd: "lightyellow"})
 		 	.addTo(controller);
 
 
@@ -508,8 +508,9 @@
 				}
 			);
 			var sceneSun = new ScrollMagic.Scene({
-				triggerElement: "#trigger1-half",
-				offset: 20,
+				triggerHook: 0,
+				triggerElement: "#triggerTop",
+				offset: 60,
 				duration: "40%"
 		    })
 		 	.setTween(tweenSun)
@@ -530,8 +531,9 @@
 				}
 			);
 			var sceneClouds = new ScrollMagic.Scene({
-				triggerElement: "#trigger1-half",
-				offset: 20,
+				triggerHook: 0,
+				triggerElement: "#triggerTop",
+				offset: 60,
 				duration: "40%"
 		    })
 		 	.setTween(tweenClouds)
@@ -552,12 +554,12 @@
 				},
 				// next
 				{
-				 top: "-240%",
+				 top: "-220%",
 				}
 			);
 			var sceneCliffVert = new ScrollMagic.Scene({
-				triggerElement: "#trigger2",
-				triggerHook: 0.75,
+				triggerHook: 0,
+				triggerElement: "#triggerTop",
 				duration: "200%"
 		    })
 		 	.setTween(tweenCliffVert)
@@ -579,9 +581,9 @@
 				}
 			);
 			var sceneCliffHor1 = new ScrollMagic.Scene({
-				triggerElement: "#trigger2",
-				triggerHook: 0.75,
-				duration: "100%"
+				triggerHook: sceneCliffVert.triggerHook(),
+				triggerElement: sceneCliffVert.triggerElement(),
+				duration: sceneCliffVert.duration()
 		    })
 		 	.setTween(tweenCliffHor1)
 		 	//.addIndicators({name: "cliff horizontal~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "grey", colorEnd: "grey"})
@@ -609,9 +611,9 @@
 				}
 			);
 			var sceneMountainsSandVert = new ScrollMagic.Scene({
-				triggerElement: "#trigger2",
-				triggerHook: 0.75,
-				duration: "200%"
+				triggerHook: sceneCliffVert.triggerHook(),
+				triggerElement: sceneCliffVert.triggerElement(),
+				duration: sceneCliffVert.duration()
 		    })
 		 	.setTween(tweenMountainsSandVert)
 		 	//.addIndicators({name: "mountain~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", colorStart: "purple", colorEnd: "purple"})
@@ -637,8 +639,8 @@
 				}
 			);
 			var sceneFlowerLight1 = new ScrollMagic.Scene({
-				triggerElement: "#trigger2",
-				triggerHook: 0.75,
+				triggerHook: 0,
+				triggerElement: "#triggerTop-half",
 				duration: "200%"
 		    })
 		 	.setTween(tweenFlowerLight1)
@@ -659,9 +661,9 @@
 				}
 			);
 			var sceneFlowerLight2 = new ScrollMagic.Scene({
-				triggerElement: "#trigger2",
-				triggerHook: 0.75,
-				duration: "200%"
+				triggerHook: sceneFlowerLight1.triggerHook(),
+				triggerElement: sceneFlowerLight1.triggerElement(),
+				duration: sceneFlowerLight1.duration()
 		    })
 		 	.setTween(tweenFlowerLight2)
 		 	//.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
@@ -681,9 +683,9 @@
 				}
 			);
 			var sceneFlowerLight3 = new ScrollMagic.Scene({
-				triggerElement: "#trigger2",
-				triggerHook: 0.75,
-				duration: "200%"
+				triggerHook: sceneFlowerLight1.triggerHook(),
+				triggerElement: sceneFlowerLight1.triggerElement(),
+				duration: sceneFlowerLight1.duration()
 		    })
 		 	.setTween(tweenFlowerLight3)
 		 	//.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
@@ -703,9 +705,9 @@
 				}
 			);
 			var sceneFlowerDark1 = new ScrollMagic.Scene({
-				triggerElement: "#trigger2",
-				triggerHook: 0.75,
-				duration: "200%"
+				triggerHook: sceneFlowerLight1.triggerHook(),
+				triggerElement: sceneFlowerLight1.triggerElement(),
+				duration: sceneFlowerLight1.duration()
 		    })
 		 	.setTween(tweenFlowerDark1)
 		 	//.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
@@ -725,9 +727,9 @@
 				}
 			);
 			var sceneFlowerDark2 = new ScrollMagic.Scene({
-				triggerElement: "#trigger2",
-				triggerHook: 0.75,
-				duration: "200%"
+				triggerHook: sceneFlowerLight1.triggerHook(),
+				triggerElement: sceneFlowerLight1.triggerElement(),
+				duration: sceneFlowerLight1.duration()
 		    })
 		 	.setTween(tweenFlowerDark2)
 		 	//.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
@@ -747,9 +749,9 @@
 				}
 			);
 			var sceneFlowerDark3 = new ScrollMagic.Scene({
-				triggerElement: "#trigger2",
-				triggerHook: 0.75,
-				duration: "200%"
+				triggerHook: sceneFlowerLight1.triggerHook(),
+				triggerElement: sceneFlowerLight1.triggerElement(),
+				duration: sceneFlowerLight1.duration()
 		    })
 		 	.setTween(tweenFlowerDark3)
 		 	//.addIndicators({name: "flower_____________________________________", colorStart: "red", colorEnd: "red"})
@@ -777,7 +779,8 @@
 				}
 			);
 			var sceneGrass1 = new ScrollMagic.Scene({
-				triggerElement: "#trigger3-half",
+				triggerHook: 100,
+				triggerElement: "#triggerVeryBot",
 		    })
 		 	.setTween(tweenGrass1)
 		 	//.addIndicators({name: "grass_____________________________________", colorStart: "lightgreen", colorEnd: "lightgreen"})
@@ -799,7 +802,8 @@
 				}
 			);
 			var sceneGrass2 = new ScrollMagic.Scene({
-				triggerElement: "#trigger3-half",
+				triggerHook: sceneGrass1.triggerHook(),
+				triggerElement: sceneGrass1.triggerElement(),
 		    })
 		 	.setTween(tweenGrass2)
 		 	//.addIndicators({name: "grass_____________________________________", colorStart: "lightgreen", colorEnd: "lightgreen"})
@@ -821,13 +825,12 @@
 				}
 			);
 			var sceneGrass3 = new ScrollMagic.Scene({
-				triggerElement: "#trigger3-half",
+				triggerHook: sceneGrass1.triggerHook(),
+				triggerElement: sceneGrass1.triggerElement(),
 		    })
 		 	.setTween(tweenGrass3)
 		 	//.addIndicators({name: "grass_____________________________________", colorStart: "lightgreen", colorEnd: "lightgreen"})
 		 	.addTo(controller);
-
-
 
 
 
@@ -861,7 +864,7 @@
 				duration: "75%"
 		    })
 		 	.setTween(tweenMeClimbPos0)
-		 	//.addIndicators({name: "me climbing down pos0_________", colorStart: "magenta", colorEnd: "magenta"})
+		 	.addIndicators({name: "me climbing down pos0_________", colorStart: "magenta", colorEnd: "magenta"})
 		 	.addTo(controller);
 
 
@@ -885,7 +888,7 @@
 				duration: "90%"
 			})
 			.setTween(tweenMeClimb)
-			//.addIndicators({name: "me climbing down", colorStart: "magenta", colorEnd: "magenta"})
+			.addIndicators({name: "me climbing down", colorStart: "magenta", colorEnd: "magenta"})
 			.addTo(controller);
 
 
