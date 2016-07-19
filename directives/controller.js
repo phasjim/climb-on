@@ -10,6 +10,119 @@
  				// On load, set the width and height
  		    });
 
+
+ 			/* ================ RESIZING SCENE OBJECTS ================ */
+    		// http://www.williammalone.com/articles/html5-game-scaling/
+   
+		    /*=========================================================
+		      $scope.sceneDiv: Contains all the general elements of the scene
+		      $scope.layerDiv: Contains the different layers of the scene.
+		      =========================================================*/
+	      	$scope.sceneDiv = {
+		      element: document.getElementById("scene-resize-div"),
+		      width: 1420,
+		      height: 740,
+		    };
+
+		    $scope.layerDiv = {
+		      blueSky: document.getElementById("layer-sky-div"),
+		      clouds: document.getElementById("layer-clouds-div"),
+		      sun: document.getElementById("layer-sun-div"),
+		      mountainsSand: document.getElementById("layer-mountains-sand-div"),
+		      cliff: document.getElementById("layer-cliff-me-div"),
+		      me: document.getElementById("img-me"),
+		      home: document.getElementById("layer-home-div"),
+		    };
+
+		    /*=========================================================
+		      resizeSceneDiv: Resizes the $scope.sceneDiv based on the 
+		                      screen size.
+		      =========================================================*/
+		    $scope.resizeSceneDiv = function () {      
+		      /* ================ RESIZING CONTENT ======================= */
+		      var viewport, newSceneWidth, newSceneHeight, newSceneX, newSceneY;
+
+		      // Get the dimensions of the viewport
+		      viewport = {
+		        width: window.innerWidth,
+		        height: window.innerHeight
+		      };
+
+		      if ( ($scope.sceneDiv.height < viewport.height) && ($scope.sceneDiv.width < viewport.width) ){
+		        newSceneHeight = $scope.sceneDiv.height;
+		        newSceneWidth = $scope.sceneDiv.width;
+		      }
+		      else {
+		        if ($scope.sceneDiv.height / $scope.sceneDiv.width > viewport.height / viewport.width) {
+		          newSceneHeight = viewport.height;
+		          newSceneWidth = newSceneHeight * $scope.sceneDiv.width / $scope.sceneDiv.height;  
+		        }
+		        else {
+		          newSceneWidth = viewport.width;
+		          newSceneHeight = newSceneWidth * $scope.sceneDiv.height / $scope.sceneDiv.width;     
+		        }
+		      }
+
+		      // Resize main scene div
+		      $scope.sceneDiv.element.style.width = newSceneWidth + "px";
+		      $scope.sceneDiv.element.style.height = newSceneHeight + "px";
+
+		      // Here we need to resize all of the other layers too
+		      $scope.layerDiv.blueSky.style.width = "calc(" + newSceneWidth + "px - 10%)";
+		      $scope.layerDiv.blueSky.style.height = newSceneHeight + "px";
+
+		      $scope.layerDiv.clouds.style.width = "calc(" + newSceneWidth + "px - 9%)";
+		      $scope.layerDiv.clouds.style.height = "calc(" + newSceneHeight + "px - 3%)";
+		      $scope.layerDiv.clouds.style.paddingTop = newSceneHeight/3 + "px";
+
+		      $scope.layerDiv.sun.style.width = "calc(" + newSceneWidth + "px - 10%)";
+		      $scope.layerDiv.sun.style.height = newSceneHeight + "px";
+
+		      $scope.layerDiv.mountainsSand.style.width = "calc(" + newSceneWidth + "px - 8.5%)";
+		      $scope.layerDiv.mountainsSand.style.height = newSceneHeight + "px";
+
+		      $scope.layerDiv.cliff.style.width = newSceneWidth + "px";
+		      $scope.layerDiv.cliff.style.height = "calc(" + newSceneHeight + "px + 1.5%)";
+
+		      $scope.layerDiv.me.style.width = newSceneWidth*(3/5) + "px";
+
+		      $scope.layerDiv.home.style.width = "calc(" + newSceneWidth + "px + 5%)";
+		      $scope.layerDiv.home.style.height = newSceneHeight + "px";
+
+
+		      // Resize newSceneX, newSceneY
+		      newSceneX = (viewport.width - newSceneWidth) / 2;
+		      newSceneY = (viewport.height - newSceneHeight) / 2;
+
+		      // Set the new padding of the $scope.sceneDiv so it will be centered
+		      $scope.sceneDiv.element.style.margin = newSceneY + "px " + newSceneX + "px";
+		    };
+
+		    /*=========================================================
+		      Watches the "resize" from the user side and resizes it
+		      based off the resizeSceneDiv() function
+		      =========================================================*/
+		    $scope.resizeSceneDiv(); // Initial Call
+
+			$(window).on("resize.doResize", function (){
+				console.log("innerHeight: " + window.innerHeight + " / innerWidth: " + window.innerWidth);
+
+				$scope.$apply(function(){
+			  		//do something to update current scope
+			  		$scope.resizeSceneDiv();
+				});
+			});
+
+			$scope.$on("$destroy",function (){
+				$(window).off("resize.doResize"); //remove the handler added earlier
+			});
+
+
+
+
+
+
+
 			/* =================== SCROLLING FUNCTIONS =================== */
 			// https://css-tricks.com/snippets/jquery/smooth-scrolling/
 			// Smooth scroll for navigation links
@@ -174,7 +287,7 @@
                 },
                 function handleNotify( event ) {
                     $scope.percentLoaded = event.percent;
-                    console.info( "Percent loaded:", event.percent );
+                    // console.info( "Percent loaded:", event.percent );
                 }
             );
 

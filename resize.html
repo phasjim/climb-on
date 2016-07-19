@@ -485,104 +485,104 @@
 
 
 <script>
-  (function () {
-    /* ================ RESIZING SCENE OBJECTS ================ */
-    // http://www.williammalone.com/articles/html5-game-scaling/
+  // (function () {
+  //   /* ================ RESIZING SCENE OBJECTS ================ */
+  //   // http://www.williammalone.com/articles/html5-game-scaling/
 
-    /*=========================================================
-      sceneDiv: Contains the attributes of the scene div to
-                resize. All layers and objects will be scaled to
-                the sceneDiv.
-      =========================================================*/
-    var sceneDiv = {
-      element: document.getElementById("scene-resize-div"),
-      width: 1420,
-      height: 740,
-    };
+  //   /*=========================================================
+  //     sceneDiv: Contains the attributes of the scene div to
+  //               resize. All layers and objects will be scaled to
+  //               the sceneDiv.
+  //     =========================================================*/
+  //   var sceneDiv = {
+  //     element: document.getElementById("scene-resize-div"),
+  //     width: 1420,
+  //     height: 740,
+  //   };
     
-    /*=========================================================
-      layerDiv: Contains the different layers of the scene.
-      =========================================================*/
-    var layerDiv = {
-      blueSky: document.getElementById("layer-sky-div"),
-      clouds: document.getElementById("layer-clouds-div"),
-      sun: document.getElementById("layer-sun-div"),
-      mountainsSand: document.getElementById("layer-mountains-sand-div"),
-      cliff: document.getElementById("layer-cliff-me-div"),
-      me: document.getElementById("img-me"),
-      home: document.getElementById("layer-home-div"),
-    };
+  //   /*=========================================================
+  //     layerDiv: Contains the different layers of the scene.
+  //     =========================================================*/
+  //   var layerDiv = {
+  //     blueSky: document.getElementById("layer-sky-div"),
+  //     clouds: document.getElementById("layer-clouds-div"),
+  //     sun: document.getElementById("layer-sun-div"),
+  //     mountainsSand: document.getElementById("layer-mountains-sand-div"),
+  //     cliff: document.getElementById("layer-cliff-me-div"),
+  //     me: document.getElementById("img-me"),
+  //     home: document.getElementById("layer-home-div"),
+  //   };
     
-    /*=========================================================
-      resizeSceneDiv: Resizes the sceneDiv based on the screen
-                      size.
-      =========================================================*/
-    var resizeSceneDiv = function () {
-      /* ================ RESIZING CONTENT ======================= */
-      var viewport, newSceneWidth, newSceneHeight, newSceneX, newSceneY;
+  //   /*=========================================================
+  //     resizeSceneDiv: Resizes the sceneDiv based on the screen
+  //                     size.
+  //     =========================================================*/
+  //   var resizeSceneDiv = function () {      
+  //     /* ================ RESIZING CONTENT ======================= */
+  //     var viewport, newSceneWidth, newSceneHeight, newSceneX, newSceneY;
 
-      // Get the dimensions of the viewport
-      viewport = {
-        width: window.innerWidth,
-        height: window.innerHeight
-      };
+  //     // Get the dimensions of the viewport
+  //     viewport = {
+  //       width: window.innerWidth,
+  //       height: window.innerHeight
+  //     };
 
-      if ( (sceneDiv.height < viewport.height) && (sceneDiv.width < viewport.width) ){
-        newSceneHeight = sceneDiv.height;
-        newSceneWidth = sceneDiv.width;
-      }
-      else {
-        if (sceneDiv.height / sceneDiv.width > viewport.height / viewport.width) {
-          newSceneHeight = viewport.height;
-          newSceneWidth = newSceneHeight * sceneDiv.width / sceneDiv.height;  
-        }
-        else {
-          newSceneWidth = viewport.width;
-          newSceneHeight = newSceneWidth * sceneDiv.height / sceneDiv.width;     
-        }
-      }
+  //     if ( (sceneDiv.height < viewport.height) && (sceneDiv.width < viewport.width) ){
+  //       newSceneHeight = sceneDiv.height;
+  //       newSceneWidth = sceneDiv.width;
+  //     }
+  //     else {
+  //       if (sceneDiv.height / sceneDiv.width > viewport.height / viewport.width) {
+  //         newSceneHeight = viewport.height;
+  //         newSceneWidth = newSceneHeight * sceneDiv.width / sceneDiv.height;  
+  //       }
+  //       else {
+  //         newSceneWidth = viewport.width;
+  //         newSceneHeight = newSceneWidth * sceneDiv.height / sceneDiv.width;     
+  //       }
+  //     }
 
-      // Resize main scene div
-      sceneDiv.element.style.width = newSceneWidth + "px";
-      sceneDiv.element.style.height = newSceneHeight + "px";
+  //     // Resize main scene div
+  //     sceneDiv.element.style.width = newSceneWidth + "px";
+  //     sceneDiv.element.style.height = newSceneHeight + "px";
 
-      // Here we need to resize all of the other layers too
-      layerDiv.blueSky.style.width = "calc(" + newSceneWidth + "px - 10%)";
-      layerDiv.blueSky.style.height = newSceneHeight + "px";
+  //     // Here we need to resize all of the other layers too
+  //     layerDiv.blueSky.style.width = "calc(" + newSceneWidth + "px - 10%)";
+  //     layerDiv.blueSky.style.height = newSceneHeight + "px";
 
-      layerDiv.clouds.style.width = "calc(" + newSceneWidth + "px - 9%)";
-      layerDiv.clouds.style.height = "calc(" + newSceneHeight + "px - 3%)";
-      layerDiv.clouds.style.paddingTop = newSceneHeight/3 + "px";
+  //     layerDiv.clouds.style.width = "calc(" + newSceneWidth + "px - 9%)";
+  //     layerDiv.clouds.style.height = "calc(" + newSceneHeight + "px - 3%)";
+  //     layerDiv.clouds.style.paddingTop = newSceneHeight/3 + "px";
 
-      layerDiv.sun.style.width = "calc(" + newSceneWidth + "px - 10%)";
-      layerDiv.sun.style.height = newSceneHeight + "px";
+  //     layerDiv.sun.style.width = "calc(" + newSceneWidth + "px - 10%)";
+  //     layerDiv.sun.style.height = newSceneHeight + "px";
 
-      layerDiv.mountainsSand.style.width = "calc(" + newSceneWidth + "px - 8.5%)";
-      layerDiv.mountainsSand.style.height = newSceneHeight + "px";
+  //     layerDiv.mountainsSand.style.width = "calc(" + newSceneWidth + "px - 8.5%)";
+  //     layerDiv.mountainsSand.style.height = newSceneHeight + "px";
 
-      layerDiv.cliff.style.width = newSceneWidth + "px";
-      layerDiv.cliff.style.height = "calc(" + newSceneHeight + "px + 1.5%)";
+  //     layerDiv.cliff.style.width = newSceneWidth + "px";
+  //     layerDiv.cliff.style.height = "calc(" + newSceneHeight + "px + 1.5%)";
 
-      layerDiv.me.style.width = newSceneWidth*(3/5) + "px";
+  //     layerDiv.me.style.width = newSceneWidth*(3/5) + "px";
 
-      layerDiv.home.style.width = "calc(" + newSceneWidth + "px + 5%)";
-      layerDiv.home.style.height = newSceneHeight + "px";
-
-
-      // Resize newSceneX, newSceneY
-      newSceneX = (viewport.width - newSceneWidth) / 2;
-      newSceneY = (viewport.height - newSceneHeight) / 2;
-
-      // Set the new padding of the sceneDiv so it will be centered
-      sceneDiv.element.style.margin = newSceneY + "px " + newSceneX + "px";
-    };
+  //     layerDiv.home.style.width = "calc(" + newSceneWidth + "px + 5%)";
+  //     layerDiv.home.style.height = newSceneHeight + "px";
 
 
-    // Resizes Scene when user resizes the window
-    window.addEventListener("resize", resizeSceneDiv);
-    resizeSceneDiv();
+  //     // Resize newSceneX, newSceneY
+  //     newSceneX = (viewport.width - newSceneWidth) / 2;
+  //     newSceneY = (viewport.height - newSceneHeight) / 2;
 
-  }())
+  //     // Set the new padding of the sceneDiv so it will be centered
+  //     sceneDiv.element.style.margin = newSceneY + "px " + newSceneX + "px";
+  //   };
+
+
+  //   // Resizes Scene when user resizes the window
+  //   window.addEventListener("resize", resizeSceneDiv);
+  //   resizeSceneDiv();
+
+  // }())
 
 </script>
 
