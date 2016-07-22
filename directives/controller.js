@@ -2,8 +2,8 @@
 	"use strict";
 	angular.module("portfolioApp", ["angular-responsive","ngFitText"])
 		/* =================== CONTROLLER =================== */
-		.controller("Controller", ["$scope", "preloader",
-			function($scope, preloader) {
+		.controller("Controller", ["$scope", "$timeout", "preloader",
+			function($scope, $timeout, preloader) {
 
 			/* =================== ON DOCUMENT LOAD =================== */
  			angular.element(document).ready(function () {
@@ -296,7 +296,6 @@
 
 
 
-
 			/* =================== IMAGE LOADING FUNCTIONS =================== */
 		    // http://www.bennadel.com/blog/2597-preloading-images-in-angularjs-with-promises.htm
 		    // I keep track of the state of the loading images.
@@ -309,16 +308,24 @@
 
             $scope.imageLocations = $scope.imageLocations.concat(climbImgArray).concat(repelImgArray1)
             											 .concat(repelImgArray2).concat(repelImgArray3)
-            											 .concat(repelImgArray4).concat(repelImgArray5);
+            											 .concat(repelImgArray4).concat(repelImgArray5)
+            											 // === And the rest...
+														.concat(["./img/svg/sun.svg"])
+														.concat(["./img/svg/mountains-sand.svg"])
+														.concat(["./img/svg/flower-light.svg"])
+														.concat(["./img/svg/flower-dark.svg"])
+														.concat(["./img/svg/cliff.svg"]);
 
 
             // Preload the images; then, update display when returned.
             preloader.preloadImages( $scope.imageLocations ).then(
                 function handleResolve( imageLocations ) {
                     // Loading was successful.
-                    $scope.isLoading = false;
-                    $scope.isSuccessful = true;
-                    console.info( "Preload Successful" );
+                    $timeout(function() {
+	                    $scope.isLoading = false;
+	                    $scope.isSuccessful = true;
+	                    console.info( "Preload Successful" );
+			        }, 3000);             
                 },
                 function handleReject( imageLocation ) {
                     // Loading failed on at least one image.
@@ -334,11 +341,12 @@
             );
 
 
+
             /* =================== WHEN IMAGES LOADED, JUMP TO MIDDLE =================== */
             $scope.$watch('isLoading', function() {
             	// if not loading, and successfully loaded
 			    if(!$scope.isLoading && $scope.isSuccessful){
-			    	var fadeTime = 500;
+			    	var fadeTime = 20;
 
 			    	// scroll to middle
 			    	setTimeout(function() {

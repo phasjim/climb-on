@@ -46,15 +46,15 @@
     width:1420px;
     height:720px;">
     <!-- ================================= LOADING CONTAINER ================================= -->
-    <div class="load-container" ng-show="false" ng-cloak>
+    <div class="load-container" ng-show="isLoading" ng-cloak>
       <div class="load-spinner"></div>
     </div><!-- end .load-container -->
 
     <!-- ================================= MAIN SCENE CONTAINER ================================= -->
-    <div class="web-container" ng-show="true" ng-cloak>
-<!--       <div class="load-error" ng-show="!isSuccessful" ng-cloak style="height:100%">
+    <div class="web-container" ng-show="!isLoading" ng-cloak>
+      <div class="load-error" ng-show="!isSuccessful" ng-cloak style="height:100%">
         OOPS ONE OF YOUR IMAGES FAILED TO LOAD
-      </div> -->
+      </div>
 
       <div class="load-success" ng-show="isSuccessful" style="height:100%">
         <!-- ================================= PANEL TOP ================================= -->
@@ -407,7 +407,7 @@
   </div><!-- end .scene-container -->
 
 
-  <!-- ================================= MORE TRIGGERS ================================= -->
+  <!-- ================================= $$$ MORE TRIGGER$ $$$ ================================= -->
   <div id="triggerTop"></div>
 
   <div id="triggerTop-half"></div>
