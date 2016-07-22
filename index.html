@@ -37,363 +37,438 @@
   <!-- DIRECTIVES -->
   <script type="text/javascript" src="./directives/controller.js"></script>
   <script type="text/javascript" src="./directives/dirs/responsive-directive.js"></script>
+  <script type="text/javascript" src="./directives/dirs/ng-FitText.min.js"></script>
 
 </head>
 <body id="web-body" ng-controller="Controller">
+  <div id="scene-resize-div" style="background-color:lavenderblush; width:1420px; height:720px;">
+    <!-- ================================= LOADING CONTAINER ================================= -->
+    <div class="load-container" ng-show="false" ng-cloak>
+      <div class="load-spinner"></div>
+    </div><!-- end .load-container -->
 
-<!--   <div ar-responsive="{ 'xs': false, 'sm': false, 'md': true, 'lg': true }">
-    THIS WILL ONLY SHOW UP FOR MD AND LG!!!!!!!!!!
-  </div> -->
+    <!-- ================================= MAIN SCENE CONTAINER ================================= -->
+    <div class="web-container" ng-show="true" ng-cloak>
+<!--       <div class="load-error" ng-show="!isSuccessful" ng-cloak style="height:100%">
+        OOPS ONE OF YOUR IMAGES FAILED TO LOAD
+      </div> -->
 
-  <!-- ================================= LOADING CONTAINER ================================= -->
-  <div class="load-container" ng-show="isLoading" ng-cloak>
-    <div class="load-spinner"></div>
+      <div class="load-success" ng-show="isSuccessful" style="height:100%">
+        <!-- ================================= PANEL TOP ================================= -->
+        <a name="top">
+        <section class="panel panel-1" id="trigger1" style="background-color:lightyellow;">
+          <!-- ================================= TRIGGERS ================================= -->
+          <div id="trigger1-half" class="view-trigger"></div>
+          <div id="trigger1-half-quarter" class="view-trigger"></div>
+
+
+          <!-- ================================= BLUE SKY ================================= -->
+          <div id="layer-sky-div" class="layer-mask-blue-sky"></div>
+
+          <div id="layer-clouds-div" class="layer-mask-clouds">
+            <!-- HIDE: Clouds when window is mobile? -->
+            <div class="cloud-shape cloud1"></div>
+            <div class="cloud-shape cloud2"></div>
+
+            <!-- TODO: Resize Text -->
+            <!-- <div id="title-my-work" style="
+              position: relative;
+              top: -25vh;
+              left: 19vw;
+            ">
+              <h2>My Work</h2>
+            </div> -->
+
+            <div class="cloud-shape cloud3"></div>
+            <div class="cloud-shape cloud4"></div>
+            <div class="cloud-shape cloud5"></div>
+          </div>
+
+
+          <!-- ============================================================================== -->
+          <!-- =================================== SCENERY ================================== -->
+          <!-- ============================================================================== -->
+
+          <!-- ================================= SUN ================================= -->
+          <div id="layer-sun-div" class="layer-mask-sun">
+            <div id="div-sun">
+              <!-- HIDE: Clouds when window is mobile? -->
+              <img id="img-sun" src="img/svg/sun.svg">
+            </div>
+          </div>
+
+
+          <!-- ================================= DESERT GROUND ================================= -->
+          <div id="layer-mountains-sand-div" class="layer-mask-desert-ground">
+            <div id="div-ground-1">
+              <!-- ================================= MOUNTAINS + SAND ================================= -->
+              <img id="img-mountains-sand" src="img/svg/mountains-sand.svg">
+
+              <!-- ================================= CACTI ================================= -->
+              <img id="img-cacti" src="img/svg/cacti.svg">
+
+              <!-- ================================= FLOWERS LIGHT ================================= -->
+              <img id="img-flower-light1" src="img/svg/flower-light.svg">
+              <img id="img-flower-light2" src="img/svg/flower-light.svg">
+              <img id="img-flower-light3" src="img/svg/flower-light.svg">
+              <img id="img-flower-dark1" src="img/svg/flower-dark.svg">
+              <img id="img-flower-dark2" src="img/svg/flower-dark.svg">
+              <img id="img-flower-dark3" src="img/svg/flower-dark.svg">
+            </div>
+
+          </div>
+
+
+
+          <!-- ============================================================================== -->
+          <!-- =================================== CONTENT ================================== -->
+          <!-- ============================================================================== -->
+          <div id="layer-cliff-me-div" class="layer-mask-cliff-me">
+            <div id="div-cliff-me">
+              <!-- ================================= CLIFF ================================= -->
+              <img id="img-cliff" src="img/svg/cliff.svg">
+
+              <!-- ================================= ME ================================= -->
+              <img id="img-me">
+            </div>
+          </div>
+
+
+
+          <!-- ============================================================================== -->
+          <!-- ================================== HOME PAGE ================================= -->
+          <!-- ============================================================================== -->
+          <div id="layer-home-div" class="layer-home">
+            <div class="content-name" style="width:100%;">
+              <h1 id="home-title" data-fittext="0.7" data-fittext-min="20" data-fittext-max="110">Prita Priscilla Hasjim</h1>
+            </div>
+
+            <div class="content-tagline" style="width:100%;">
+              <h3 id="home-subtitle" data-fittext="0.7" data-fittext-min="15" data-fittext-max="30">I make stuff with code!</h3>
+            </div>
+
+          </div>
+
+
+
+          <!-- ============================================================================== -->
+          <!-- =================================== ABOUT ME ================================= -->
+          <!-- ============================================================================== -->
+          <!-- <div class="layer-about-me">
+             
+            <div id="content-about-me">
+              <p>
+                Hi, I'm Prita!
+              </p>
+
+              <p>
+                I am a developer+designer living the life in San Diego, California. I graduated from UC San Diego in 2014 with a Bachelor's in Computer Science and Interdisciplinary Computing in the Arts (ICAM). I currently work as a front-end developer at Illumina where I get to design and build software for our Next-Gen Sequencing platforms.
+              </p>
+
+              <p>
+                I enjoy well tailored apps and thoughtful usability. My hobbies include rock climbing, dancing, listening to albums, and watching cartoons. I am obsessed with my dog, Lily, and <a href="http://vsco.co/lilyjio/" target="_blank">here is proof</a>!
+              </p>
+
+              <p>
+               Thank you so much for stopping by my website!
+              </p>
+
+              <p>
+              </p>
+
+              
+              <div onclick="window.open('mailto:me@pritahasj.im?Subject=Hello%20there%21','mywindow');"
+                   class="contact-btn about-me-btn">
+                  Say Hello
+              </div>
+
+              <div onclick="window.open('https://www.linkedin.com/in/pritahasjim','mywindow');"
+                   class="contact-btn linkedin-btn">
+                LinkedIn
+              </div>
+
+              <div onclick="window.open('http://www.google.com','mywindow');"
+                   class="contact-btn resume-btn">
+                Resume
+              </div>
+
+            </div>
+
+            <div id="title-about-me" style="width:100%;top: 6%;">
+              <h2 id="about-me-title" data-fittext-min="20" data-fittext-max="80">About Me</h2>
+            </div>
+
+          </div> -->
+
+
+
+          <!-- ============================================================================== -->
+          <!-- ================================== MY WORK =================================== -->
+          <!-- ============================================================================== -->
+          <!-- <div class="layer-my-work" style="
+            position: fixed;
+            width: 90vw;
+            height: 100%;
+            left: 12vw;
+            top: 0vh;
+            /*opacity: 0.50;
+            background-color: white;*/
+          ">
+            <div class="box-my-work" style="
+              position: absolute;
+              left: 27vw;
+              top: 20vh;
+              width: 50vw;
+              height: 75vh;
+              opacity: 1;
+
+              border-top-width: 20px;
+              border-top-style: solid;
+              border-top-color: rgba(22,47,95,0.25); 
+
+              border-bottom-width: 20px;
+              border-bottom-style: solid;
+              border-bottom-color: rgba(255,255,255,0.5);
+
+              background-image: linear-gradient(rgba(22,47,95,0.25) 0%, rgba(255,255,255,0.5) 100%), linear-gradient(rgba(22,47,95,0.25) 0%, rgba(255,255,255,0.5) 100%);
+              background-color: transparent;
+              background-size: 20px 100%;
+              background-position: 0px 0px, 100% 0px;
+              background-repeat: no-repeat;
+
+              box-sizing: border-box;
+            ">
+            </div>
+
+            <div class="content-my-work" style="
+              position: absolute;
+              left: 17.5vw;
+              top: 21vh;
+              width: 70vw;
+              height: 65vh;
+              text-align: center;
+              font-weight: 100;
+            ">
+              <p>
+                view all | ui+ux design | game design | dev art
+              </p>
+
+              <span class="item-my-work item-row1">
+                Work 1 Work 1 Work 1 Work 1
+              </span>
+
+              <span class="item-my-work item-row1">
+                Work 1 Work 1 Work 1 Work 1
+              </span>
+
+              <span class="item-my-work item-row1">
+                Work 1 Work 1 Work 1 Work 1
+              </span>
+
+              <span class="item-my-work item-row2">
+                Work 1 Work 1 Work 1 Work 1
+              </span>
+
+              <span class="item-my-work item-row2">
+                Work 1 Work 1 Work 1 Work 1
+              </span>
+
+              <span class="item-my-work item-row2">
+                Work 1 Work 1 Work 1 Work 1
+              </span>
+
+              <span class="item-my-work item-row3">
+                Work 1 Work 1 Work 1 Work 1
+              </span>
+
+              <span class="item-my-work item-row3">
+                Work 1 Work 1 Work 1 Work 1
+              </span>
+
+              <span class="item-my-work item-row3">
+                Work 1 Work 1 Work 1 Work 1
+              </span>
+
+              <p>
+                < next | prev >
+              </p>
+
+            </div>
+
+          </div> -->
+
+
+
+          <!-- ============================================================================== -->
+          <!-- ============================== FINISHING TOUCHES ============================= -->
+          <!-- ============================================================================== -->
+          <!-- <div id="div-ground-2">
+            <img id="img-grass1" src="img/svg/grass.svg">
+            <img id="img-grass2" src="img/svg/grass.svg">
+            <img id="img-grass3" src="img/svg/grass.svg">
+          </div> -->
+
+
+
+          <!-- ============================================================================== -->
+          <!-- ================================== NAVIGATION ================================ -->
+          <!-- ============================================================================== -->
+          <!-- <div class="layer-navigation" style="
+            position: fixed;
+            /*background-color: lightpink;
+            opacity: .70;*/
+            width: 99vh;
+            height: 6vw;
+            right: -24vw;
+            top: 45vh;
+            overflow: hidden;
+            transform: rotate(-90deg);
+
+            font-family: 'Poppins', sans-serif;
+            font-size: 1em;
+            letter-spacing: 0.03em;
+            margin: 0;
+            text-transform: uppercase;
+            font-weight: 500;
+          ">
+            <div id="nav-about-me" style="
+              position: absolute;
+              top: 2vw;
+              left: 8vh;
+              ">
+              <a href="#bot" style="
+                color: #9d6cd4;
+                text-decoration: none;
+              ">About Me</a>
+            </div>
+
+            <div id="nav-home" style="
+              position: absolute;
+              top: 2vw;
+              left: 48vh;
+              ">
+              <a href="#mid" style="
+                color: #9d6cd4;
+                text-decoration: none;
+              ">Home</a>
+            </div>
+
+            <div id="nav-my-work" style="
+              position: absolute;
+              top: 2vw;
+              left: 82vh;
+              ">
+              <a href="#top" style="
+                color: #9d6cd4;
+                text-decoration: none;
+              ">My Work</a>
+            </div>
+
+          </div> -->
+
+        </section>
+
+
+
+        <!-- ================================= PANEL MID ================================= -->
+        <!-- <a name="mid"> -->
+        <section class="panel panel-2" id="trigger2" style="background-color:lightpink;">
+          <!-- ================================= TRIGGERS ================================= -->
+          <div id="trigger2-quarter" class="view-trigger"></div>
+          <div id="trigger2-half" class="view-trigger"></div>
+        </section>
+
+
+
+        <!-- ================================= PANEL BOT ================================= -->
+        <a name="bot">
+        <section class="panel panel-3" id="trigger3" style="background-color:lightblue;">
+          <!-- ================================= TRIGGERS ================================= -->
+          <div id="trigger3-half" class="view-trigger"></div>
+        </section>
+
+
+
+
+
+
+      </div><!-- end .load-success -->
+    </div><!-- end .web-container -->
+
+
+
+
+  </div><!-- end .scene-container -->
+
+
+  <!-- ================================= MORE TRIGGERS ================================= -->
+  <div id="triggerTop" style="
+    position: absolute;
+    height: 5px;
+    width: 100%;
+    top: 0;
+    background-color: yellow;
+    opacity: 0.5;
+  "></div>
+
+  <div id="triggerTop-half" style="
+    position: absolute;
+    height: 5px;
+    width: 100%;
+    top: 50vh;
+    background-color: red;
+    opacity: 0.5;
+  "></div>
+
+  <div id="triggerMid" style="
+    position: absolute;
+    height: 5px;
+    width: 100%;
+    top: 100vh;
+    background-color: orange;
+    opacity: 0.5;
+  ">
+    <a name="mid">
   </div>
 
+  <div id="triggerMid-half" style="
+    position: absolute;
+    height: 5px;
+    width: 100%;
+    top: 150vh;
+    background-color: green;
+    opacity: 0.5;
+  "></div>
+
+  <div id="triggerBot" style="
+    position: absolute;
+    height: 5px;
+    width: 100%;
+    top: 200vh;
+    background-color: cyan;
+    opacity: 0.5;
+  "></div>
+
+  <div id="triggerBot-half" style="
+    position: absolute;
+    height: 5px;
+    width: 100%;
+    top: 250vh;
+    background-color: purple;
+    opacity: 0.5;
+  "></div>
+
+  <div id="triggerVeryBot" style="
+    position: absolute;
+    height: 5px;
+    width: 100%;
+    top: 300vh;
+    background-color: blue;
+    opacity: 0.5;
+  "></div>
 
-  <!-- ================================= MAIN SCENE CONTAINER ================================= -->
-  <div class="web-container" ng-show="!isLoading" ng-cloak>
-    <div class="load-error" ng-show="!isSuccessful" ng-cloak style="height:100%">
-      OOPS ONE OF YOUR IMAGES FAILED TO LOAD
-    </div>
 
-    <div class="load-success" ng-show="isSuccessful" style="height:100%">
-      <!-- ================================= PANEL TOP ================================= -->
-      <a name="top">
-      <section class="panel panel-1" id="trigger1">
-        <!-- ================================= TRIGGERS ================================= -->
-        <div id="trigger1-half"></div>
-        <div id="trigger1-half-quarter"></div>
 
-
-        <!-- ================================= BLUE SKY ================================= -->
-        <div class="layer-mask-blue-sky"></div>
-
-        <div class="layer-clouds">
-          <div class="cloud cloud-1"></div>
-          <!-- Time for multiple clouds to dance around -->
-          <div class="cloud-shape cloud2"></div>
-
-          <div id="title-my-work" style="
-            position: relative;
-            top: -25vh;
-            left: 19vw;
-          ">
-            <h2>My Work</h2>
-          </div>
-
-          <div class="cloud-shape cloud3"></div>
-          <div class="cloud-shape cloud4"></div>
-          <div class="cloud-shape cloud5"></div>
-        </div>
-
-
-        <!-- ============================================================================== -->
-        <!-- =================================== SCENERY ================================== -->
-        <!-- ============================================================================== -->
-
-        <!-- ================================= SUN ================================= -->
-        <div class="layer-mask-sun">
-          <div id="div-sun">
-            <img id="img-sun" src="img/svg/sun.svg">
-          </div>
-        </div>
-
-
-        <!-- ================================= DESERT GROUND ================================= -->
-        <div class="layer-mask-desert-ground">
-          <div id="div-ground-1">
-            <!-- ================================= MOUNTAINS ================================= -->
-            <img id="img-mountains" src="img/svg/mountains.svg">
-            <img id="img-sand" src="img/svg/sand.svg">
-
-
-            <!-- ================================= CACTI ================================= -->
-            <img id="img-cacti" src="img/svg/cacti.svg">
-
-
-            <!-- ================================= FLOWERS LIGHT ================================= -->
-            <img id="img-flower-light1" src="img/svg/flower-light.svg">
-            <img id="img-flower-light2" src="img/svg/flower-light.svg">
-            <img id="img-flower-light3" src="img/svg/flower-light.svg">
-
-
-            <!-- ================================= FLOWERS DARK ================================= -->
-            <img id="img-flower-dark1" src="img/svg/flower-dark.svg">
-            <img id="img-flower-dark2" src="img/svg/flower-dark.svg">
-            <img id="img-flower-dark3" src="img/svg/flower-dark.svg">
-          </div>
-
-        </div>
-
-
-
-        <!-- ============================================================================== -->
-        <!-- =================================== CONTENT ================================== -->
-        <!-- ============================================================================== -->
-        <div class="layer-mask-cliff-me">
-          <div id="div-cliff-me">
-            <!-- ================================= CLIFF ================================= -->
-            <img id="img-cliff" src="img/svg/cliff.svg">
-
-
-            <!-- ================================= ME ================================= -->
-            <img id="img-me">
-          </div>
-        </div>
-
-
-
-        <!-- ============================================================================== -->
-        <!-- ================================== HOME PAGE ================================= -->
-        <!-- ============================================================================== -->
-        <div class="layer-home">
-          <div class="content-name">
-            <h1>Prita Priscilla Hasjim</h1>
-          </div>
-
-          <div class="content-tagline">
-            <h3>I make stuff with code!</h3>
-          </div>
-
-        </div>
-
-
-
-        <!-- ============================================================================== -->
-        <!-- =================================== ABOUT ME ================================= -->
-        <!-- ============================================================================== -->
-        <div class="layer-about-me">
-           
-          <div id="content-about-me">
-            <p>
-              Hi, I'm Prita!
-            </p>
-
-            <p>
-              I am a developer+designer living the life in San Diego, California. I enjoy well tailored apps and thoughtful usability. My hobbies include rock climbing, listening to albums, watching cartoons, eating, and krumping. I love my dog, Lily, and <a href="http://vsco.co/lilyjio/" target="_blank">here is proof</a>!
-            </p>
-
-            <p>
-             Thank you so much for stopping by my website!
-            </p>
-
-            <p>
-            </p>
-
-            
-            <div onclick="window.open('http://www.google.com','mywindow');"
-                 class="contact-btn about-me-btn">
-                Say Hello
-            </div>
-
-            <div onclick="window.open('https://www.linkedin.com/in/pritahasjim','mywindow');"
-                 class="contact-btn linkedin-btn">
-              LinkedIn
-            </div>
-
-            <div onclick="window.open('http://www.google.com','mywindow');"
-                 class="contact-btn resume-btn">
-              Resume
-            </div>
-
-          </div>
-
-          <div id="title-about-me">
-            <h2>About Me</h2>
-          </div>
-
-        </div>
-
-
-
-        <!-- ============================================================================== -->
-        <!-- ================================== MY WORK =================================== -->
-        <!-- ============================================================================== -->
-        <div class="layer-my-work" style="
-          position: fixed;
-          width: 90vw;
-          height: 100%;
-          left: 12vw;
-          top: 0vh;
-          /*opacity: 0.50;
-          background-color: white;*/
-        ">
-          <div class="box-my-work" style="
-            position: absolute;
-            left: 27vw;
-            top: 20vh;
-            width: 50vw;
-            height: 75vh;
-            opacity: 1;
-
-            border-top-width: 20px;
-            border-top-style: solid;
-            border-top-color: rgba(22,47,95,0.25); 
-
-            border-bottom-width: 20px;
-            border-bottom-style: solid;
-            border-bottom-color: rgba(255,255,255,0.5);
-
-            background-image: linear-gradient(rgba(22,47,95,0.25) 0%, rgba(255,255,255,0.5) 100%), linear-gradient(rgba(22,47,95,0.25) 0%, rgba(255,255,255,0.5) 100%);
-            background-color: transparent;
-            background-size: 20px 100%;
-            background-position: 0px 0px, 100% 0px;
-            background-repeat: no-repeat;
-
-            box-sizing: border-box;
-          ">
-          </div>
-
-          <div class="content-my-work" style="
-            position: absolute;
-            left: 17.5vw;
-            top: 21vh;
-            width: 70vw;
-            height: 65vh;
-            text-align: center;
-            font-weight: 100;
-          ">
-            <p>
-              view all | ui+ux design | game design | dev art
-            </p>
-
-            <span class="item-my-work item-row1">
-              Work 1 Work 1 Work 1 Work 1
-            </span>
-
-            <span class="item-my-work item-row1">
-              Work 1 Work 1 Work 1 Work 1
-            </span>
-
-            <span class="item-my-work item-row1">
-              Work 1 Work 1 Work 1 Work 1
-            </span>
-
-            <span class="item-my-work item-row2">
-              Work 1 Work 1 Work 1 Work 1
-            </span>
-
-            <span class="item-my-work item-row2">
-              Work 1 Work 1 Work 1 Work 1
-            </span>
-
-            <span class="item-my-work item-row2">
-              Work 1 Work 1 Work 1 Work 1
-            </span>
-
-            <span class="item-my-work item-row3">
-              Work 1 Work 1 Work 1 Work 1
-            </span>
-
-            <span class="item-my-work item-row3">
-              Work 1 Work 1 Work 1 Work 1
-            </span>
-
-            <span class="item-my-work item-row3">
-              Work 1 Work 1 Work 1 Work 1
-            </span>
-
-            <p>
-              < next | prev >
-            </p>
-
-          </div>
-
-        </div>
-
-
-
-        <!-- ============================================================================== -->
-        <!-- ============================== FINISHING TOUCHES ============================= -->
-        <!-- ============================================================================== -->
-        <div id="div-ground-2">
-          <img id="img-grass1" src="img/svg/grass.svg">
-          <img id="img-grass2" src="img/svg/grass.svg">
-          <img id="img-grass3" src="img/svg/grass.svg">
-        </div>
-
-
-
-        <!-- ============================================================================== -->
-        <!-- ================================== NAVIGATION ================================ -->
-        <!-- ============================================================================== -->
-        <div class="layer-navigation" style="
-          position: fixed;
-          /*background-color: lightpink;
-          opacity: .70;*/
-          width: 99vh;
-          height: 6vw;
-          right: -24vw;
-          top: 45vh;
-          overflow: hidden;
-          transform: rotate(-90deg);
-
-          font-family: 'Poppins', sans-serif;
-          font-size: 1em;
-          letter-spacing: 0.03em;
-          margin: 0;
-          text-transform: uppercase;
-          font-weight: 500;
-        ">
-          <div id="nav-about-me" style="
-            position: absolute;
-            top: 2vw;
-            left: 8vh;
-            ">
-            <a href="#bot" style="
-              color: #9d6cd4;
-              text-decoration: none;
-            ">About Me</a>
-          </div>
-
-          <div id="nav-home" style="
-            position: absolute;
-            top: 2vw;
-            left: 48vh;
-            ">
-            <a href="#mid" style="
-              color: #9d6cd4;
-              text-decoration: none;
-            ">Home</a>
-          </div>
-
-          <div id="nav-my-work" style="
-            position: absolute;
-            top: 2vw;
-            left: 82vh;
-            ">
-            <a href="#top" style="
-              color: #9d6cd4;
-              text-decoration: none;
-            ">My Work</a>
-          </div>
-
-        </div>
-
-      </section>
-
-
-
-      <!-- ================================= PANEL MID ================================= -->
-      <a name="mid">
-      <section class="panel panel-2" id="trigger2">
-        <!-- ================================= TRIGGERS ================================= -->
-        <div id="trigger2-quarter"></div>
-        <div id="trigger2-half"></div>
-      </section>
-
-
-
-      <!-- ================================= PANEL BOT ================================= -->
-      <a name="bot">
-      <section class="panel panel-3" id="trigger3">
-        <!-- ================================= TRIGGERS ================================= -->
-        <div id="trigger3-half"></div>
-      </section>
-
-    </div><!-- end .load-success -->
-  </div><!-- end .web-container -->
 
 
 </body>

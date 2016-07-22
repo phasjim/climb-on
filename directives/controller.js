@@ -1021,7 +1021,7 @@
 				duration: "20%"
 		    })
 		 	.setTween(tweenMeClimbPos0)
-		 	.addIndicators({name: "me climbing down pos0_________", colorStart: "magenta", colorEnd: "magenta"})
+		 	//.addIndicators({name: "me climbing down pos0_________", colorStart: "magenta", colorEnd: "magenta"})
 		 	.addTo(controller);
 
 
@@ -1046,7 +1046,7 @@
 				duration: "90%"
 			})
 			.setTween(tweenMeClimb)
-			.addIndicators({name: "me climbing down", colorStart: "orange", colorEnd: "orange"})
+			//.addIndicators({name: "me climbing down", colorStart: "orange", colorEnd: "orange"})
 			.addTo(controller);
 
 
@@ -1073,7 +1073,7 @@
 				duration: "10%"
 		    })
 		 	.setTween(tweenMeClimbPos1)
-		 	.addIndicators({name: "me climbing down pos1_________", colorStart: "magenta", colorEnd: "magenta"})
+		 	//.addIndicators({name: "me climbing down pos1_________", colorStart: "magenta", colorEnd: "magenta"})
 		 	.addTo(controller);
 
 
@@ -1097,7 +1097,7 @@
 				duration: "10%"
 		    })
 		 	.setTween(tweenMeClimbPos2)
-		 	.addIndicators({name: "me climbing down pos2_________", colorStart: "magenta", colorEnd: "magenta"})
+		 	//.addIndicators({name: "me climbing down pos2_________", colorStart: "magenta", colorEnd: "magenta"})
 		 	.addTo(controller);
 
 
@@ -1121,7 +1121,7 @@
 				duration: "10%"
 		    })
 		 	.setTween(tweenMeClimbPos3)
-		 	.addIndicators({name: "me climbing down pos3_________", colorStart: "magenta", colorEnd: "magenta"})
+		 	//.addIndicators({name: "me climbing down pos3_________", colorStart: "magenta", colorEnd: "magenta"})
 		 	.addTo(controller);
 
 
@@ -1145,7 +1145,7 @@
 				duration: "10%"
 		    })
 		 	.setTween(tweenMeClimbPos4)
-		 	.addIndicators({name: "me climbing down pos4_________", colorStart: "magenta", colorEnd: "magenta"})
+		 	//.addIndicators({name: "me climbing down pos4_________", colorStart: "magenta", colorEnd: "magenta"})
 		 	.addTo(controller);
 
 
@@ -1169,7 +1169,7 @@
 				duration: "10%"
 		    })
 		 	.setTween(tweenMeClimbPos5)
-		 	.addIndicators({name: "me climbing down pos5_________", colorStart: "magenta", colorEnd: "magenta"})
+		 	//.addIndicators({name: "me climbing down pos5_________", colorStart: "magenta", colorEnd: "magenta"})
 		 	.addTo(controller);
 
 
@@ -1193,7 +1193,7 @@
 				duration: "10%"
 		    })
 		 	.setTween(tweenMeClimbPos6)
-		 	.addIndicators({name: "me climbing down pos6_________", colorStart: "magenta", colorEnd: "magenta"})
+		 	//.addIndicators({name: "me climbing down pos6_________", colorStart: "magenta", colorEnd: "magenta"})
 		 	.addTo(controller);
 
 
@@ -1226,7 +1226,7 @@
 				duration: "20%"
 		    })
 		 	.setTween(tweenMeWelcome)
-		 	.addIndicators({name: "me welcome_________________________", colorStart: "brown", colorEnd: "brown"})
+		 	//.addIndicators({name: "me welcome_________________________", colorStart: "brown", colorEnd: "brown"})
 		 	.addTo(controller);
 
 
@@ -1254,7 +1254,7 @@
 				duration: "12%"
 			})
 			.setTween(tweenMeRepel1)
-			.addIndicators({name: "me repel pos1___________________________________", colorStart: "navy", colorEnd: "navy"})
+			//.addIndicators({name: "me repel pos1___________________________________", colorStart: "navy", colorEnd: "navy"})
 			.addTo(controller);
 
 
@@ -1278,7 +1278,7 @@
 				duration: sceneMeRepel1.duration(),
 		    })
 		 	.setTween(tweenMeRepelPos1)
-		 	.addIndicators({name: "me repel pos1___________________________________", colorStart: "navy", colorEnd: "navy"})
+		 	//.addIndicators({name: "me repel pos1___________________________________", colorStart: "navy", colorEnd: "navy"})
 		 	.addTo(controller);
 
 
@@ -1306,7 +1306,7 @@
 				duration: "13%",
 			})
 			.setTween(tweenMeRepel2)
-			.addIndicators({name: "me repel pos2___________________________________", colorStart: "navy", colorEnd: "navy"})
+			//.addIndicators({name: "me repel pos2___________________________________", colorStart: "navy", colorEnd: "navy"})
 			.addTo(controller);
 
 
@@ -1330,7 +1330,7 @@
 				duration: sceneMeRepel2.duration(),
 		    })
 		 	.setTween(tweenMeRepelPos2)
-		 	.addIndicators({name: "me repel pos2___________________________________", colorStart: "navy", colorEnd: "navy"})
+		 	//.addIndicators({name: "me repel pos2___________________________________", colorStart: "navy", colorEnd: "navy"})
 		 	.addTo(controller);
 
 
@@ -1358,7 +1358,7 @@
 				duration: "13%",
 			})
 			.setTween(tweenMeRepel3)
-			.addIndicators({name: "me repel pos3___________________________________", colorStart: "navy", colorEnd: "navy"})
+			//.addIndicators({name: "me repel pos3___________________________________", colorStart: "navy", colorEnd: "navy"})
 			.addTo(controller);
 
 
@@ -1382,7 +1382,7 @@
 				duration: sceneMeRepel3.duration(),
 		    })
 		 	.setTween(tweenMeRepelPos3)
-		 	.addIndicators({name: "me repel pos3___________________________________", colorStart: "navy", colorEnd: "navy"})
+		 	//.addIndicators({name: "me repel pos3___________________________________", colorStart: "navy", colorEnd: "navy"})
 		 	.addTo(controller);
 
 
@@ -1410,7 +1410,7 @@
 				duration: "13.5%"
 			})
 			.setTween(tweenMeRepel4)
-			.addIndicators({name: "me repel 4___________________________________", colorStart: "navy", colorEnd: "navy"})
+			//.addIndicators({name: "me repel 4___________________________________", colorStart: "navy", colorEnd: "navy"})
 			.addTo(controller);
 
 
@@ -1434,7 +1434,7 @@
 				duration: sceneMeRepel4.duration(),
 		    })
 		 	.setTween(tweenMeRepelPos4)
-		 	.addIndicators({name: "me repel pos4___________________________________", colorStart: "navy", colorEnd: "navy"})
+		 	//.addIndicators({name: "me repel pos4___________________________________", colorStart: "navy", colorEnd: "navy"})
 		 	.addTo(controller);
 
 
@@ -1461,7 +1461,7 @@
 				duration: "13.5%",
 			})
 			.setTween(tweenMeRepel5)
-			.addIndicators({name: "me repel 5___________________________________", colorStart: "navy", colorEnd: "navy"})
+			//.addIndicators({name: "me repel 5___________________________________", colorStart: "navy", colorEnd: "navy"})
 			.addTo(controller);
 
 
@@ -1485,7 +1485,7 @@
 				duration: sceneMeRepel5.duration(),
 		    })
 		 	.setTween(tweenMeRepelPos5)
-		 	.addIndicators({name: "me repel pos5___________________________________", colorStart: "navy", colorEnd: "navy"})
+		 	//.addIndicators({name: "me repel pos5___________________________________", colorStart: "navy", colorEnd: "navy"})
 		 	.addTo(controller);
 
 
