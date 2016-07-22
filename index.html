@@ -45,384 +45,445 @@
     /*background-color: lavenderblush;*/
     width:1420px;
     height:720px;">
-    <!-- ================================= LOADING CONTAINER ================================= -->
-    <div class="load-container" ng-show="isLoading" ng-cloak>
-      <div class="load-spinner"></div>
-    </div><!-- end .load-container -->
 
-    <!-- ================================= MAIN SCENE CONTAINER ================================= -->
-    <div class="web-container" ng-show="!isLoading" ng-cloak>
-      <div class="load-error" ng-show="!isSuccessful" ng-cloak style="height:100%">
-        OOPS ONE OF YOUR IMAGES FAILED TO LOAD
+    <!-- ================================= MOBILE ONLY ================================= -->
+    <div class="mobile-container" ng-show="isMobile" ng-cloak>
+      <div style="
+        position: fixed;
+        margin-left: 25%;
+        width: 50%;
+        text-align: center;
+        color: #9d6cd4;">
+          Sorry, this website does not work on phones yet! Please view on a laptop or computer :)
+      </div>
+    </div>
+
+    <!-- ================================= NOT MOBILE ================================= -->
+    <div ng-show="!isMobile">
+      <!-- ================================= LOADING CONTAINER ================================= -->
+      <div class="load-container ng-fade-out" ng-show="isLoading" ng-cloak>
+        <div class="load-spinner"></div>
+      </div><!-- end .load-container -->
+
+      <!-- ================================= LOADING UNSUCCESSFUL ================================= -->
+      <div ng-show="!isLoading">
+        <div class="unsuccessful-container ng-fade-out" ng-show="!isSuccessful" ng-cloak>
+          <div style="
+            position: fixed;
+            margin-left: 25%;
+            width: 50%;
+            text-align: center;
+            color: #9d6cd4;">
+              Uh oh, something went wrong :( <br>
+              Please refresh and try again
+            </div>
+
+            <div style="
+              position: fixed;
+              margin-left: 25%;
+              bottom: 0;
+              padding-bottom: 30px;
+              width: 50%;
+              text-align: center;
+              color: #666666;
+            ">
+              Feel free to submit an issue on the <a href="https://github.com/phasjim/wubalubadubdub" target="_blank">GitHub Repo</a>!
+            </div>
+        </div><!-- end .load-container -->
       </div>
 
-      <div class="load-success" ng-show="isSuccessful" style="height:100%">
-        <!-- ================================= PANEL TOP ================================= -->
-        <a name="top">
-        <!-- <section class="panel panel-1" id="trigger1" style="background-color:lightyellow;"> -->
-        <section class="panel panel-1" id="trigger1">
-          <!-- ================================= TRIGGERS ================================= -->
-          <div id="trigger1-half"></div>
-          <div id="trigger1-half-quarter"></div>
+      <!-- ================================= MAIN SCENE CONTAINER ================================= -->
+      <div class="web-container" ng-show="!isLoading" ng-cloak>
+        <div class="load-success" ng-show="isSuccessful" style="height:100%">
+          <!-- ================================= PANEL TOP ================================= -->
+          <a name="top">
+          <!-- <section class="panel panel-1" id="trigger1" style="background-color:lightyellow;"> -->
+          <section class="panel panel-1" id="trigger1">
+            <!-- ================================= TRIGGERS ================================= -->
+            <div id="trigger1-half"></div>
+            <div id="trigger1-half-quarter"></div>
 
 
-          <!-- ================================= BLUE SKY ================================= -->
-          <div id="layer-sky-div" class="layer-mask-blue-sky"></div>
+            <!-- ================================= BLUE SKY ================================= -->
+            <div id="layer-sky-div" class="layer-mask-blue-sky"></div>
 
-          <div id="layer-clouds-div" class="layer-mask-clouds">
-            <!-- HIDE: Clouds when window is mobile? -->
-            <div class="cloud-shape cloud1"></div>
-            <div class="cloud-shape cloud2"></div>
+            <div id="layer-clouds-div" class="layer-mask-clouds">
+              <!-- HIDE: Clouds when window is mobile? -->
+              <div class="cloud-shape cloud1"></div>
+              <div class="cloud-shape cloud2"></div>
 
-            <!-- TODO: Resize Text -->
-            <!-- <div id="title-my-work" style="
-              position: relative;
-              top: -25vh;
-              left: 19vw;
-            ">
-              <h2>My Work</h2>
+              <!-- TODO: Resize Text -->
+              <!-- <div id="title-my-work" style="
+                position: relative;
+                top: -25vh;
+                left: 19vw;
+              ">
+                <h2>My Work</h2>
+              </div> -->
+
+              <div class="cloud-shape cloud3"></div>
+              <div class="cloud-shape cloud4"></div>
+              <div class="cloud-shape cloud5"></div>
+            </div>
+
+
+            <!-- ============================================================================== -->
+            <!-- =================================== SCENERY ================================== -->
+            <!-- ============================================================================== -->
+
+            <!-- ================================= SUN ================================= -->
+            <div id="layer-sun-div" class="layer-mask-sun">
+              <div id="div-sun">
+                <!-- HIDE: Clouds when window is mobile? -->
+                <img id="img-sun" src="img/svg/sun.svg">
+              </div>
+            </div>
+
+
+            <!-- ================================= DESERT GROUND ================================= -->
+            <div id="layer-mountains-sand-div" class="layer-mask-desert-ground">
+              <div id="div-ground-1">
+                <!-- ================================= MOUNTAINS + SAND ================================= -->
+                <img id="img-mountains-sand" src="img/svg/mountains-sand.svg">
+
+                <!-- ================================= CACTI ================================= -->
+                <img id="img-cacti" src="img/svg/cacti.svg">
+
+                <!-- ================================= FLOWERS LIGHT ================================= -->
+                <img id="img-flower-light1" src="img/svg/flower-light.svg">
+                <img id="img-flower-light2" src="img/svg/flower-light.svg">
+                <img id="img-flower-light3" src="img/svg/flower-light.svg">
+                <img id="img-flower-dark1" src="img/svg/flower-dark.svg">
+                <img id="img-flower-dark2" src="img/svg/flower-dark.svg">
+                <img id="img-flower-dark3" src="img/svg/flower-dark.svg">
+              </div>
+
+            </div>
+
+
+
+            <!-- ============================================================================== -->
+            <!-- =================================== CONTENT ================================== -->
+            <!-- ============================================================================== -->
+            <div id="layer-cliff-me-div" class="layer-mask-cliff-me">
+              <div id="div-cliff-me">
+                <!-- ================================= CLIFF ================================= -->
+                <img id="img-cliff" src="img/svg/cliff.svg">
+
+                <!-- ================================= ME ================================= -->
+                <img id="img-me">
+              </div>
+            </div>
+
+
+
+            <!-- ============================================================================== -->
+            <!-- ================================== HOME PAGE ================================= -->
+            <!-- ============================================================================== -->
+            <div id="layer-home-div" class="layer-home">
+              <div class="content-name" style="width:100%;">
+                <h1 id="home-title" data-fittext="0.7" data-fittext-min="20" data-fittext-max="110">Prita Priscilla Hasjim</h1>
+              </div>
+
+              <div class="content-tagline" style="width:100%;">
+                <h3 id="home-subtitle" data-fittext="0.7" data-fittext-min="15" data-fittext-max="30">I make stuff with code!</h3>
+              </div>
+
+            </div>
+
+
+
+            <!-- ============================================================================== -->
+            <!-- =================================== ABOUT ME ================================= -->
+            <!-- ============================================================================== -->
+            <!-- <div class="layer-about-me">
+               
+              <div id="content-about-me">
+                <p>
+                  Hi, I'm Prita!
+                </p>
+
+                <p>
+                  I am a developer+designer living the life in San Diego, California. I graduated from UC San Diego in 2014 with a Bachelor's in Computer Science and Interdisciplinary Computing in the Arts (ICAM). I currently work as a front-end developer at Illumina where I get to design and build software for our Next-Gen Sequencing platforms.
+                </p>
+
+                <p>
+                  I enjoy well tailored apps and thoughtful usability. My hobbies include rock climbing, dancing, listening to albums, and watching cartoons. I am obsessed with my dog, Lily, and <a href="http://vsco.co/lilyjio/" target="_blank">here is proof</a>!
+                </p>
+
+                <p>
+                 Thank you so much for stopping by my website!
+                </p>
+
+                <p>
+                </p>
+
+                
+                <div onclick="window.open('mailto:me@pritahasj.im?Subject=Hello%20there%21','mywindow');"
+                     class="contact-btn about-me-btn">
+                    Say Hello
+                </div>
+
+                <div onclick="window.open('https://www.linkedin.com/in/pritahasjim','mywindow');"
+                     class="contact-btn linkedin-btn">
+                  LinkedIn
+                </div>
+
+                <div onclick="window.open('http://www.google.com','mywindow');"
+                     class="contact-btn resume-btn">
+                  Resume
+                </div>
+
+              </div>
+
+              <div id="title-about-me" style="width:100%;top: 6%;">
+                <h2 id="about-me-title" data-fittext-min="20" data-fittext-max="80">About Me</h2>
+              </div>
+
             </div> -->
 
-            <div class="cloud-shape cloud3"></div>
-            <div class="cloud-shape cloud4"></div>
-            <div class="cloud-shape cloud5"></div>
-          </div>
 
 
-          <!-- ============================================================================== -->
-          <!-- =================================== SCENERY ================================== -->
-          <!-- ============================================================================== -->
-
-          <!-- ================================= SUN ================================= -->
-          <div id="layer-sun-div" class="layer-mask-sun">
-            <div id="div-sun">
-              <!-- HIDE: Clouds when window is mobile? -->
-              <img id="img-sun" src="img/svg/sun.svg">
-            </div>
-          </div>
-
-
-          <!-- ================================= DESERT GROUND ================================= -->
-          <div id="layer-mountains-sand-div" class="layer-mask-desert-ground">
-            <div id="div-ground-1">
-              <!-- ================================= MOUNTAINS + SAND ================================= -->
-              <img id="img-mountains-sand" src="img/svg/mountains-sand.svg">
-
-              <!-- ================================= CACTI ================================= -->
-              <img id="img-cacti" src="img/svg/cacti.svg">
-
-              <!-- ================================= FLOWERS LIGHT ================================= -->
-              <img id="img-flower-light1" src="img/svg/flower-light.svg">
-              <img id="img-flower-light2" src="img/svg/flower-light.svg">
-              <img id="img-flower-light3" src="img/svg/flower-light.svg">
-              <img id="img-flower-dark1" src="img/svg/flower-dark.svg">
-              <img id="img-flower-dark2" src="img/svg/flower-dark.svg">
-              <img id="img-flower-dark3" src="img/svg/flower-dark.svg">
-            </div>
-
-          </div>
-
-
-
-          <!-- ============================================================================== -->
-          <!-- =================================== CONTENT ================================== -->
-          <!-- ============================================================================== -->
-          <div id="layer-cliff-me-div" class="layer-mask-cliff-me">
-            <div id="div-cliff-me">
-              <!-- ================================= CLIFF ================================= -->
-              <img id="img-cliff" src="img/svg/cliff.svg">
-
-              <!-- ================================= ME ================================= -->
-              <img id="img-me">
-            </div>
-          </div>
-
-
-
-          <!-- ============================================================================== -->
-          <!-- ================================== HOME PAGE ================================= -->
-          <!-- ============================================================================== -->
-          <div id="layer-home-div" class="layer-home">
-            <div class="content-name" style="width:100%;">
-              <h1 id="home-title" data-fittext="0.7" data-fittext-min="20" data-fittext-max="110">Prita Priscilla Hasjim</h1>
-            </div>
-
-            <div class="content-tagline" style="width:100%;">
-              <h3 id="home-subtitle" data-fittext="0.7" data-fittext-min="15" data-fittext-max="30">I make stuff with code!</h3>
-            </div>
-
-          </div>
-
-
-
-          <!-- ============================================================================== -->
-          <!-- =================================== ABOUT ME ================================= -->
-          <!-- ============================================================================== -->
-          <!-- <div class="layer-about-me">
-             
-            <div id="content-about-me">
-              <p>
-                Hi, I'm Prita!
-              </p>
-
-              <p>
-                I am a developer+designer living the life in San Diego, California. I graduated from UC San Diego in 2014 with a Bachelor's in Computer Science and Interdisciplinary Computing in the Arts (ICAM). I currently work as a front-end developer at Illumina where I get to design and build software for our Next-Gen Sequencing platforms.
-              </p>
-
-              <p>
-                I enjoy well tailored apps and thoughtful usability. My hobbies include rock climbing, dancing, listening to albums, and watching cartoons. I am obsessed with my dog, Lily, and <a href="http://vsco.co/lilyjio/" target="_blank">here is proof</a>!
-              </p>
-
-              <p>
-               Thank you so much for stopping by my website!
-              </p>
-
-              <p>
-              </p>
-
-              
-              <div onclick="window.open('mailto:me@pritahasj.im?Subject=Hello%20there%21','mywindow');"
-                   class="contact-btn about-me-btn">
-                  Say Hello
-              </div>
-
-              <div onclick="window.open('https://www.linkedin.com/in/pritahasjim','mywindow');"
-                   class="contact-btn linkedin-btn">
-                LinkedIn
-              </div>
-
-              <div onclick="window.open('http://www.google.com','mywindow');"
-                   class="contact-btn resume-btn">
-                Resume
-              </div>
-
-            </div>
-
-            <div id="title-about-me" style="width:100%;top: 6%;">
-              <h2 id="about-me-title" data-fittext-min="20" data-fittext-max="80">About Me</h2>
-            </div>
-
-          </div> -->
-
-
-
-          <!-- ============================================================================== -->
-          <!-- ================================== MY WORK =================================== -->
-          <!-- ============================================================================== -->
-          <!-- <div class="layer-my-work" style="
-            position: fixed;
-            width: 90vw;
-            height: 100%;
-            left: 12vw;
-            top: 0vh;
-            /*opacity: 0.50;
-            background-color: white;*/
-          ">
-            <div class="box-my-work" style="
-              position: absolute;
-              left: 27vw;
-              top: 20vh;
-              width: 50vw;
-              height: 75vh;
-              opacity: 1;
-
-              border-top-width: 20px;
-              border-top-style: solid;
-              border-top-color: rgba(22,47,95,0.25); 
-
-              border-bottom-width: 20px;
-              border-bottom-style: solid;
-              border-bottom-color: rgba(255,255,255,0.5);
-
-              background-image: linear-gradient(rgba(22,47,95,0.25) 0%, rgba(255,255,255,0.5) 100%), linear-gradient(rgba(22,47,95,0.25) 0%, rgba(255,255,255,0.5) 100%);
-              background-color: transparent;
-              background-size: 20px 100%;
-              background-position: 0px 0px, 100% 0px;
-              background-repeat: no-repeat;
-
-              box-sizing: border-box;
+            <!-- ============================================================================== -->
+            <!-- ================================== MY WORK =================================== -->
+            <!-- ============================================================================== -->
+            <!-- <div class="layer-my-work" style="
+              position: fixed;
+              width: 90vw;
+              height: 100%;
+              left: 12vw;
+              top: 0vh;
+              /*opacity: 0.50;
+              background-color: white;*/
             ">
-            </div>
+              <div class="box-my-work" style="
+                position: absolute;
+                left: 27vw;
+                top: 20vh;
+                width: 50vw;
+                height: 75vh;
+                opacity: 1;
 
-            <div class="content-my-work" style="
-              position: absolute;
-              left: 17.5vw;
-              top: 21vh;
-              width: 70vw;
-              height: 65vh;
-              text-align: center;
-              font-weight: 100;
+                border-top-width: 20px;
+                border-top-style: solid;
+                border-top-color: rgba(22,47,95,0.25); 
+
+                border-bottom-width: 20px;
+                border-bottom-style: solid;
+                border-bottom-color: rgba(255,255,255,0.5);
+
+                background-image: linear-gradient(rgba(22,47,95,0.25) 0%, rgba(255,255,255,0.5) 100%), linear-gradient(rgba(22,47,95,0.25) 0%, rgba(255,255,255,0.5) 100%);
+                background-color: transparent;
+                background-size: 20px 100%;
+                background-position: 0px 0px, 100% 0px;
+                background-repeat: no-repeat;
+
+                box-sizing: border-box;
+              ">
+              </div>
+
+              <div class="content-my-work" style="
+                position: absolute;
+                left: 17.5vw;
+                top: 21vh;
+                width: 70vw;
+                height: 65vh;
+                text-align: center;
+                font-weight: 100;
+              ">
+                <p>
+                  view all | ui+ux design | game design | dev art
+                </p>
+
+                <span class="item-my-work item-row1">
+                  Work 1 Work 1 Work 1 Work 1
+                </span>
+
+                <span class="item-my-work item-row1">
+                  Work 1 Work 1 Work 1 Work 1
+                </span>
+
+                <span class="item-my-work item-row1">
+                  Work 1 Work 1 Work 1 Work 1
+                </span>
+
+                <span class="item-my-work item-row2">
+                  Work 1 Work 1 Work 1 Work 1
+                </span>
+
+                <span class="item-my-work item-row2">
+                  Work 1 Work 1 Work 1 Work 1
+                </span>
+
+                <span class="item-my-work item-row2">
+                  Work 1 Work 1 Work 1 Work 1
+                </span>
+
+                <span class="item-my-work item-row3">
+                  Work 1 Work 1 Work 1 Work 1
+                </span>
+
+                <span class="item-my-work item-row3">
+                  Work 1 Work 1 Work 1 Work 1
+                </span>
+
+                <span class="item-my-work item-row3">
+                  Work 1 Work 1 Work 1 Work 1
+                </span>
+
+                <p>
+                  < next | prev >
+                </p>
+
+              </div>
+
+            </div> -->
+
+
+
+            <!-- ============================================================================== -->
+            <!-- ============================== FINISHING TOUCHES ============================= -->
+            <!-- ============================================================================== -->
+            <!-- <div id="div-ground-2">
+              <img id="img-grass1" src="img/svg/grass.svg">
+              <img id="img-grass2" src="img/svg/grass.svg">
+              <img id="img-grass3" src="img/svg/grass.svg">
+            </div> -->
+
+
+
+            <!-- ============================================================================== -->
+            <!-- ================================== NAVIGATION ================================ -->
+            <!-- ============================================================================== -->
+            <!-- <div class="layer-navigation" style="
+              position: fixed;
+              /*background-color: lightpink;
+              opacity: .70;*/
+              width: 99vh;
+              height: 6vw;
+              right: -24vw;
+              top: 45vh;
+              overflow: hidden;
+              transform: rotate(-90deg);
+
+              font-family: 'Poppins', sans-serif;
+              font-size: 1em;
+              letter-spacing: 0.03em;
+              margin: 0;
+              text-transform: uppercase;
+              font-weight: 500;
             ">
-              <p>
-                view all | ui+ux design | game design | dev art
-              </p>
+              <div id="nav-about-me" style="
+                position: absolute;
+                top: 2vw;
+                left: 8vh;
+                ">
+                <a href="#bot" style="
+                  color: #9d6cd4;
+                  text-decoration: none;
+                ">About Me</a>
+              </div>
 
-              <span class="item-my-work item-row1">
-                Work 1 Work 1 Work 1 Work 1
-              </span>
+              <div id="nav-home" style="
+                position: absolute;
+                top: 2vw;
+                left: 48vh;
+                ">
+                <a href="#mid" style="
+                  color: #9d6cd4;
+                  text-decoration: none;
+                ">Home</a>
+              </div>
 
-              <span class="item-my-work item-row1">
-                Work 1 Work 1 Work 1 Work 1
-              </span>
+              <div id="nav-my-work" style="
+                position: absolute;
+                top: 2vw;
+                left: 82vh;
+                ">
+                <a href="#top" style="
+                  color: #9d6cd4;
+                  text-decoration: none;
+                ">My Work</a>
+              </div>
 
-              <span class="item-my-work item-row1">
-                Work 1 Work 1 Work 1 Work 1
-              </span>
+            </div> -->
 
-              <span class="item-my-work item-row2">
-                Work 1 Work 1 Work 1 Work 1
-              </span>
-
-              <span class="item-my-work item-row2">
-                Work 1 Work 1 Work 1 Work 1
-              </span>
-
-              <span class="item-my-work item-row2">
-                Work 1 Work 1 Work 1 Work 1
-              </span>
-
-              <span class="item-my-work item-row3">
-                Work 1 Work 1 Work 1 Work 1
-              </span>
-
-              <span class="item-my-work item-row3">
-                Work 1 Work 1 Work 1 Work 1
-              </span>
-
-              <span class="item-my-work item-row3">
-                Work 1 Work 1 Work 1 Work 1
-              </span>
-
-              <p>
-                < next | prev >
-              </p>
-
-            </div>
-
-          </div> -->
+          </section>
 
 
 
-          <!-- ============================================================================== -->
-          <!-- ============================== FINISHING TOUCHES ============================= -->
-          <!-- ============================================================================== -->
-          <!-- <div id="div-ground-2">
-            <img id="img-grass1" src="img/svg/grass.svg">
-            <img id="img-grass2" src="img/svg/grass.svg">
-            <img id="img-grass3" src="img/svg/grass.svg">
-          </div> -->
+          <!-- ================================= PANEL MID ================================= -->
+          <!-- <a name="mid"> -->
+          <!-- <section class="panel panel-2" id="trigger2" style="background-color:lightpink;"> -->
+          <section class="panel panel-2" id="trigger2">
+            <!-- ================================= TRIGGERS ================================= -->
+            <div id="trigger2-quarter"></div>
+            <div id="trigger2-half"></div>
+          </section>
 
 
 
-          <!-- ============================================================================== -->
-          <!-- ================================== NAVIGATION ================================ -->
-          <!-- ============================================================================== -->
-          <!-- <div class="layer-navigation" style="
-            position: fixed;
-            /*background-color: lightpink;
-            opacity: .70;*/
-            width: 99vh;
-            height: 6vw;
-            right: -24vw;
-            top: 45vh;
-            overflow: hidden;
-            transform: rotate(-90deg);
-
-            font-family: 'Poppins', sans-serif;
-            font-size: 1em;
-            letter-spacing: 0.03em;
-            margin: 0;
-            text-transform: uppercase;
-            font-weight: 500;
-          ">
-            <div id="nav-about-me" style="
-              position: absolute;
-              top: 2vw;
-              left: 8vh;
-              ">
-              <a href="#bot" style="
-                color: #9d6cd4;
-                text-decoration: none;
-              ">About Me</a>
-            </div>
-
-            <div id="nav-home" style="
-              position: absolute;
-              top: 2vw;
-              left: 48vh;
-              ">
-              <a href="#mid" style="
-                color: #9d6cd4;
-                text-decoration: none;
-              ">Home</a>
-            </div>
-
-            <div id="nav-my-work" style="
-              position: absolute;
-              top: 2vw;
-              left: 82vh;
-              ">
-              <a href="#top" style="
-                color: #9d6cd4;
-                text-decoration: none;
-              ">My Work</a>
-            </div>
-
-          </div> -->
-
-        </section>
-
-
-
-        <!-- ================================= PANEL MID ================================= -->
-        <!-- <a name="mid"> -->
-        <!-- <section class="panel panel-2" id="trigger2" style="background-color:lightpink;"> -->
-        <section class="panel panel-2" id="trigger2">
-          <!-- ================================= TRIGGERS ================================= -->
-          <div id="trigger2-quarter"></div>
-          <div id="trigger2-half"></div>
-        </section>
-
-
-
-        <!-- ================================= PANEL BOT ================================= -->
-        <a name="bot">
-        <!-- <section class="panel panel-3" id="trigger3" style="background-color:lightblue;"> -->
-        <section class="panel panel-3" id="trigger3">
-          <!-- ================================= TRIGGERS ================================= -->
-          <div id="trigger3-half"></div>
-        </section>
+          <!-- ================================= PANEL BOT ================================= -->
+          <a name="bot">
+          <!-- <section class="panel panel-3" id="trigger3" style="background-color:lightblue;"> -->
+          <section class="panel panel-3" id="trigger3">
+            <!-- ================================= TRIGGERS ================================= -->
+            <div id="trigger3-half"></div>
+          </section>
 
 
 
 
 
 
-      </div><!-- end .load-success -->
-    </div><!-- end .web-container -->
+        </div><!-- end .load-success -->
+      </div><!-- end .web-container -->
 
 
 
+    </div><!-- !isMobile -->
 
-  </div><!-- end .scene-container -->
+
+
+  </div><!-- end .scene-resize-div -->
 
 
   <!-- ================================= $$$ MORE TRIGGER$ $$$ ================================= -->
   <div id="triggerTop"></div>
-
   <div id="triggerTop-half"></div>
 
   <div id="triggerMid">
-    <a name="mid">
+    <a name="mid"></a>
   </div>
 
   <div id="triggerMid-half"></div>
-
   <div id="triggerBot"></div>
-
   <div id="triggerBot-half"></div>
-
   <div id="triggerVeryBot"></div>
+
+
+  <div style="
+    position: fixed;
+    padding: 10px 20px;
+    bottom: 25px;
+    width: 75%;
+    margin-left: 12.5%;
+    font-size: 1.25em;
+    color: #162f5f;
+    background-color: rgba(255,255,255,0.85);
+    text-align: center;
+  ">
+    This website is still under construction! Feel free to poke around my old website at <a href="http://www.pritahasj.im/old" target="_blank">www.pritahasj.im/old</a>.
+  </div>
+
+  <!-- ================================= FADE IN OVERLAY ================================= -->
+  <div class="overlay-container" style="
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 300%;
+    background-color: #fff;
+  "></div>
 
 
 

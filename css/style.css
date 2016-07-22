@@ -35,6 +35,27 @@ h3 {
   text-transform: lowercase;
   font-weight: 100; }
 
+a {
+  color: #2074ac;
+  text-decoration: none;
+  -webkit-transition: .2s; }
+  a:hover {
+    color: hotPink; }
+
+@media (-webkit-min-device-pixel-ratio: 0) {
+  a {
+    background-color: #2074ac;
+    background-image: -webkit-linear-gradient(left, #33a3b5 0%, #8c51cd 50%, transparent 50%);
+    background-position: 100% 0;
+    background-size: 200% 200%;
+    color: transparent;
+    -webkit-transition: .1s .2s;
+    -webkit-background-clip: text; }
+
+  a:hover {
+    background-position: 0 0;
+    color: transparent;
+    transition: .4s 0; } }
 .grain {
   top: 0;
   width: 100%;
@@ -54,6 +75,23 @@ h3 {
   transition: opacity .5s ease-in-out;
   -moz-transition: opacity .5s ease-in-out;
   -webkit-transition: opacity .5s ease-in-out; }
+
+.ng-fade-in,
+.ng-fade-out {
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  -o-transition: .5s ease-in-out;
+  transition: .5s ease-in-out; }
+
+.ng-fade-in.ng-hide-remove,
+.ng-fade-out.ng-hide-add.ng-hide-add-active {
+  opacity: 0;
+  display: block !important; }
+
+.ng-fade-out.ng-hide-add,
+.ng-fade-in.ng-hide-remove.ng-hide-remove-active {
+  opacity: 1;
+  display: block !important; }
 
 /*=========================================================
   Scroll Bar
@@ -167,7 +205,9 @@ h3 {
 .web-container {
   height: 100%; }
 
-.load-container {
+.load-container,
+.unsuccessful-container,
+.mobile-container {
   height: 100%;
   background-color: #ffffff; }
 
