@@ -134,6 +134,68 @@ h3 {
   position: absolute;
 }
 
+#triggerTop {
+  position: absolute;
+  height: 5px;
+  width: 100%;
+  top: 0;
+  /*background-color: yellow;*/
+  opacity: 0.5;
+}
+
+#triggerTop-half {
+  position: absolute;
+  height: 5px;
+  width: 100%;
+  top: 50vh;
+  /*background-color: red;*/
+  opacity: 0.5;
+}
+
+#triggerMid {
+  position: absolute;
+  height: 5px;
+  width: 100%;
+  top: 100vh;
+  /*background-color: orange;*/
+  opacity: 0.5;
+}
+
+#triggerMid-half {
+  position: absolute;
+  height: 5px;
+  width: 100%;
+  top: 150vh;
+  /*background-color: green;*/
+  opacity: 0.5;
+}
+
+#triggerBot {
+  position: absolute;
+  height: 5px;
+  width: 100%;
+  top: 200vh;
+  /*background-color: cyan;*/
+  opacity: 0.5;
+}
+
+#triggerBot-half {
+  position: absolute;
+  height: 5px;
+  width: 100%;
+  top: 250vh;
+  /*background-color: purple;*/
+  opacity: 0.5;
+}
+
+#triggerVeryBot {
+  position: absolute;
+  height: 5px;
+  width: 100%;
+  top: 300vh;
+  /*background-color: blue;*/
+  opacity: 0.5;
+}
 
 
 /*=========================================================

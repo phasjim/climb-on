@@ -165,39 +165,39 @@
 			// https://css-tricks.com/snippets/jquery/smooth-scrolling/
 			// Smooth scroll for navigation links
 
-		    // $('a[href*="#"]:not([href="#"])').click(function() {
-		    //   if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-		    //     var target = $(this.hash);
-		    //     target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-		    //     if (target.length) {
-		    //       $('html, body').animate({
-		    //         scrollTop: target.offset().top
-		    //       }, 2000);
-		    //       return false;
-		    //     }
-		    //   }
-		    // });
+		    $('a[href*="#"]:not([href="#"])').click(function() {
+		      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+		        var target = $(this.hash);
+		        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+		        if (target.length) {
+		          $('html, body').animate({
+		            scrollTop: target.offset().top
+		          }, 2000);
+		          return false;
+		        }
+		      }
+		    });
 
-		    // // Smooth scrolling throughout
-		    // var $window = $(window);
-		    // var scrollTime = 1.8;
-		    // var scrollDistance = 170;
+		    // Smooth scrolling throughout
+		    var $window = $(window);
+		    var scrollTime = 1.8;
+		    var scrollDistance = 170;
 
-		    // $window.on("mousewheel DOMMouseScroll", function(event){
+		    $window.on("mousewheel DOMMouseScroll", function(event){
 
-		    //   event.preventDefault(); 
+		      event.preventDefault(); 
 
-		    //   var delta = event.originalEvent.wheelDelta/120 || -event.originalEvent.detail/3;
-		    //   var scrollTop = $window.scrollTop();
-		    //   var finalScroll = scrollTop - parseInt(delta*scrollDistance);
+		      var delta = event.originalEvent.wheelDelta/120 || -event.originalEvent.detail/3;
+		      var scrollTop = $window.scrollTop();
+		      var finalScroll = scrollTop - parseInt(delta*scrollDistance);
 
-		    //   TweenMax.to($window, scrollTime, {
-		    //     scrollTo : { y: finalScroll, autoKill:true },
-		    //       ease: Power1.easeOut,
-		    //       overwrite: 5              
-		    //     });
+		      TweenMax.to($window, scrollTime, {
+		        scrollTo : { y: finalScroll, autoKill:true },
+		          ease: Power1.easeOut,
+		          overwrite: 5              
+		        });
 
-		    // });
+		    });
 
 
 
@@ -335,24 +335,24 @@
 
 
             /* =================== WHEN IMAGES LOADED, JUMP TO MIDDLE =================== */
-   //          $scope.$watch('isLoading', function() {
-   //          	// if not loading, and successfully loaded
-			//     if(!$scope.isLoading && $scope.isSuccessful){
-			//     	var fadeTime = 500;
+            $scope.$watch('isLoading', function() {
+            	// if not loading, and successfully loaded
+			    if(!$scope.isLoading && $scope.isSuccessful){
+			    	var fadeTime = 500;
 
-			//     	// scroll to middle
-			//     	setTimeout(function() {
-			// 		    var height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-			// 			$('html, body').animate({scrollTop: height}, fadeTime);
-			// 		}, 10);
+			    	// scroll to middle
+			    	setTimeout(function() {
+					    var height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+						$('html, body').animate({scrollTop: height}, fadeTime);
+					}, 10);
 
-			//     	// fade body
-			// 		setTimeout(function() {
-			// 			$(".web-container").addClass("fade-in");
-			// 		}, fadeTime);
+			    	// fade body
+					setTimeout(function() {
+						$(".web-container").addClass("fade-in");
+					}, fadeTime);
 					
-			//     }
-			// });
+			    }
+			});
 
 
 
