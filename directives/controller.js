@@ -46,10 +46,10 @@
 		      home: document.getElementById("layer-home-div"),
 		    };
 
-		    $scope.cliffVertPosStart = "55vh";
-			$scope.cliffVertPosEnd = "-220vh";	//  55 - 275 = -220
-		 	$scope.groundVertPosStart = "280vh";
-			$scope.groundVertPosEnd = "5vh";	// 280 - 275 = 5
+		    $scope.cliffVertPosStart = "55%";
+			$scope.cliffVertPosEnd = "-220%";	//  55 - 275 = -220
+		 	$scope.groundVertPosStart = "280%";
+			$scope.groundVertPosEnd = "5%";	// 280 - 275 = 5
 
 		    /*=========================================================
 		      resizeSceneDiv: Resizes the $scope.sceneDiv based on the 
@@ -121,12 +121,12 @@
 
 		      // Reset all trigger locations
 		      $("#triggerTop").css("top", "0");
-		      $("#triggerTop-half").css("top", "50vh");
-		      $("#triggerMid").css("top", "100vh");
-		      $("#triggerMid-half").css("top", "150vh");
-		      $("#triggerBot").css("top", "200vh");
-		      $("#triggerBot-half").css("top", "250vh");
-		      $("#triggerVeryBot").css("top", "300vh");
+		      $("#triggerTop-half").css("top", "50%");
+		      $("#triggerMid").css("top", "100%");
+		      $("#triggerMid-half").css("top", "150%");
+		      $("#triggerBot").css("top", "200%");
+		      $("#triggerBot-half").css("top", "250%");
+		      $("#triggerVeryBot").css("top", "300%");
 
 		      $scope.cliffVertPosStart = $scope.cliffVertPosStart;
 			  $scope.cliffVertPosEnd = $scope.cliffVertPosEnd;
