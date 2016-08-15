@@ -11,7 +11,7 @@
  		    });
 
 
- 			/* =================== MOBILE CHECK =================== */
+ 			/* =================== MOBILE & BROWSER CHECK =================== */
             $scope.mobileCheck = function() {
 			  $scope.isMobile = false;
 			  (function(a){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4)))check = true})(navigator.userAgent||navigator.vendor||window.opera);
@@ -20,6 +20,9 @@
 			}
 
 			$scope.mobileCheck();
+
+
+			$scope.isChrome = !!window.chrome;
 
 
 
@@ -32,8 +35,8 @@
 		      =========================================================*/
 	      	$scope.sceneDiv = {
 		      element: document.getElementById("scene-resize-div"),
-		      width: 1420,
-		      height: 740,
+		      width: 4260, // original: 1420
+		      height: 2220 // original: 740
 		    };
 
 		    $scope.layerDiv = {
@@ -44,6 +47,18 @@
 		      cliff: document.getElementById("layer-cliff-me-div"),
 		      me: document.getElementById("img-me"),
 		      home: document.getElementById("layer-home-div"),
+
+		      navigationLayer: document.getElementById("navigation-div"),
+
+		      aboutMeLayer: document.getElementById("about-me-div"),
+		      aboutMeContent: document.getElementById("content-about-me"),
+		      aboutMeText: document.getElementById("content-about-me-text"),
+		      aboutMeTitle: document.getElementById("about-me-title"),
+		      navLink1: document.getElementById("nav-link1"),
+		      navLink2: document.getElementById("nav-link2"),
+		      navLink3: document.getElementById("nav-link3"),
+
+		      constructionText: document.getElementById("construction-text")
 		    };
 
 		    $scope.cliffVertPosStart = "55%";
@@ -108,12 +123,50 @@
 		      $scope.layerDiv.home.style.height = newSceneHeight + "px";
 
 
+
+		      // Resize content
+			  $scope.layerDiv.navigationLayer.style.height = newSceneHeight;
+		      $scope.layerDiv.navigationLayer.style.width = "calc(" + newSceneWidth + "/10)";
+
+
+
+
+		      $scope.layerDiv.aboutMeLayer.style.width = "calc(" + newSceneWidth + "px - 35%)";
+		      $scope.layerDiv.aboutMeLayer.style.height = "calc(" + newSceneHeight + "px - 10%)";
+
+		      var aboutMePaddingTop = newSceneHeight/25 + "px";
+		      var aboutMePaddingLeft = newSceneWidth/25 + "px";
+		      $scope.layerDiv.aboutMeContent.style.paddingTop = aboutMePaddingTop;
+		      $scope.layerDiv.aboutMeContent.style.paddingBottom = aboutMePaddingTop;
+
+		      $scope.layerDiv.aboutMeContent.style.paddingLeft = aboutMePaddingLeft;
+		      $scope.layerDiv.aboutMeContent.style.paddingRight = aboutMePaddingLeft;
+
+		      $scope.layerDiv.aboutMeContent.style.borderTopWidth = aboutMePaddingTop;
+		      $scope.layerDiv.aboutMeContent.style.borderBottomWidth = aboutMePaddingTop;
+  		      $scope.layerDiv.aboutMeContent.style.backgroundSize = aboutMePaddingTop + " 100%";
+
+		      var aboutMeContentText = newSceneHeight/45 + "px";
+		      $scope.layerDiv.aboutMeText.style.fontSize = aboutMeContentText;
+
+		      var aboutMeTitleText = newSceneHeight/10 + "px";
+		      $scope.layerDiv.aboutMeTitle.style.fontSize = aboutMeTitleText;
+
+		      var navLinkTextSize = newSceneWidth/100 + "px";
+		      $scope.layerDiv.navLink1.style.fontSize = navLinkTextSize;
+		      $scope.layerDiv.navLink2.style.fontSize = navLinkTextSize;
+		      $scope.layerDiv.navLink3.style.fontSize = navLinkTextSize;
+
+		      var constructionTextSize = newSceneWidth/60 + "px";
+		      $scope.layerDiv.constructionText.style.fontSize = constructionTextSize;
+
+
 		      // Resize newSceneX, newSceneY
 		      newSceneX = (viewport.width - newSceneWidth) / 2;
 		      newSceneY = (viewport.height - newSceneHeight) / 2;
 
-		      console.log("newSceneWidth: " + newSceneWidth + ", newSceneHeight: " + newSceneHeight);
-		      console.log("newSceneX: " + newSceneX + ", newSceneY: " + newSceneY);
+		      //console.log("newSceneWidth: " + newSceneWidth + ", newSceneHeight: " + newSceneHeight);
+		      //console.log("newSceneX: " + newSceneX + ", newSceneY: " + newSceneY);
 
 		      // Set the new padding of the $scope.sceneDiv so it will be centered
 		      $scope.sceneDiv.element.style.margin = newSceneY + "px " + newSceneX + "px";
@@ -144,13 +197,13 @@
 		    // Initial Call
 		    $scope.resizeSceneDiv();
 		    $scope.resizeCalls = 0;
-
+		    $scope.showResizeError = false;
 
 			$(window).on("resize.doResize", function (){
 				console.log("innerHeight: " + window.innerHeight + " / innerWidth: " + window.innerWidth);
 
-				if($scope.resizeCalls > 10 && !$scope.isMobile) {
-					alert("Hey! Too much resizing might mess up the animation.");
+				if($scope.resizeCalls > 1 && !$scope.isMobile) {
+					$scope.showResizeError = true;
 					$scope.resizeCalls = 0;
 				}
 				$scope.resizeCalls++;
@@ -391,125 +444,46 @@
 			/*===================================================================================*/
 			/*================================= MY WORK CONTENT =================================*/
 			/*===================================================================================*/
-
-			/*=================== MAIN CONTENT BOX ===================*/
-			/*=========================================================
-				tweenWork1, tweenWork2: Fades the main content box and
-				moves it to the right (so it doesn't interfere with the
-				interaction on the "about me" screen)
-			  =========================================================*/
-			var tweenWork1 = new TweenMax.fromTo(".layer-my-work", 0.25,
+			var tweenConstruction = new TweenMax.fromTo("#construction-layer", 0.65,
 				// previous
 				{
 				 opacity: 1,
-				 ease: Circ.easeNone
+				 top: "50vh",
+				 ease: Expo.easeNone
 				},
 				// next
 				{
+				 top: "51vh",
 				 opacity: 0,
 				}
 			);
-			var sceneWork1 = new ScrollMagic.Scene({
+			var sceneConstruction = new ScrollMagic.Scene({
 				triggerHook: 0,
-				triggerElement: "#triggerTop",
-				offset: 50,
-				duration: 80,
+				duration: "25%"
 		    })
-		 	.setTween(tweenWork1)
-		 	//.addIndicators({name: "my work_________________________________", colorStart: "green", colorEnd: "green"})
+		 	.setTween(tweenConstruction)
+		 	//.addIndicators({name: "construction beeeezieeeesss________________", colorStart: "purple", colorEnd: "purple"})
 		 	.addTo(controller);
 
-
-		 	var tweenWork2 = new TweenMax.fromTo(".layer-my-work", 0.2,
+		 	var tweenMoveConstruction = new TweenMax.fromTo("#construction-layer", 0.65,
 				// previous
 				{
-				 left: "10%",
-				 ease: Circ.easeNone
+				 marginLeft: "44vw",
 				},
 				// next
 				{
-				left: "120%",
+				 marginLeft: "-44vw",
 				}
 			);
-			var sceneWork2 = new ScrollMagic.Scene({
-				triggerElement: "#trigger2-half"
-		    })
-		 	.setTween(tweenWork2)
-		 	//.addIndicators({name: "my work - hide right_________________________________", colorStart: "green", colorEnd: "green"})
-		 	.addTo(controller);
-
-
-		 	/*=================== CONTENT ITEMS ===================*/
-			/*=========================================================
-				tweenItemRow1-3: Scales and fades in the rows of items.
-			  =========================================================*/
-			var tweenItemRow1 = new TweenMax.fromTo(".item-row1", 0.25,
-				// previous
-				{
-				 scale: 1,
-				 opacity: 1,
-				 ease: Back.easeOut
-				},
-				// next
-				{
-				 scale: 0.75,
-				 opacity: 0,
-				}
-			);
-			var sceneItemRow1 = new ScrollMagic.Scene({
+			var sceneMoveConstruction = new ScrollMagic.Scene({
 				triggerHook: 0,
-				triggerElement: "#triggerTop",
-				offset: 55,
+				duration: "1%",
+				triggerElement: "#triggerMid-half"
 		    })
-		 	.setTween(tweenItemRow1)
-		 	//.addIndicators({name: "my work row 1______________", colorStart: "red", colorEnd: "red"})
+		 	.setTween(tweenMoveConstruction)
+		 	//.addIndicators({name: "construction MOVE beeeezieeeesss________________", colorStart: "purple", colorEnd: "purple"})
 		 	.addTo(controller);
-
-
-		 	var tweenItemRow2 = new TweenMax.fromTo(".item-row2", 0.25,
-				// previous
-				{
-				 scale: 1,
-				 opacity: 1,
-				 ease: Back.easeOut
-				},
-				// next
-				{
-				 scale: 0.75,
-				 opacity: 0,
-				}
-			);
-			var sceneItemRow2 = new ScrollMagic.Scene({
-				triggerHook: 0,
-				triggerElement: "#triggerTop",
-				offset: 95,
-		    })
-		 	.setTween(tweenItemRow2)
-		 	//.addIndicators({name: "my work row 2______________", colorStart: "red", colorEnd: "red"})
-		 	.addTo(controller);
-
-
-		 	var tweenItemRow3 = new TweenMax.fromTo(".item-row3", 0.25,
-				// previous
-				{
-				 scale: 1,
-				 opacity: 1,
-				 ease: Back.easeOut
-				},
-				// next
-				{
-				 scale: 0.75,
-				 opacity: 0,
-				}
-			);
-			var sceneItemRow3 = new ScrollMagic.Scene({
-				triggerHook: 0,
-				triggerElement: "#triggerTop",
-				offset: 135,
-		    })
-		 	.setTween(tweenItemRow3)
-		 	//.addIndicators({name: "my work row 3______________", colorStart: "red", colorEnd: "red"})
-		 	.addTo(controller);
+			
 
 
 
@@ -561,6 +535,26 @@
 		 	.addTo(controller);
 
 
+		 	var tweenMouse1 = new TweenMax.fromTo("#mouse-div", 0.65,
+				// previous
+				{
+				 opacity: 0,
+				},
+				// next
+				{
+				 opacity: 0.4,
+				}
+			);
+			var sceneMouse1 = new ScrollMagic.Scene({
+				triggerHook: 100,
+				triggerElement: "#triggerMid-half",
+				duration: "40%"
+		    })
+		 	.setTween(tweenMouse1)
+		 	//.addIndicators({name: "mouse upper_______________", colorStart: "orange", colorEnd: "orange"})
+		 	.addTo(controller);
+
+
 		 	var tweenName2 = new TweenMax.fromTo(".content-name", 0.65,
 				// previous
 				{
@@ -609,33 +603,53 @@
 		 	.addTo(controller);
 
 
+		 	var tweenMouse2 = new TweenMax.fromTo("#mouse-div", 0.65,
+				// previous
+				{
+				 opacity: 0.4,
+				},
+				// next
+				{
+				 opacity: 0,
+				}
+			);
+			var sceneMouse2 = new ScrollMagic.Scene({
+				triggerHook: 100,
+				triggerElement: "#triggerBot",
+				offset: 50,
+				duration: "22%"
+		    })
+		 	.setTween(tweenMouse2)
+		 	//.addIndicators({name: "mouse lower_______________", colorStart: "orange", colorEnd: "orange"})
+		 	.addTo(controller);
+
+
 
 			/*===================================================================================*/
 			/*================================= ABOUT ME CONTENT ================================*/
 			/*===================================================================================*/
-			var tweenAboutMeContent = new TweenMax.fromTo("#content-about-me", 0.65,
+			var tweenAboutMeContent = new TweenMax.fromTo("#content-about-me", 0.5,
 				// previous
 				{opacity: 0,
-				 top: "15.5%",
+				 top: "7%",
 				 ease: Circ.easeNone
 				},
 				// next
 				{
 				 opacity: 1,
-				 top: "13.5%"
+				 top: "5%"
 				}
 			);
 			var sceneAboutMeContent = new ScrollMagic.Scene({
 				triggerHook: 100,
 				triggerElement: "#triggerBot-half",
-				offset: 30,
 		    })
 		 	.setTween(tweenAboutMeContent)
 		 	//.addIndicators({name: "about me content div___________________________________", colorStart: "lightyellow", colorEnd: "lightyellow"})
 		 	.addTo(controller);
 
 
-		 	var tweenAboutMeTitle = new TweenMax.fromTo("#title-about-me", 0.65,
+		 	var tweenAboutMeTitle = new TweenMax.fromTo("#title-about-me", 0.5,
 				// previous
 				{opacity: 0,
 				 left: "4%",
@@ -650,7 +664,6 @@
 			var sceneAboutMeTitle = new ScrollMagic.Scene({
 				triggerHook: 100,
 				triggerElement: "#triggerBot-half",
-				offset: 30,
 		    })
 		 	.setTween(tweenAboutMeTitle)
 		 	//.addIndicators({name: "about me content________________________", colorStart: "lightyellow", colorEnd: "lightyellow"})

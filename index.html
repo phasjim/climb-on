@@ -22,7 +22,8 @@
   <link rel="stylesheet" href="./css/style.css" type="text/css">
 
   <!-- GOOGLE FONTS -->
-  <link href='https://fonts.googleapis.com/css?family=Poppins:300,500,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,500,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
   <!-- JS -->
   <script type="text/javascript" src="./js/jquery.min.js"></script>
@@ -41,25 +42,26 @@
 
 </head>
 <body id="web-body" ng-controller="Controller">
-  <div id="scene-resize-div" style="
-    /*background-color: lavenderblush;*/
-    width:1420px;
-    height:720px;">
 
-    <!-- ================================= MOBILE ONLY ================================= -->
-    <div class="mobile-container" ng-show="isMobile" ng-cloak>
-      <div style="
-        position: fixed;
-        margin-left: 25%;
-        width: 50%;
-        text-align: center;
-        color: #9d6cd4;">
+  <div id="scene-resize-div" class="scene-resize-div noselect">
+
+
+
+    <!-- ================================= MOBILE / CHROME ONLY ================================= -->
+    <div class="mobile-container" ng-show="(isMobile || !isChrome)" ng-cloak>
+      <div class="mobile-container-warning" ng-show="isMobile">
           Sorry, this website does not work on phones yet! Please view on a laptop or computer :)
+      </div>
+
+      <div class="mobile-container-warning" ng-show="!isChrome">
+          Sorry, this website only works on Google Chrome. Download Google Chrome <a href="http://www.google.com/chrome" target="_blank">here</a>.
       </div>
     </div>
 
+
+
     <!-- ================================= NOT MOBILE ================================= -->
-    <div ng-show="!isMobile">
+    <div ng-show="(!isMobile && isChrome)">
       <!-- ================================= LOADING CONTAINER ================================= -->
       <div class="load-container ng-fade-out" ng-show="isLoading" ng-cloak>
         <div class="load-spinner"></div>
@@ -68,41 +70,35 @@
       <!-- ================================= LOADING UNSUCCESSFUL ================================= -->
       <div ng-show="!isLoading">
         <div class="unsuccessful-container ng-fade-out" ng-show="!isSuccessful" ng-cloak>
-          <div style="
-            position: fixed;
-            margin-left: 25%;
-            width: 50%;
-            text-align: center;
-            color: #9d6cd4;">
+          <div class="unsuccessful-container-uhoh">
               Uh oh, something went wrong :( <br>
               Please refresh and try again
             </div>
 
-            <div style="
-              position: fixed;
-              margin-left: 25%;
-              bottom: 0;
-              padding-bottom: 30px;
-              width: 50%;
-              text-align: center;
-              color: #666666;
-            ">
+            <div class="unsuccessful-container-git">
               Feel free to submit an issue on the <a href="https://github.com/phasjim/wubalubadubdub" target="_blank">GitHub Repo</a>!
             </div>
         </div><!-- end .load-container -->
       </div>
 
+
+
       <!-- ================================= MAIN SCENE CONTAINER ================================= -->
       <div class="web-container" ng-show="!isLoading" ng-cloak>
-        <div class="load-success" ng-show="isSuccessful" style="height:100%">
+        <div class="load-success" ng-show="isSuccessful">
+
           <!-- ================================= PANEL TOP ================================= -->
-          <a name="top">
-          <!-- <section class="panel panel-1" id="trigger1" style="background-color:lightyellow;"> -->
           <section class="panel panel-1" id="trigger1">
+            <a name="top"></a>
             <!-- ================================= TRIGGERS ================================= -->
             <div id="trigger1-half"></div>
             <div id="trigger1-half-quarter"></div>
 
+
+
+            <!-- ============================================================================== -->
+            <!-- =================================== SCENERY ================================== -->
+            <!-- ============================================================================== -->
 
             <!-- ================================= BLUE SKY ================================= -->
             <div id="layer-sky-div" class="layer-mask-blue-sky"></div>
@@ -126,11 +122,6 @@
               <div class="cloud-shape cloud5"></div>
             </div>
 
-
-            <!-- ============================================================================== -->
-            <!-- =================================== SCENERY ================================== -->
-            <!-- ============================================================================== -->
-
             <!-- ================================= SUN ================================= -->
             <div id="layer-sun-div" class="layer-mask-sun">
               <div id="div-sun">
@@ -138,7 +129,6 @@
                 <img id="img-sun" src="img/svg/sun.svg">
               </div>
             </div>
-
 
             <!-- ================================= DESERT GROUND ================================= -->
             <div id="layer-mountains-sand-div" class="layer-mask-desert-ground">
@@ -157,14 +147,9 @@
                 <img id="img-flower-dark2" src="img/svg/flower-dark.svg">
                 <img id="img-flower-dark3" src="img/svg/flower-dark.svg">
               </div>
-
             </div>
 
-
-
-            <!-- ============================================================================== -->
-            <!-- =================================== CONTENT ================================== -->
-            <!-- ============================================================================== -->
+            <!-- ================================= CLIFF + ME ================================= -->
             <div id="layer-cliff-me-div" class="layer-mask-cliff-me">
               <div id="div-cliff-me">
                 <!-- ================================= CLIFF ================================= -->
@@ -181,11 +166,11 @@
             <!-- ================================== HOME PAGE ================================= -->
             <!-- ============================================================================== -->
             <div id="layer-home-div" class="layer-home">
-              <div class="content-name" style="width:100%;">
+              <div class="content-name">
                 <h1 id="home-title" data-fittext="0.7" data-fittext-min="20" data-fittext-max="110">Prita Priscilla Hasjim</h1>
               </div>
 
-              <div class="content-tagline" style="width:100%;">
+              <div class="content-tagline">
                 <h3 id="home-subtitle" data-fittext="0.7" data-fittext-min="15" data-fittext-max="30">I make stuff with code!</h3>
               </div>
 
@@ -194,150 +179,53 @@
 
 
             <!-- ============================================================================== -->
+            <!-- ================================= MOUSE GUIDE ================================ -->
+            <!-- ============================================================================== -->
+            <div class="mouse-layer-div" id="mouse-div">
+                <div class="mouse-scroll">
+                  <div>
+                    <span class="up-arrow up-arrow-1"></span>
+                    <span class="up-arrow up-arrow-2"></span>
+                    <span class="up-arrow up-arrow-3"></span>
+                  </div>
+                  <div class="mouse">
+                    <div class="mouse-in"></div>
+                  </div>
+                  <div>
+                    <span class="down-arrow down-arrow-1"></span>
+                    <span class="down-arrow down-arrow-2"></span>
+                    <span class="down-arrow down-arrow-3"></span>
+                  </div>
+                </div>
+
+            </div>
+
+
+
+            <!-- ============================================================================== -->
             <!-- =================================== ABOUT ME ================================= -->
             <!-- ============================================================================== -->
-            <!-- <div class="layer-about-me">
-               
+            <div id="about-me-div">
+
               <div id="content-about-me">
-                <p>
+                <p id="content-about-me-text">
                   Hi, I'm Prita!
-                </p>
-
-                <p>
-                  I am a developer+designer living the life in San Diego, California. I graduated from UC San Diego in 2014 with a Bachelor's in Computer Science and Interdisciplinary Computing in the Arts (ICAM). I currently work as a front-end developer at Illumina where I get to design and build software for our Next-Gen Sequencing platforms.
-                </p>
-
-                <p>
-                  I enjoy well tailored apps and thoughtful usability. My hobbies include rock climbing, dancing, listening to albums, and watching cartoons. I am obsessed with my dog, Lily, and <a href="http://vsco.co/lilyjio/" target="_blank">here is proof</a>!
-                </p>
-
-                <p>
-                 Thank you so much for stopping by my website!
-                </p>
-
-                <p>
-                </p>
-
-                
-                <div onclick="window.open('mailto:me@pritahasj.im?Subject=Hello%20there%21','mywindow');"
-                     class="contact-btn about-me-btn">
-                    Say Hello
-                </div>
-
-                <div onclick="window.open('https://www.linkedin.com/in/pritahasjim','mywindow');"
-                     class="contact-btn linkedin-btn">
-                  LinkedIn
-                </div>
-
-                <div onclick="window.open('http://www.google.com','mywindow');"
-                     class="contact-btn resume-btn">
-                  Resume
-                </div>
-
-              </div>
-
-              <div id="title-about-me" style="width:100%;top: 6%;">
-                <h2 id="about-me-title" data-fittext-min="20" data-fittext-max="80">About Me</h2>
-              </div>
-
-            </div> -->
-
-
-
-            <!-- ============================================================================== -->
-            <!-- ================================== MY WORK =================================== -->
-            <!-- ============================================================================== -->
-            <!-- <div class="layer-my-work" style="
-              position: fixed;
-              width: 90vw;
-              height: 100%;
-              left: 12vw;
-              top: 0vh;
-              /*opacity: 0.50;
-              background-color: white;*/
-            ">
-              <div class="box-my-work" style="
-                position: absolute;
-                left: 27vw;
-                top: 20vh;
-                width: 50vw;
-                height: 75vh;
-                opacity: 1;
-
-                border-top-width: 20px;
-                border-top-style: solid;
-                border-top-color: rgba(22,47,95,0.25); 
-
-                border-bottom-width: 20px;
-                border-bottom-style: solid;
-                border-bottom-color: rgba(255,255,255,0.5);
-
-                background-image: linear-gradient(rgba(22,47,95,0.25) 0%, rgba(255,255,255,0.5) 100%), linear-gradient(rgba(22,47,95,0.25) 0%, rgba(255,255,255,0.5) 100%);
-                background-color: transparent;
-                background-size: 20px 100%;
-                background-position: 0px 0px, 100% 0px;
-                background-repeat: no-repeat;
-
-                box-sizing: border-box;
-              ">
-              </div>
-
-              <div class="content-my-work" style="
-                position: absolute;
-                left: 17.5vw;
-                top: 21vh;
-                width: 70vw;
-                height: 65vh;
-                text-align: center;
-                font-weight: 100;
-              ">
-                <p>
-                  view all | ui+ux design | game design | dev art
-                </p>
-
-                <span class="item-my-work item-row1">
-                  Work 1 Work 1 Work 1 Work 1
-                </span>
-
-                <span class="item-my-work item-row1">
-                  Work 1 Work 1 Work 1 Work 1
-                </span>
-
-                <span class="item-my-work item-row1">
-                  Work 1 Work 1 Work 1 Work 1
-                </span>
-
-                <span class="item-my-work item-row2">
-                  Work 1 Work 1 Work 1 Work 1
-                </span>
-
-                <span class="item-my-work item-row2">
-                  Work 1 Work 1 Work 1 Work 1
-                </span>
-
-                <span class="item-my-work item-row2">
-                  Work 1 Work 1 Work 1 Work 1
-                </span>
-
-                <span class="item-my-work item-row3">
-                  Work 1 Work 1 Work 1 Work 1
-                </span>
-
-                <span class="item-my-work item-row3">
-                  Work 1 Work 1 Work 1 Work 1
-                </span>
-
-                <span class="item-my-work item-row3">
-                  Work 1 Work 1 Work 1 Work 1
-                </span>
-
-                <p>
-                  < next | prev >
+                  <br><br>
+                  I am a developer + designer living the life in San Diego, California. I graduated from UC San Diego in 2014 with a Bachelor's in Computer Science and Interdisciplinary Computing in the Arts (ICAM). I currently work as a front-end developer at Illumina where I get to design and build software for our Next-Gen Sequencing platforms. In my free time, you can find me rock climbing, gettin' down on the dance floor, and watching cartoons. I am obsessed with my dog, Lily, and here is <a href="http://vsco.co/lilyjio/" target="_blank">proof</a>!
+                  <br><br>
+                  Thank you so much for stopping by my website!
+                  <br><br>
+                  <a href="mailto:me@pritahasj.im?Subject=Hello%20there%21">Email</a> | <a href="https://www.linkedin.com/in/pritahasjim" target="_blank">LinkedIn</a> <!-- | <a href="http://www.google.com">Resume</a> -->
                 </p>
 
               </div>
 
-            </div> -->
+              <div id="title-about-me">
+                <h2 id="about-me-title">About Me</h2>
+              </div>
+
+
+            </div>
 
 
 
@@ -355,66 +243,37 @@
             <!-- ============================================================================== -->
             <!-- ================================== NAVIGATION ================================ -->
             <!-- ============================================================================== -->
-            <!-- <div class="layer-navigation" style="
-              position: fixed;
-              /*background-color: lightpink;
-              opacity: .70;*/
-              width: 99vh;
-              height: 6vw;
-              right: -24vw;
-              top: 45vh;
-              overflow: hidden;
-              transform: rotate(-90deg);
+            <div class="navigation-layer-div" id="navigation-div">
+              <div class="nav-pos1">
+                <div class="nav-link-wrapper">
+                  <a href="#top" class="nav-link eigth before after" id="nav-link1" style="
+                  ">My Work</a>
+                </div>
+              </div>
 
-              font-family: 'Poppins', sans-serif;
-              font-size: 1em;
-              letter-spacing: 0.03em;
-              margin: 0;
-              text-transform: uppercase;
-              font-weight: 500;
-            ">
-              <div id="nav-about-me" style="
-                position: absolute;
-                top: 2vw;
-                left: 8vh;
-                ">
-                <a href="#bot" style="
-                  color: #9d6cd4;
-                  text-decoration: none;
+              <div class="nav-pos2">
+                <div class="nav-link-wrapper">
+                  <a href="#mid" class="nav-link eigth before after" id="nav-link2" style="
+                  ">Home</a>
+                </div>
+              </div>
+
+              <div class="nav-pos3">
+                <div class="nav-link-wrapper">
+                  <a href="#bot" class="nav-link eigth before after" id="nav-link3" style="
                 ">About Me</a>
+                </div>
               </div>
 
-              <div id="nav-home" style="
-                position: absolute;
-                top: 2vw;
-                left: 48vh;
-                ">
-                <a href="#mid" style="
-                  color: #9d6cd4;
-                  text-decoration: none;
-                ">Home</a>
-              </div>
-
-              <div id="nav-my-work" style="
-                position: absolute;
-                top: 2vw;
-                left: 82vh;
-                ">
-                <a href="#top" style="
-                  color: #9d6cd4;
-                  text-decoration: none;
-                ">My Work</a>
-              </div>
-
-            </div> -->
+            </div>
 
           </section>
 
 
 
-          <!-- ================================= PANEL MID ================================= -->
-          <!-- <a name="mid"> -->
-          <!-- <section class="panel panel-2" id="trigger2" style="background-color:lightpink;"> -->
+          <!-- ============================================================================== -->
+          <!-- ================================== PANEL MID ================================= -->
+          <!-- ============================================================================== -->
           <section class="panel panel-2" id="trigger2">
             <!-- ================================= TRIGGERS ================================= -->
             <div id="trigger2-quarter"></div>
@@ -423,32 +282,27 @@
 
 
 
-          <!-- ================================= PANEL BOT ================================= -->
-          <a name="bot">
-          <!-- <section class="panel panel-3" id="trigger3" style="background-color:lightblue;"> -->
+          <!-- ============================================================================== -->
+          <!-- ================================== PANEL BOT ================================= -->
+          <!-- ============================================================================== -->
           <section class="panel panel-3" id="trigger3">
             <!-- ================================= TRIGGERS ================================= -->
             <div id="trigger3-half"></div>
           </section>
 
 
-
-
-
-
         </div><!-- end .load-success -->
       </div><!-- end .web-container -->
 
-
-
     </div><!-- !isMobile -->
-
-
 
   </div><!-- end .scene-resize-div -->
 
 
-  <!-- ================================= $$$ MORE TRIGGER$ $$$ ================================= -->
+
+  <!-- ============================================================================== -->
+  <!-- ================================ $$ TRIGGERS $$ ============================== -->
+  <!-- ============================================================================== -->
   <div id="triggerTop"></div>
   <div id="triggerTop-half"></div>
 
@@ -457,33 +311,50 @@
   </div>
 
   <div id="triggerMid-half"></div>
-  <div id="triggerBot"></div>
+  <div id="triggerBot">
+    <a name="bot"></a>
+  </div>
   <div id="triggerBot-half"></div>
   <div id="triggerVeryBot"></div>
 
 
-  <div style="
-    position: fixed;
-    padding: 10px 20px;
-    bottom: 25px;
-    width: 75%;
-    margin-left: 12.5%;
-    font-size: 1.25em;
-    color: #162f5f;
-    background-color: rgba(255,255,255,0.85);
-    text-align: center;
-  ">
-    This website is still under construction! Feel free to poke around my old website at <a href="http://www.pritahasj.im/old" target="_blank">www.pritahasj.im/old</a>.
+
+  <!-- ============================================================================== -->
+  <!-- ======================== MY WORK / UNDER CONSTRUCTION ======================== -->
+  <!-- ============================================================================== -->
+  <div id="construction-layer">
+    <span id="construction-text">
+      Pardon the dust. This website is still under construction. Feel free to poke around my old website at <a href="http://www.pritahasj.im/old" target="_blank">www.pritahasj.im/old</a>.
+    </span>
   </div>
 
-  <!-- ================================= FADE IN OVERLAY ================================= -->
-  <div class="overlay-container" style="
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 300%;
-    background-color: #fff;
-  "></div>
+
+
+  <!-- ============================================================================== -->
+  <!-- ================================ RESIZE WARNING ============================== -->
+  <!-- ============================================================================== -->
+  <div class="resize-container ng-fade" ng-show="showResizeError">
+    <div class="exit">
+      <a class="modal-close" ng-click="showResizeError = false"><i class="material-icons md-48">close</i></a>
+    </div>
+    <div class="text">
+      <h4>Hey!</h4>
+      <h5>Too much window resizing might mess up the animations. Please maximize this screen and refresh this page for better quality.</h5>
+    </div>
+
+    <div onclick="window.location.reload();"
+      class="contact-btn refresh-btn">
+      Refresh
+    </div>
+
+  </div>
+
+
+
+  <!-- ============================================================================== -->
+  <!-- =============================== FADE IN OVERLAY ============================== -->
+  <!-- ============================================================================== -->
+  <div class="overlay-container"></div>
 
 
 

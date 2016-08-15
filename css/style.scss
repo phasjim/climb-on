@@ -41,15 +41,60 @@ h3 {
   font-weight: 100;
 }
 
+h4 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 3em;
+  letter-spacing: 0.2em;
+  color: #ffffff;
+  margin: 0;
+  text-transform: lowercase;
+  font-weight: 100;
+}
+
+h5 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2em;
+  color: #ffffff;
+  margin: 0;
+  text-transform: lowercase;
+  font-weight: 100;
+}
+
+p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2em;
+  color: black;
+  margin: 0;
+  text-transform: lowercase;
+  font-weight: 100;
+}
+
+// No Highlight
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
+
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
 // Hover Effects
 // http://www.pakmax.net/2014/12/10-awesome-best-css-link-hover-effects.html
 a {
   color: #2074ac;
+  font-weight: bold;
   text-decoration: none;
   -webkit-transition: .2s;
 
   &:hover {
-    color: hotPink;
+    color: #33a3b5;
   }
 }
 @media (-webkit-min-device-pixel-ratio:0) {
@@ -69,6 +114,379 @@ a {
   }
 }
 
+a.modal-close {
+  color: #fff;
+  text-decoration: none;
+  -webkit-transition: .2s;
+  opacity: 0.75;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.nav-link-wrapper {
+  margin: 0;
+}
+
+.nav-link{
+  font-family: 'Poppins', sans-serif;
+  color: #9d6cd4;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+.navigation-layer-div {
+  position: fixed;
+  /*background-color: lightyellow;*/
+  /*opacity: 0.3;*/
+  right: -1.5vw;
+  top: 0;
+  height: 100vh;
+  width: 4vw;
+  padding: 0 2vw;
+
+  .nav-pos1 {
+    position: absolute;
+    letter-spacing: 0.03em;
+    margin: 0;
+    font-weight: 500;
+    top: 19%;
+    /* left: 12%; */
+    transform: rotate(-90deg);
+    transform-origin: left top 0;
+    float: left;
+  }
+
+  .nav-pos2 {
+    position: absolute;
+    letter-spacing: 0.03em;
+    margin: 0;
+    font-weight: 500;
+    top: 46%;
+    /* left: 12%; */
+    transform: rotate(-90deg);
+    transform-origin: left top 0;
+    float: left;
+  }
+
+  .nav-pos3 {
+    position: absolute;
+    letter-spacing: 0.03em;
+    margin: 0;
+    font-weight: 500;
+    top: 85%;
+    /* left: 12%; */
+    transform: rotate(-90deg);
+    transform-origin: left top 0;
+    float: left;
+  }
+
+
+
+  // Source: https://codepen.io/brenden/pen/RNZXqx
+
+  $hover-color: #8ec4e8;
+
+  a,a:visited,a:hover,a:active{
+    -webkit-backface-visibility:hidden;
+            backface-visibility:hidden;
+    position:relative;
+    transition:0.5s color ease;
+    text-decoration:none;
+    color:#9d6cd4;
+    font-size:2.5em;
+  }
+  a:hover{
+    color: $hover-color;
+  }
+  a.before:before,a.after:after{
+    content: "";
+    transition:0.5s all ease;
+    -webkit-backface-visibility:hidden;
+            backface-visibility:hidden;
+    position:absolute;
+  }
+  a.before:before{
+    top:-0.25em;
+  }
+  a.after:after{
+    bottom:-0.25em;
+  }
+  a.before:before,
+  a.after:after{
+    height: 2px;
+    width:0;
+    background: $hover-color;
+  }
+
+  a.first:after{
+    left:0;
+  }
+  a.second:after{
+    right:0;
+  }
+  a.third:after,a.sixth:before,a.sixth:after{
+    left:50%;
+    -webkit-transform:translateX(-50%);
+            transform:translateX(-50%);
+  }
+  a.fourth:before,a.fourth:after{
+    left:0;
+  }
+  a.fifth:before,a.fifth:after{
+    right:0;
+  }
+  a.seventh:before{
+    right:0;
+  }
+  a.seventh:after{
+    left:0;
+  }
+  a.eigth:before{
+    left:0;
+  }
+  a.eigth:after{
+    right:0;
+  }
+  a.before:hover:before,a.after:hover:after{
+    width:100%;
+  }
+  .square{
+    box-sizing:border-box;
+    margin-left:-0.4em;
+    position:relative;
+    font-size:2.5em;
+    overflow:hidden;
+  }
+  .square a{
+    position:static;
+    font-size:100%;
+    padding:0.2em 0.4em;
+  }
+  .square:before,.square:after{
+    content: "";
+    box-sizing:border-box;
+    transition:0.25s all ease;
+    -webkit-backface-visibility:hidden;
+            backface-visibility:hidden;
+    position:absolute;
+    width:5px;
+    width:0.35rem;
+    height:0;
+    background: $hover-color;
+  }
+  .square:before{
+    left:0;
+    bottom:-0.2em;
+  }
+  .square.individual:before{
+    transition-delay:0.6s;
+  }
+  .square:after{
+    right:0;
+    top:-0.2em;
+  }
+  .square.individual:after{
+    transition-delay:0.2s;
+  }
+  .square a:before{
+    left:0;
+    transition:0.25s all ease;
+  }
+  .square a:after{
+    right:0;
+    transition:0.25s all ease;
+  }
+  .square.individual a:after{
+    transition:0.25s all ease 0.4s;
+  }
+  .square:hover:before,.square:hover:after{
+    height:calc(100% + 0.4em);
+  }
+  .square:hover a:before,.square:hover a:after{
+    width:100%;
+  }
+
+}
+
+// http://codepen.io/josedavidfumo/pen/KVGejW
+.mouse-layer-div {
+  position: fixed;
+  /*background-color: lightyellow;*/
+  left: 43vw;
+  top: 4vh;
+  height: 80vh;
+  width: 7vw;
+  padding: 0 2vw;
+  opacity: 0.4;
+  /* padding-left: 3vw; */
+
+
+  .mouse-scroll {
+    style: block;
+  }
+  .mouse-scroll {
+    position: fixed;
+    margin: auto;
+    left: 50%;
+    bottom: 13vh;
+    -webkit-transform: translateX(-50%);
+    z-index: 9999;
+  }
+  .mouse-scroll span{
+    display: block;
+    width: 5px; 
+    height: 5px;
+    border-right: 2px solid #fff; 
+    border-bottom: 2px solid #fff;
+    margin: 0 0 3px 5px;
+
+    &.down-arrow {
+      -ms-transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+
+    &.up-arrow {
+      -ms-transform: rotate(225deg);
+      -webkit-transform: rotate(225deg);
+      transform: rotate(225deg);
+      transform: rotate(225deg);
+    }
+  }
+  .mouse-scroll .mouse {
+    height: 21px;
+    width: 14px;
+    border-radius: 10px;
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+    border: 2px solid #ffffff;
+    top: 170px;
+    margin-top: 10px;
+    margin-bottom: 8px;
+  }
+  .mouse-scroll .down-arrow-1 {
+    margin-top: 6px;
+  }
+  .mouse-scroll .down-arrow-1, .mouse-scroll .down-arrow-2, .mouse-scroll .down-arrow-3 {
+    -webkit-animation: mouse-scroll 1s infinite; 
+      -moz-animation: mouse-scroll 1s infinite;
+  }
+  .mouse-scroll .down-arrow-1 {
+     -webkit-animation-delay: .1s; 
+     -moz-animation-delay: .1s;
+     -webkit-animation-direction: alternate;
+  }
+  .mouse-scroll .down-arrow-2 {
+    -webkit-animation-delay: .2s; 
+    -moz-animation-delay: .2s;
+    -webkit-animation-direction: alternate;
+  }
+  .mouse-scroll .down-arrow-3 {
+     -webkit-animation-delay: .3s;
+     -moz-animation-dekay: .3s;
+     -webkit-animation-direction: alternate;
+  }
+
+  .mouse-scroll .up-arrow-1 {
+    margin-top: 6px;
+  }
+  .mouse-scroll .up-arrow-1, .mouse-scroll .up-arrow-2, .mouse-scroll .up-arrow-3 {
+    -webkit-animation: mouse-scroll 1s infinite; 
+      -moz-animation: mouse-scroll 1s infinite;
+  }
+  .mouse-scroll .up-arrow-1 {
+     -webkit-animation-delay: .1s; 
+     -moz-animation-delay: .1s;
+     -webkit-animation-direction: alternate;
+  }
+  .mouse-scroll .up-arrow-2 {
+    -webkit-animation-delay: .2s; 
+    -moz-animation-delay: .2s;
+    -webkit-animation-direction: alternate;
+  }
+  .mouse-scroll .up-arrow-3 {
+     -webkit-animation-delay: .3s;
+     -moz-animation-dekay: .3s;
+     -webkit-animation-direction: alternate;
+  }
+  .mouse-scroll .mouse-in {
+    height: 5px;
+    width: 2px;
+    display: block; 
+    margin: 5px auto;
+    background: #ffffff;
+    position: relative;
+  }
+  .mouse-scroll .mouse-in {
+   -webkit-animation: animated-mouse 3s ease infinite;
+    moz-animation: mouse-animated 3s ease infinite;
+  }
+
+  @-webkit-keyframes animated-mouse {
+    0% {
+      opacity: 1;
+      -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+      transform: translateY(0);
+    }
+
+    25% {
+       opacity: 0;
+      -webkit-transform: translateY(6px);
+      -ms-transform: translateY(6px);
+      transform: translateY(6px);
+    }
+
+    50% {
+       opacity: 0;
+      -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+      transform: translateY(0);
+    }
+
+    75% {
+       opacity: 0;
+      -webkit-transform: translateY(6px);
+      -ms-transform: translateY(6px);
+      transform: translateY(6px);
+    }
+  }
+
+  @-webkit-keyframes mouse-scroll {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: .5;
+    }
+    100% {
+      opacity: 1;
+    } 
+  }
+  @keyframes mouse-scroll {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+}
+
+
+
+
+
 .grain {
   top: 0;
   width: 100%;
@@ -79,7 +497,8 @@ a {
 }
 
 .scene-resize-div {
-  max-width:1420px !important;
+  width:1420px;
+  height:720px;
 }
 
 
@@ -94,24 +513,21 @@ a {
    -webkit-transition: opacity .5s ease-in-out;
 }
 
-.ng-fade-in,
-.ng-fade-out {
-  -webkit-transition: .5s ease-in-out;
-  -moz-transition: .5s ease-in-out;
-  -o-transition: .5s ease-in-out;
-  transition: .5s ease-in-out;
-}
-
-.ng-fade-in.ng-hide-remove,
-.ng-fade-out.ng-hide-add.ng-hide-add-active {
+.ng-fade.ng-hide {
   opacity: 0;
+}
+
+.ng-fade.ng-hide-remove,
+.ng-fade.ng-hide-add {
   display: block !important;
 }
 
-.ng-fade-out.ng-hide-add,
-.ng-fade-in.ng-hide-remove.ng-hide-remove-active {
-  opacity: 1;
-  display: block !important;
+.ng-fade.ng-hide-remove {
+  transition: all linear 1000ms;
+}
+
+.ng-fade.ng-hide-add {
+  transition: all linear 500ms;
 }
 
 
@@ -254,12 +670,73 @@ a {
   //opacity: 0; //UNCOMMENT
 }
 
+.resize-container,
+.chromeonly-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  font-size: 1.25em;
+  color: #fff;
+  background-color: rgba(102,102,102,0.85);
+  text-align: center;
+  cursor: default;
+
+  .exit {
+    text-align:right;
+    padding: 1%;
+  }
+
+  .text {
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 0%;
+    cursor: default;
+  }
+}
+
+
+.overlay-container{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 300%;
+  background-color: #fff;
+}
+
+
 .load-container,
 .unsuccessful-container,
 .mobile-container{
   height: 100%;
   background-color: #ffffff;
 }
+
+  .mobile-container-warning {
+    position: fixed;
+    margin-left: 25%;
+    width: 50%;
+    text-align: center;
+    color: #9d6cd4;
+  }
+
+  .unsuccessful-container-uhoh {
+    position: fixed;
+    margin-left: 25%;
+    width: 50%;
+    text-align: center;
+    color: #9d6cd4;
+  }
+
+  .unsuccessful-container-git {
+    position: fixed;
+    margin-left: 25%;
+    bottom: 0;
+    padding-bottom: 30px;
+    width: 50%;
+    text-align: center;
+    color: #666666;
+  }
 
   .load-spinner {
     position: absolute;
@@ -289,6 +766,10 @@ a {
       box-shadow: 15px -15px #9d6cd4, 15px 15px #c0a0e4, -15px 15px #9d6cd4, -15px -15px #c0a0e4;
     }
   }
+
+.load-success {
+  height:100%;
+}
 
 
 
@@ -361,9 +842,9 @@ a {
 
 .layer-about-me {
   position: fixed;
-  width: 112vh;
-  height: 100%;
-  right: 10vw;
+  // width: 70vw;
+  // height: 80vh;
+  right: 0vw;
   top: 0vh;
 }
 
@@ -379,7 +860,7 @@ a {
 
 .layer-mask-clouds {
   position: fixed;
-  margin-top: 3%;
+  margin-top: -2%;
   margin-left: 1%;
   overflow: hidden;
 }
@@ -712,6 +1193,7 @@ a {
   left: 10%;
   top: 25%;
   opacity: 0;
+  width:100%;
 }
 
 .content-tagline {
@@ -719,6 +1201,7 @@ a {
   left: 45%;
   top: 44%;
   opacity: 0;
+  width:55%;
 }
 
 
@@ -726,15 +1209,23 @@ a {
 /*=========================================================
   About Me Content
   =========================================================*/
+#about-me-div{
+  position: fixed;
+  margin-top: 2%;
+  right: 8%;
+  overflow: hidden;
+}
+
 #title-about-me {
   position: absolute;
-  top: 10%;
+  width:100%;
+  top: -1%;
 }
 
 #content-about-me {
   position: absolute;
   left: 7%;
-  padding: 5% 8%;
+  height: 80%;
   width: 80%;
   margin: 0;
   opacity: 1;
@@ -764,7 +1255,7 @@ a {
 }
 
 .contact-btn {
-  margin: 5% auto;
+  margin: 20px auto;
   padding: 5px;
   width: 18vw;
   text-align: center;
@@ -779,8 +1270,7 @@ a {
 }
 
 
-  .about-me-btn {
-    margin-top: 10%;
+  .say-hello-btn {
     background: #33a3b5; /* For browsers that do not support gradients */
     background: -webkit-linear-gradient(left top, #33a3b5, #3bf574); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(bottom right, #33a3b5, #3bf574); /* For Opera 11.1 to 12.0 */
@@ -891,6 +1381,41 @@ a {
   }
 
 
+  .refresh-btn {
+    background: #668edb; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left top, #668edb, #75cbd9); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, #668edb, #75cbd9); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, #668edb, #75cbd9); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, #668edb, #75cbd9); /* Standard syntax */
+
+    box-shadow: 0 1px 2px rgba(20,20,20,0.15);
+    transition: all 0.3s ease-in-out;
+
+    /* Hidden element for diffused box shadow */
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      border-radius: 100px;
+      box-shadow: 0 5px 15px rgba(20,20,20,0.15);
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    /* Scale up the box */
+    &:hover {
+      transform: scale(1.2, 1.2);
+    }
+
+    /* Fade in the pseudo-element with the bigger shadow */
+    &:hover::after {
+      opacity: 1;
+    }
+  }
 
 
 
@@ -899,12 +1424,14 @@ a {
 
 
 
-
-
-
-
-
-
-
-
-
+#construction-layer {
+  position: fixed;
+  padding: 1% 2%;
+  width: 35vw;
+  margin-left: 44vw;
+  color: #381a5a;
+  text-align: center;
+  text-transform: lowercase;
+  background-color: rgba(255,255,255,0.65);
+  border-radius: 1vh;
+}
