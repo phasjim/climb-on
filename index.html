@@ -65,29 +65,6 @@
 
 
 
-    <!-- ================================= NOT MOBILE ================================= -->
-    <div ng-show="(!isMobile && isChrome)">
-      <!-- ================================= LOADING CONTAINER ================================= -->
-      <div class="load-container ng-fade-out" ng-show="isLoading" ng-cloak>
-        <div class="load-spinner"></div>
-      </div><!-- end .load-container -->
-
-      <!-- ================================= LOADING UNSUCCESSFUL ================================= -->
-      <div ng-show="!isLoading">
-        <div class="unsuccessful-container ng-fade-out" ng-show="!isSuccessful" ng-cloak>
-          <div class="unsuccessful-container-uhoh">
-              Uh oh, something went wrong :( <br>
-              Please refresh and try again
-            </div>
-
-            <div class="unsuccessful-container-git">
-              Feel free to submit an issue on the <a href="https://github.com/phasjim/wubalubadubdub" target="_blank">GitHub Repo</a>!
-            </div>
-        </div><!-- end .load-container -->
-      </div>
-
-
-
       <!-- ================================= MAIN SCENE CONTAINER ================================= -->
       <div class="web-container" ng-show="!isLoading" ng-cloak>
         <div class="load-success" ng-show="isSuccessful">
@@ -360,6 +337,28 @@
   <!-- =============================== FADE IN OVERLAY ============================== -->
   <!-- ============================================================================== -->
   <div class="overlay-container"></div>
+
+
+  <!-- ================================= NOT MOBILE ================================= -->
+  <div ng-show="(!isMobile && isChrome)">
+    <!-- ================================= LOADING CONTAINER ================================= -->
+    <div class="load-container ng-fade-out" ng-show="isLoading" ng-cloak>
+      <div class="load-spinner"></div>
+    </div><!-- end .load-container -->
+
+    <!-- ================================= LOADING UNSUCCESSFUL ================================= -->
+    <div ng-show="!isLoading">
+      <div class="unsuccessful-container ng-fade-out" ng-show="!isSuccessful" ng-cloak>
+        <div class="unsuccessful-container-uhoh">
+            Uh oh, something went wrong :( <br>
+            Please refresh and try again
+          </div>
+
+          <div class="unsuccessful-container-git">
+            Feel free to submit an issue on the <a href="https://github.com/phasjim/wubalubadubdub" target="_blank">GitHub Repo</a>!
+          </div>
+      </div><!-- end .load-container -->
+    </div>
 
 
 
