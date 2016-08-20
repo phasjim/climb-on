@@ -365,7 +365,7 @@
             $scope.isSuccessful = false;
             $scope.percentLoaded = 0;
 
-            $("body").css("overflow", "hidden");
+            $("body").css("overflow-y", "hidden");
             
             // Populate images in the array
             $scope.imageLocations = [];
@@ -387,14 +387,14 @@
                     // Loading was successful.
                     $scope.isLoading = false;
                     $scope.isSuccessful = true;
-                    $("body").css("overflow", "auto");
+                    $("body").css("overflow-y", "auto");
                     console.info( "Preload Successful" );
                 },
                 function handleReject( imageLocation ) {
                     // Loading failed on at least one image.
                     $scope.isLoading = false;
                     $scope.isSuccessful = false;
-                    $("body").css("overflow", "auto");
+                    $("body").css("overflow-y", "auto");
                     console.error( "Image Failed", imageLocation );
                     console.info( "Preload Failure" );
                 },
