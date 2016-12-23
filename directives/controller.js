@@ -146,7 +146,7 @@
 		      $scope.layerDiv.aboutMeContent.style.borderBottomWidth = aboutMePaddingTop;
   		      $scope.layerDiv.aboutMeContent.style.backgroundSize = aboutMePaddingTop + " 100%";
 
-		      var aboutMeContentText = newSceneHeight/45 + "px";
+		      var aboutMeContentText = newSceneHeight/50 + "px";
 		      $scope.layerDiv.aboutMeText.style.fontSize = aboutMeContentText;
 
 		      var aboutMeTitleText = newSceneHeight/10 + "px";
