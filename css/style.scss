@@ -1098,45 +1098,46 @@ a.modal-close {
   }
 
   #img-flower-light1 {
+    // background-color: red;
     position: absolute;
     transform: scale(.015);
-    left: -6.9%;
-    top: -59%;
+    left: -21%;
+    top: -75%;
   }
 
   #img-flower-light2 {
     position: absolute;
     transform: scale(.015);
-    left: 19.8%;
-    top: -52%;
+    left: 37.8%;
+    top: -18%;
   }
 
   #img-flower-light3 {
     position: absolute;
     transform: scale(.015);
-    left: 24.9%;
-    top: -56.5%;
+    left: 32.9%;
+    top: -26.5%;
   }
 
   #img-flower-dark1 {
     position: absolute;
     transform: scale(.015);
-    left: -4.8%;
-    top: -56%;
+    left: -18%;
+    top: -77%;
   }
 
   #img-flower-dark2 {
     position: absolute;
     transform: scale(.015);
-    left: 23.8%;
-    top: -50%;
+    left: 39.8%;
+    top: -23.6%;
   }
 
   #img-flower-dark3 {
     position: absolute;
     transform: scale(.015);
-    left: -8.3%;
-    top: -53%;
+    left: -15.3%;
+    top: -69%;
   }
 
   #img-grass1 {
@@ -1419,12 +1420,9 @@ a.modal-close {
   }
 
 
-
-
-
-
-
-
+/**
+ * Under Construction Layer
+ */
 #construction-layer {
   position: fixed;
   padding: 1% 2%;
